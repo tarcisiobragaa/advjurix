@@ -1,0 +1,2114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>ADVJURIX — Tarcisio Braga Advogados</title>
+<base target="_top">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<script>window.HEADER_B64="";</script>
+<style>
+:root{
+--ink:#0D1117;--surface:#F4F1EC;--card:#FFFFFF;
+--gold:#B8902A;--gold2:#D4A843;--gold-pale:#FBF4E0;
+--red:#C0392B;--red2:#E74C3C;--red-pale:#FDECEA;
+--green:#1E7E5A;--green2:#27AE60;--green-pale:#E8F5EE;
+--amber:#D97706;--amber2:#F59E0B;--amber-pale:#FEF3C7;
+--blue:#1D4ED8;--blue2:#3B82F6;--blue-pale:#EFF6FF;
+--teal:#1A5F6A;--teal2:#2A7F8E;--teal-pale:#E6F4F6;
+--purple:#5B3A8E;--purple2:#7C5CBE;--purple-pale:#EFE9F8;
+--border:rgba(184,144,42,.13);--border2:rgba(13,17,23,.08);--border3:rgba(13,17,23,.05);
+--shadow:0 1px 8px rgba(13,17,23,.06);--shadow-md:0 4px 20px rgba(13,17,23,.1);
+--radius:12px;--radius-sm:8px;--radius-xs:6px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"DM Sans",sans-serif;background:var(--surface);color:var(--ink);min-height:100vh;overflow-x:hidden}
+
+/* LOADING */
+#app-loading{position:fixed;inset:0;background:var(--ink);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px}
+#app-loading.hidden{display:none}
+.ld-logo{display:flex;align-items:center;gap:12px}
+.ld-icon{width:52px;height:52px;background:linear-gradient(135deg,var(--gold),var(--gold2));border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--ink)}
+.ld-brand{font-family:"Cormorant Garamond",serif;font-size:30px;font-weight:600;color:#fff;letter-spacing:1px}
+.ld-brand span{color:var(--gold2)}
+.ld-sub{font-size:10px;color:rgba(255,255,255,.25);letter-spacing:2px;text-transform:uppercase}
+.ld-bar-wrap{width:240px;height:2px;background:rgba(255,255,255,.08);border-radius:2px;overflow:hidden}
+.ld-bar{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0%;transition:width .4s ease}
+.ld-msg{font-size:11px;color:rgba(255,255,255,.3)}
+
+/* LIB LOADER */
+.lib-loader{position:fixed;inset:0;background:rgba(13,17,23,.72);z-index:9998;display:none;flex-direction:column;align-items:center;justify-content:center;gap:14px}
+.lib-loader.show{display:flex}
+.lib-spin{width:40px;height:40px;border:3px solid rgba(184,144,42,.2);border-top-color:var(--gold);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.lib-msg{color:#fff;font-size:13px;font-weight:500}
+.lib-sub{color:rgba(255,255,255,.45);font-size:11px}
+
+/* LAYOUT */
+.sb{position:fixed;left:0;top:0;bottom:0;width:220px;background:var(--ink);display:flex;flex-direction:column;z-index:200;transition:transform .25s}
+.sb.collapsed{transform:translateX(-220px)}
+.sb-logo{padding:14px 16px;border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;gap:9px;flex-shrink:0}
+.sb-icon{width:32px;height:32px;background:linear-gradient(135deg,var(--gold),var(--gold2));border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--ink);flex-shrink:0}
+.sb-brand{font-family:"Cormorant Garamond",serif;font-size:13px;font-weight:600;color:#fff;letter-spacing:.5px}
+.sb-brand span{color:var(--gold2)}
+.sb-tagline{font-size:8px;color:rgba(255,255,255,.25);letter-spacing:1.5px;text-transform:uppercase;margin-top:1px}
+.sb-nav{flex:1;overflow-y:auto;padding:8px 0;scrollbar-width:none}
+.sb-nav::-webkit-scrollbar{display:none}
+.sb-sec{font-size:8.5px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.18);font-weight:600;padding:10px 14px 3px}
+.nav{display:flex;align-items:center;gap:8px;padding:8px 12px;cursor:pointer;border-left:2px solid transparent;color:rgba(255,255,255,.38);font-size:11.5px;font-weight:500;transition:all .12s;position:relative;user-select:none}
+.nav i{width:14px;text-align:center;font-size:10.5px;flex-shrink:0}
+.nav:hover{background:rgba(255,255,255,.05);color:rgba(255,255,255,.75);border-left-color:rgba(184,144,42,.3)}
+.nav.active{background:rgba(184,144,42,.12);color:var(--gold2);border-left-color:var(--gold2)}
+.nav-badge{margin-left:auto;font-size:8.5px;font-weight:700;padding:1px 5px;border-radius:10px;flex-shrink:0}
+.badge-red{background:var(--red);color:#fff}
+.badge-amber{background:var(--amber);color:#fff}
+.badge-blue{background:var(--blue);color:#fff}
+.sb-footer{padding:10px 12px;border-top:1px solid rgba(255,255,255,.06);flex-shrink:0}
+.sb-user{display:flex;align-items:center;gap:8px;padding:6px 8px;background:rgba(255,255,255,.05);border-radius:8px}
+.sb-av{width:26px;height:26px;border-radius:6px;background:linear-gradient(135deg,var(--gold),var(--gold2));display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:var(--ink);flex-shrink:0}
+.u-name{font-size:10.5px;font-weight:600;color:rgba(255,255,255,.75)}
+.u-oab{font-size:8px;color:rgba(255,255,255,.28)}
+
+/* MAIN */
+.main{margin-left:220px;min-height:100vh;display:flex;flex-direction:column;transition:margin-left .25s}
+.main.expanded{margin-left:0}
+.topbar{background:var(--ink);border-bottom:1px solid rgba(255,255,255,.06);padding:0 20px;height:50px;display:flex;align-items:center;gap:10px;position:sticky;top:0;z-index:100;flex-shrink:0}
+.tb-menu{width:30px;height:30px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:7px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:rgba(255,255,255,.5);font-size:12px;flex-shrink:0}
+.tb-title{font-family:"Cormorant Garamond",serif;font-size:16px;font-weight:600;color:#fff;flex:1}
+.tb-search{display:flex;align-items:center;gap:7px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:7px;padding:5px 11px;cursor:text;max-width:240px;flex:1}
+.tb-search i{font-size:10px;color:rgba(255,255,255,.3)}
+.tb-search span{font-size:11px;color:rgba(255,255,255,.25)}
+.tb-search input{background:transparent;border:none;outline:none;color:rgba(255,255,255,.7);font-family:"DM Sans",sans-serif;font-size:11px;width:160px;cursor:text}
+.tb-search input::placeholder{color:rgba(255,255,255,.25)}
+.tb-notif{width:30px;height:30px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:7px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:rgba(255,255,255,.5);font-size:10px;position:relative;flex-shrink:0}
+.tb-notif-dot{width:7px;height:7px;background:var(--red);border-radius:50%;position:absolute;top:6px;right:6px;border:1.5px solid var(--ink)}
+.tb-av{width:30px;height:30px;background:linear-gradient(135deg,var(--gold),var(--gold2));border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:var(--ink);flex-shrink:0;cursor:pointer}
+.tb-user-name{font-size:11px;color:rgba(255,255,255,.7);font-weight:500}
+.tb-user-role{font-size:8px;color:rgba(255,255,255,.28);letter-spacing:.5px}
+.sync-chip{display:flex;align-items:center;gap:5px;font-size:9.5px;color:rgba(255,255,255,.3);padding:3px 9px;border-radius:20px;border:1px solid rgba(255,255,255,.1);flex-shrink:0}
+.s-dot{width:5px;height:5px;border-radius:50%;background:var(--green);flex-shrink:0}
+.s-dot.syncing{background:var(--amber);animation:blink 1s infinite}
+.s-dot.err{background:var(--red)}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+
+.content{padding:18px 22px;flex:1}
+.view{display:none}.view.active{display:block}
+
+/* COMPONENTS */
+.btn{display:inline-flex;align-items:center;gap:6px;border-radius:var(--radius-sm);font-family:"DM Sans",sans-serif;font-weight:600;cursor:pointer;transition:all .18s;border:none;font-size:12px;text-decoration:none}
+.btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--ink);padding:8px 16px}
+.btn-gold:hover{opacity:.88}
+.btn-outline{background:transparent;border:1px solid var(--border2);color:rgba(13,17,23,.6);padding:7px 13px}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold)}
+.btn-wpp{background:#25D366;color:#fff;padding:8px 14px}
+.btn-blue{background:var(--blue);color:#fff;padding:8px 14px}
+.btn-purple{background:var(--purple);color:#fff;padding:8px 14px}
+.btn-red{background:var(--red-pale);border:1px solid rgba(192,57,43,.25);color:var(--red);padding:7px 12px}
+.btn-teal{background:var(--teal);color:#fff;padding:8px 14px}
+.btn-green{background:var(--green);color:#fff;padding:8px 14px}
+.btn-dark{background:var(--ink);color:#fff;padding:8px 14px}
+.btn-sm{padding:5px 10px!important;font-size:11px!important}
+.btn-xs{padding:3px 8px!important;font-size:10px!important}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+
+.vtabs{display:flex;border-bottom:1px solid var(--border2);margin-bottom:18px;gap:0;overflow-x:auto}
+.vtab{padding:9px 16px;font-size:12px;font-weight:600;cursor:pointer;color:rgba(13,17,23,.38);border-bottom:2px solid transparent;margin-bottom:-1px;white-space:nowrap;display:flex;align-items:center;gap:5px;transition:all .15s}
+.vtab i{font-size:10px}
+.vtab:hover{color:var(--ink)}
+.vtab.active{color:var(--gold);border-bottom-color:var(--gold)}
+
+.panel{background:var(--card);border:1px solid var(--border2);border-radius:var(--radius);overflow:hidden;margin-bottom:14px}
+.ph{display:flex;align-items:center;justify-content:space-between;padding:11px 16px;border-bottom:1px solid var(--border3)}
+.pt{font-family:"Cormorant Garamond",serif;font-size:14px;font-weight:600;display:flex;align-items:center;gap:7px;color:var(--ink)}
+.pt i{font-size:11px}
+
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+
+.kpi{background:var(--card);border:1px solid var(--border2);border-radius:var(--radius);padding:13px 15px;position:relative;overflow:hidden}
+.kpi::before{content:"";position:absolute;top:0;left:0;right:0;height:2.5px}
+.kpi.gold::before{background:linear-gradient(90deg,var(--gold),var(--gold2))}
+.kpi.green::before{background:linear-gradient(90deg,var(--green),var(--green2))}
+.kpi.red::before{background:linear-gradient(90deg,var(--red),var(--red2))}
+.kpi.teal::before{background:linear-gradient(90deg,var(--teal),var(--teal2))}
+.kpi.blue::before{background:linear-gradient(90deg,var(--blue),var(--blue2))}
+.kpi.purple::before{background:linear-gradient(90deg,var(--purple),var(--purple2))}
+.kpi.amber::before{background:linear-gradient(90deg,var(--amber),var(--amber2))}
+.kpi-l{font-size:8.5px;font-weight:700;letter-spacing:.9px;text-transform:uppercase;color:rgba(13,17,23,.35);margin-bottom:5px}
+.kpi-v{font-family:"Cormorant Garamond",serif;font-size:22px;font-weight:700;line-height:1;color:var(--ink)}
+.kpi-s{font-size:9.5px;color:rgba(13,17,23,.38);margin-top:4px;display:flex;align-items:center;gap:4px}
+.up{color:var(--green)}.dn{color:var(--red)}
+
+.fg{display:flex;flex-direction:column;gap:4px;margin-bottom:12px}
+.fl{font-size:9px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:rgba(13,17,23,.38)}
+.req{color:var(--red)}
+.fi,.fsl,.fta{background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius-xs);padding:8px 12px;font-family:"DM Sans",sans-serif;font-size:13px;color:var(--ink);outline:none;transition:border-color .18s;width:100%}
+.fi:focus,.fsl:focus,.fta:focus{border-color:var(--gold);background:#fff}
+.fta{resize:vertical;min-height:80px}
+.fi-mono{font-family:"DM Mono",monospace}
+
+.chip{display:inline-flex;align-items:center;gap:3px;font-size:9.5px;font-weight:700;padding:2px 7px;border-radius:20px}
+.chip-gold{background:var(--gold-pale);color:var(--gold)}
+.chip-green{background:var(--green-pale);color:var(--green)}
+.chip-red{background:var(--red-pale);color:var(--red)}
+.chip-teal{background:var(--teal-pale);color:var(--teal)}
+.chip-amber{background:var(--amber-pale);color:var(--amber)}
+.chip-blue{background:var(--blue-pale);color:var(--blue)}
+.chip-purple{background:var(--purple-pale);color:var(--purple)}
+.chip-ink{background:rgba(13,17,23,.08);color:rgba(13,17,23,.6)}
+
+.prog{height:5px;background:rgba(13,17,23,.07);border-radius:3px;overflow:hidden;margin-top:4px}
+.prog-f{height:100%;border-radius:3px;transition:width .7s}
+
+.mo{position:fixed;inset:0;background:rgba(13,17,23,.6);z-index:400;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .22s;padding:20px}
+.mo.open{opacity:1;pointer-events:all}
+.mo-box{background:var(--card);border-radius:var(--radius);width:100%;max-width:680px;max-height:92vh;overflow-y:auto;transform:translateY(14px);transition:transform .22s}
+.mo.open .mo-box{transform:translateY(0)}
+.mo-hdr{display:flex;align-items:center;justify-content:space-between;padding:13px 18px;border-bottom:1px solid var(--border3);position:sticky;top:0;background:var(--card);z-index:1}
+.mo-tit{font-family:"Cormorant Garamond",serif;font-size:16px;font-weight:600;color:var(--ink)}
+.mo-cls{width:24px;height:24px;border:1px solid var(--border2);border-radius:5px;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:9px;color:rgba(13,17,23,.4);transition:all .12s}
+.mo-cls:hover{background:var(--red-pale);border-color:var(--red);color:var(--red)}
+.mo-body{padding:18px}
+.mo-act{display:flex;gap:8px;padding-top:12px;border-top:1px solid var(--border3);margin-top:6px;flex-wrap:wrap}
+
+.toast{position:fixed;bottom:22px;right:22px;background:var(--ink);color:#fff;padding:10px 16px;border-radius:var(--radius-sm);font-size:12px;font-weight:500;display:flex;align-items:center;gap:8px;z-index:9999;transform:translateY(60px);opacity:0;transition:all .28s;box-shadow:var(--shadow-md);max-width:320px}
+.toast.show{transform:translateY(0);opacity:1}
+.toast.s i{color:#6EE7B7}.toast.e i{color:#FCA5A5}.toast.w i{color:#FCD34D}
+
+.empty{text-align:center;padding:32px;color:rgba(13,17,23,.3)}
+.empty i{font-size:24px;margin-bottom:8px;display:block;color:rgba(13,17,23,.18)}
+.empty p{font-size:13px}
+
+.kan-board{display:grid;gap:10px;align-items:start}
+.kan-col{background:var(--card);border:1px solid var(--border2);border-radius:var(--radius);overflow:hidden}
+.kan-hdr{padding:9px 12px;border-bottom:2px solid;font-size:10.5px;font-weight:700;display:flex;align-items:center;justify-content:space-between}
+.kan-cards{padding:7px;display:flex;flex-direction:column;gap:5px;min-height:56px}
+.kan-cards.dv{background:rgba(184,144,42,.06);outline:2px dashed var(--gold);border-radius:6px}
+.kan-card{background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius-xs);padding:9px 11px;cursor:grab;transition:all .12s;border-left:3px solid}
+.kan-card:hover{box-shadow:var(--shadow)}
+.kan-card.dragging{opacity:.45}
+
+.pi{display:flex;align-items:center;gap:11px;padding:10px 15px;border-bottom:1px solid var(--border3);cursor:pointer;transition:background .1s}
+.pi:hover{background:var(--gold-pale)}
+.pi:last-child{border-bottom:none}
+.p-av{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;flex-shrink:0}
+
+.tpl-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.tpl-card{padding:11px 13px;border:1px solid var(--border2);border-radius:var(--radius-xs);cursor:pointer;background:var(--surface);transition:all .12s}
+.tpl-card:hover,.tpl-card.active{border-color:var(--gold);background:var(--gold-pale)}
+.tpl-nome{font-size:12.5px;font-weight:600;margin-bottom:2px;color:var(--ink)}
+.tpl-desc{font-size:10px;color:rgba(13,17,23,.45);line-height:1.5}
+
+.doc-preview{background:#fff;border:1px solid var(--border2);border-radius:var(--radius-xs);padding:28px 34px;font-family:Verdana,sans-serif;font-size:13px;line-height:1.8;color:#000;min-height:280px;max-height:540px;overflow-y:auto}
+.doc-preview h1{font-size:13.5px;text-align:center;font-weight:bold;margin:14px 0 8px}
+.doc-preview h2{font-size:13px;background:#FFFF00;font-weight:bold;display:inline-block;padding:2px 4px;margin:14px 0 5px;text-transform:uppercase}
+.doc-preview p{margin-bottom:0;text-align:justify;text-indent:1.25cm}
+.doc-preview strong{font-weight:bold}
+
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-thumb{background:rgba(13,17,23,.13);border-radius:2px}
+</style>
+</head>
+<body>
+
+<!-- LOADING -->
+<div id="app-loading">
+<div class="ld-logo"><div class="ld-icon"><i class="fas fa-balance-scale"></i></div><div class="ld-brand">ADV<span>JURIX</span></div></div>
+<div class="ld-sub">Tarcisio Braga Advogados · OAB/SP 411.019</div>
+<div class="ld-bar-wrap"><div class="ld-bar" id="ld-bar"></div></div>
+<div class="ld-msg" id="ld-msg">Conectando ao servidor...</div>
+<div id="ld-debug" style="position:fixed;bottom:20px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.3);font-size:10px;font-family:monospace">v3.1 — aguardando JS...</div>
+</div>
+
+<!-- LIB LOADER -->
+<div class="lib-loader" id="lib-loader">
+<div class="lib-spin"></div>
+<div class="lib-msg" id="lib-msg">Carregando biblioteca...</div>
+<div class="lib-sub" id="lib-sub">Aguarde</div>
+</div>
+
+<!-- SIDEBAR -->
+<nav class="sb" id="sidebar">
+<div class="sb-logo">
+<div class="sb-icon"><i class="fas fa-balance-scale"></i></div>
+<div><div class="sb-brand">ADV<span>JURIX</span></div><div class="sb-tagline">v3.0 — Sistema Completo</div></div>
+</div>
+<div class="sb-nav">
+<div class="sb-sec">Principal</div>
+<div class="nav active" id="nav-dashboard" onclick="navTo('dashboard',this)"><i class="fas fa-th-large"></i> Dashboard<div class="nav-badge badge-red" id="nb-alertas" style="display:none">!</div></div>
+<div class="sb-sec">Jurídico</div>
+<div class="nav" id="nav-processos" onclick="navTo('processos',this)"><i class="fas fa-folder-open"></i> Processos<div class="nav-badge badge-blue" id="nb-processos"></div></div>
+<div class="nav" id="nav-prazos" onclick="navTo('prazos',this)"><i class="fas fa-clock"></i> Prazos & DJEN<div class="nav-badge badge-red" id="nb-prazos" style="display:none">!</div></div>
+<div class="nav" id="nav-confeccao" onclick="navTo('confeccao',this)"><i class="fas fa-tasks"></i> Confecção<div class="nav-badge badge-amber" id="nb-confec" style="display:none">0</div></div>
+<div class="nav" id="nav-peticoes" onclick="navTo('peticoes',this)"><i class="fas fa-magic"></i> Petições IA</div>
+<div class="nav" id="nav-contratos" onclick="navTo('contratos',this)"><i class="fas fa-file-signature"></i> Contratos</div>
+<div class="nav" id="nav-acordos" onclick="navTo('acordos',this)"><i class="fas fa-handshake"></i> Acordos</div>
+<div class="nav" id="nav-agenda" onclick="navTo('agenda',this)"><i class="fas fa-calendar-alt"></i> Agenda</div>
+<div class="sb-sec">Comercial</div>
+<div class="nav" id="nav-crm" onclick="navTo('crm',this)"><i class="fas fa-funnel-dollar"></i> CRM & Follow-up<div class="nav-badge badge-amber" id="nb-crm" style="display:none">0</div></div>
+<div class="nav" id="nav-propostas" onclick="navTo('propostas',this)"><i class="fas fa-file-invoice"></i> Propostas</div>
+<div class="nav" id="nav-marketing" onclick="navTo('marketing',this)"><i class="fas fa-bullhorn"></i> Marketing</div>
+<div class="nav" id="nav-portal" onclick="navTo('portal',this)"><i class="fas fa-user-circle"></i> Portal do Cliente</div>
+<div class="sb-sec">Financeiro</div>
+<div class="nav" id="nav-financas" onclick="navTo('financas',this)"><i class="fas fa-chart-line"></i> Central Financeira</div>
+<div class="nav" id="nav-honorarios" onclick="navTo('honorarios',this)"><i class="fas fa-dollar-sign"></i> Honorários</div>
+<div class="nav" id="nav-calculadora" onclick="navTo('calculadora',this)"><i class="fas fa-calculator"></i> Calculadora</div>
+<div class="sb-sec">Gestão</div>
+<div class="nav" id="nav-equipe" onclick="navTo('equipe',this)"><i class="fas fa-users-cog"></i> Equipe</div>
+<div class="nav" id="nav-relatorio" onclick="navTo('relatorio',this)"><i class="fas fa-chart-pie"></i> Relatório</div>
+</div>
+<div class="sb-footer">
+<div class="sb-user">
+<div class="sb-av" id="sb-av">TB</div>
+<div><div class="u-name" id="sb-name">Carregando...</div><div class="u-oab" id="sb-oab">OAB/SP 411.019</div></div>
+</div>
+</div>
+</nav>
+
+<!-- MAIN -->
+<div class="main" id="main">
+<div class="topbar">
+<button class="tb-menu" onclick="toggleSb()"><i class="fas fa-bars"></i></button>
+<div class="tb-title" id="tb-title">Dashboard</div>
+<div class="tb-search" onclick="buscaGlobal(this)"><i class="fas fa-search"></i><input id="tb-search-input" placeholder="Buscar processo, cliente..." style="background:transparent;border:none;outline:none;color:rgba(255,255,255,.7);font-family:'DM Sans',sans-serif;font-size:11px;width:160px;cursor:text" oninput="buscaGlobalInput(this.value)" onclick="event.stopPropagation()"></div>
+<div class="tb-notif"><i class="fas fa-bell"></i><div class="tb-notif-dot" id="notif-dot" style="display:none"></div></div>
+<div style="display:flex;align-items:center;gap:7px">
+<div class="tb-av" id="tb-av">TB</div>
+<div><div class="tb-user-name" id="tb-name">Tarcisio Braga</div><div class="tb-user-role">SÓCIO GESTOR</div></div>
+</div>
+<div class="sync-chip"><div class="s-dot" id="s-dot"></div><span id="s-txt">Sync</span></div>
+</div>
+
+<div class="content">
+
+<!-- DASHBOARD -->
+<div class="view active" id="view-dashboard">
+<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+<div><div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600" id="dash-greeting">Bom dia, Tarcisio</div><div style="font-size:11px;color:rgba(13,17,23,.4)" id="dash-date"></div></div>
+<div style="display:flex;gap:8px"><button class="btn btn-gold btn-sm" onclick="navTo('peticoes')"><i class="fas fa-magic"></i> Petição IA</button><button class="btn btn-outline btn-sm" onclick="navTo('crm')"><i class="fas fa-user-plus"></i> Novo lead</button></div>
+</div>
+<div class="g4" id="dash-kpis" style="margin-bottom:14px"></div>
+<div style="display:grid;grid-template-columns:1fr 320px;gap:12px;margin-bottom:12px">
+<div id="dash-alertas"></div>
+<div id="dash-agenda"></div>
+</div>
+<div class="g2" id="dash-bottom"></div>
+</div>
+
+<!-- PROCESSOS -->
+<div class="view" id="view-processos">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+<div><div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600">Central de Processos</div><div style="font-size:11px;color:rgba(13,17,23,.4)" id="proc-count"></div></div>
+<div style="display:flex;gap:8px">
+<select class="fi" id="proc-area-filter" style="width:160px;padding:6px 10px;font-size:11px" onchange="filtrarProc()"><option value="">Todas as áreas</option><option value="Fraudes Bancárias">Fraudes Bancárias</option><option value="Bancário">Bancário</option><option value="Previdenciário">Previdenciário</option><option value="Trabalhista">Trabalhista</option><option value="Consumidor">Consumidor</option><option value="Cível">Cível</option><option value="Família">Família</option><option value="Outros">Outros</option></select>
+<select class="fi" id="proc-fase-filter" style="width:140px;padding:6px 10px;font-size:11px" onchange="filtrarProc()"><option value="">Todas as fases</option><option value="Petição inicial">Petição inicial</option><option value="Contestação">Contestação</option><option value="Instrução">Instrução</option><option value="Audiência">Audiência</option><option value="Sentença">Sentença</option><option value="Recurso">Recurso</option><option value="Execução">Execução</option><option value="Arquivado">Arquivado</option></select>
+<input class="fi" id="proc-q" style="width:200px;padding:6px 10px;font-size:12px" placeholder="Buscar..." oninput="filtrarProc()">
+<button class="btn btn-gold btn-sm" onclick="moNovoProc()"><i class="fas fa-plus"></i> Novo</button>
+</div>
+</div>
+<div class="panel"><div id="proc-list"></div></div>
+</div>
+
+<!-- PRAZOS -->
+<div class="view" id="view-prazos">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+<div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600">Prazos & Publicações DJEN</div>
+<div style="display:flex;gap:8px"><button class="btn btn-dark btn-sm" onclick="simDJEN()"><i class="fas fa-sync"></i> Simular DJEN</button><button class="btn btn-gold btn-sm" onclick="moNovoPrazo()"><i class="fas fa-plus"></i> Novo prazo</button></div>
+</div>
+<div class="g4" id="prazos-kpis" style="margin-bottom:14px"></div>
+<div class="vtabs">
+<div class="vtab active" id="vt-pz-crit" onclick="prazosTab('criticos',this)"><i class="fas fa-exclamation-triangle" style="color:var(--red)"></i> Críticos<span id="pz-cnt-crit" style="background:var(--red);color:#fff;font-size:9px;font-weight:700;padding:1px 5px;border-radius:10px;margin-left:4px"></span></div>
+<div class="vtab" id="vt-pz-prox" onclick="prazosTab('proximos',this)"><i class="fas fa-clock"></i> Próximos 7 dias</div>
+<div class="vtab" id="vt-pz-todos" onclick="prazosTab('todos',this)"><i class="fas fa-list"></i> Todos</div>
+<div class="vtab" id="vt-pz-djen" onclick="prazosTab('djen',this)"><i class="fas fa-newspaper"></i> Publicações DJEN</div>
+</div>
+<div id="prazos-content"></div>
+</div>
+
+<!-- CONFECÇÃO -->
+<div class="view" id="view-confeccao">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+<div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600">Confecção & Distribuição de Peças</div>
+<button class="btn btn-gold btn-sm" onclick="moNovaPeca()"><i class="fas fa-plus"></i> Nova peça</button>
+</div>
+<div class="g4" id="conf-kpis" style="margin-bottom:14px"></div>
+<div class="vtabs">
+<div class="vtab active" id="vt-cf-fila" onclick="confTab('fila',this)"><i class="fas fa-list-ol"></i> Fila de produção</div>
+<div class="vtab" id="vt-cf-rev" onclick="confTab('revisao',this)"><i class="fas fa-eye"></i> Em revisão</div>
+<div class="vtab" id="vt-cf-prot" onclick="confTab('protocolado',this)"><i class="fas fa-check"></i> Concluídas</div>
+</div>
+<div id="conf-content"></div>
+</div>
+
+<!-- PETIÇÕES IA -->
+<div class="view" id="view-peticoes"><div id="pet-wrap"></div></div>
+
+<!-- CONTRATOS -->
+<div class="view" id="view-contratos"><div id="contr-wrap"></div></div>
+
+<!-- ACORDOS -->
+<div class="view" id="view-acordos">
+<div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;margin-bottom:6px">Central de Acordos</div>
+<div class="g4" id="ac-kpis" style="margin-bottom:14px"></div>
+<div class="kan-board" id="ac-kanban" style="grid-template-columns:repeat(5,1fr)"></div>
+</div>
+
+<!-- AGENDA -->
+<div class="view" id="view-agenda">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+<div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600">Agenda & Compromissos</div>
+<button class="btn btn-gold btn-sm" onclick="moNovoEvento()"><i class="fas fa-plus"></i> Novo evento</button>
+</div>
+<div class="vtabs">
+<div class="vtab active" id="vt-ag-hoje" onclick="agendaTab('hoje',this)"><i class="fas fa-star"></i> Hoje</div>
+<div class="vtab" id="vt-ag-semana" onclick="agendaTab('semana',this)"><i class="fas fa-calendar-week"></i> Esta semana</div>
+<div class="vtab" id="vt-ag-todos" onclick="agendaTab('todos',this)"><i class="fas fa-calendar"></i> Todos</div>
+</div>
+<div id="agenda-content"></div>
+</div>
+
+<!-- CRM -->
+<div class="view" id="view-crm">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+<div><div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600">CRM & Follow-up</div><div style="font-size:11px;color:rgba(13,17,23,.4)" id="crm-sub"></div></div>
+<div style="display:flex;gap:8px"><button class="btn btn-outline btn-sm" onclick="crmTab('followup')"><i class="fas fa-clock"></i> Follow-ups</button><button class="btn btn-gold btn-sm" onclick="moNovoLead()"><i class="fas fa-user-plus"></i> Novo lead</button></div>
+</div>
+<div id="crm-wrap"></div>
+</div>
+
+<!-- PROPOSTAS -->
+<div class="view" id="view-propostas"><div id="prop-wrap"></div></div>
+
+<!-- MARKETING -->
+<div class="view" id="view-marketing">
+<div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;margin-bottom:14px">Marketing & Captação</div>
+<div class="vtabs">
+<div class="vtab active" id="vt-mkt-dash" onclick="mktTab('dash',this)"><i class="fas fa-chart-bar"></i> Dashboard</div>
+<div class="vtab" id="vt-mkt-camp" onclick="mktTab('campanhas',this)"><i class="fas fa-ad"></i> Campanhas</div>
+<div class="vtab" id="vt-mkt-cont" onclick="mktTab('conteudo',this)"><i class="fas fa-pen"></i> Conteúdo IA</div>
+</div>
+<div id="mkt-content"></div>
+</div>
+
+<!-- PORTAL CLIENTE -->
+<div class="view" id="view-portal"><div id="portal-wrap"></div></div>
+
+<!-- FINANÇAS -->
+<div class="view" id="view-financas">
+<div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;margin-bottom:14px">Central Financeira</div>
+<div class="vtabs">
+<div class="vtab active" id="vt-fin-dash" onclick="finTab('dash',this)"><i class="fas fa-chart-line"></i> Dashboard</div>
+<div class="vtab" id="vt-fin-fat" onclick="finTab('fat',this)"><i class="fas fa-plus-circle"></i> Receitas</div>
+<div class="vtab" id="vt-fin-desp" onclick="finTab('desp',this)"><i class="fas fa-minus-circle"></i> Despesas</div>
+<div class="vtab" id="vt-fin-metas" onclick="finTab('metas',this)"><i class="fas fa-bullseye"></i> Metas & DRE</div>
+</div>
+<div id="fin-content"></div>
+</div>
+
+<!-- HONORÁRIOS -->
+<div class="view" id="view-honorarios">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+<div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600">Financeiro & Honorários</div>
+<button class="btn btn-gold btn-sm" onclick="moNovoHon()"><i class="fas fa-plus"></i> Lançar</button>
+</div>
+<div class="g4" id="hon-kpis" style="margin-bottom:14px"></div>
+<div class="vtabs">
+<div class="vtab active" id="vt-hon-inad" onclick="honTab('inadimplencia',this)"><i class="fas fa-exclamation-circle" style="color:var(--red)"></i> Inadimplência</div>
+<div class="vtab" id="vt-hon-exito" onclick="honTab('exito',this)"><i class="fas fa-trophy" style="color:var(--gold)"></i> Carteira de Êxito</div>
+<div class="vtab" id="vt-hon-recibos" onclick="honTab('recibos',this)"><i class="fas fa-receipt"></i> Recibos</div>
+</div>
+<div id="hon-content"></div>
+</div>
+
+<!-- CALCULADORA -->
+<div class="view" id="view-calculadora"><div id="calc-wrap"></div></div>
+
+<!-- EQUIPE -->
+<div class="view" id="view-equipe">
+<div class="vtabs">
+<div class="vtab active" id="vt-eq-visao" onclick="eqTab('visao',this)"><i class="fas fa-chart-pie"></i> Visão Geral</div>
+<div class="vtab" id="vt-eq-col" onclick="eqTab('colaboradores',this)"><i class="fas fa-users"></i> Colaboradores</div>
+<div class="vtab" id="vt-eq-tarefas" onclick="eqTab('tarefas',this)"><i class="fas fa-tasks"></i> Tarefas</div>
+<div class="vtab" id="vt-eq-prod" onclick="eqTab('producao',this)"><i class="fas fa-chart-bar"></i> Produção</div>
+</div>
+<div id="eq-content"></div>
+</div>
+
+<!-- RELATÓRIO -->
+<div class="view" id="view-relatorio">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;flex-wrap:wrap;gap:10px">
+<div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600" id="rel-titulo">Relatório Executivo</div>
+<div style="display:flex;gap:8px">
+<select class="fi" id="rel-mes" style="width:160px;padding:6px 10px;font-size:11px" onchange="bRelatorio()"></select>
+<button class="btn btn-purple btn-sm" onclick="relIA()"><i class="fas fa-magic"></i> Análise IA</button>
+<button class="btn btn-blue btn-sm" onclick="relDoc('pdf')"><i class="fas fa-file-pdf"></i> PDF</button>
+<button class="btn btn-gold btn-sm" onclick="relDoc('docx')"><i class="fas fa-file-word"></i> .docx</button>
+</div>
+</div>
+<div id="rel-content"></div>
+</div>
+
+</div><!-- /content -->
+</div><!-- /main -->
+
+<!-- MODAIS -->
+<div class="mo" id="mo-main" onclick="if(event.target===this)closeMo('mo-main')">
+<div class="mo-box"><div class="mo-hdr"><div class="mo-tit" id="mo-tit">Modal</div><button class="mo-cls" onclick="closeMo('mo-main')"><i class="fas fa-times"></i></button></div><div class="mo-body" id="mo-body"></div></div>
+</div>
+
+<div class="mo" id="mo-doc" onclick="if(event.target===this)closeMo('mo-doc')">
+<div class="mo-box" style="max-width:800px">
+<div class="mo-hdr"><div class="mo-tit" id="mo-doc-tit">Documento</div><button class="mo-cls" onclick="closeMo('mo-doc')"><i class="fas fa-times"></i></button></div>
+<div class="mo-body">
+<div id="mo-doc-prev"></div>
+<div class="mo-act" style="margin-top:12px">
+<button class="btn btn-gold" onclick="gerarDocx()"><i class="fas fa-file-word"></i> Baixar .docx</button>
+<button class="btn btn-blue" onclick="gerarPdf()"><i class="fas fa-file-pdf"></i> Baixar PDF</button>
+<button class="btn btn-wpp" onclick="sendWpp()"><i class="fab fa-whatsapp"></i> WhatsApp</button>
+<button class="btn btn-outline" onclick="copiarDoc()"><i class="fas fa-copy"></i> Copiar</button>
+</div>
+</div>
+</div>
+</div>
+
+<div class="toast" id="toast"><i class="fas fa-check-circle"></i><span id="toast-msg"></span></div>
+
+<script>
+// ── SYNC BRIDGE ──────────────────────────────────────────────────
+var _cache={},_pend={},_saveT=null,_usr={name:"Tarcisio Braga",email:"tarcisiobragasantana@gmail.com"};
+var AppLS={
+  getItem(k){return _cache[k]!==undefined?_cache[k]:null},
+  setItem(k,v){_cache[k]=v;_pend[k]=v;schedSave()},
+  removeItem(k){delete _cache[k];_pend[k]=null;schedSave()}
+};
+function schedSave(){clearTimeout(_saveT);_saveT=setTimeout(flush,1200);setSS("syncing")}
+function flush(){const s=Object.assign({},_pend);_pend={};if(!Object.keys(s).length)return;if(typeof google==="undefined"||!google.script||!google.script.run)return;google.script.run.withSuccessHandler(r=>setSS(r&&r.ok?"ok":"err")).withFailureHandler(()=>setSS("err")).bulkSetData(JSON.stringify(s))}
+function setSS(st){const d=document.getElementById("s-dot"),t=document.getElementById("s-txt");if(!d)return;d.className="s-dot"+(st==="syncing"?" syncing":st==="err"?" err":"");t.textContent=st==="syncing"?"Salvando...":st==="err"?"Erro":"Sync ativo"}
+
+// ── LAZY LOADER ──────────────────────────────────────────────────
+var LibLoader={loaded:{},
+  async load(n,urls,chk){
+    if(this.loaded[n]||(chk&&window[chk])){this.loaded[n]=true;return}
+    showLib("Carregando "+n+"...","Apenas na primeira vez — aguarde");
+    for(const u of urls){try{await this.loadSrc(u);if(!chk||window[chk]){this.loaded[n]=true;hideLib();return}}catch(e){console.warn(u,e)}}
+    hideLib();throw new Error("Falha ao carregar "+n)
+  },
+  loadSrc(src){return new Promise((ok,no)=>{const s=document.createElement("script");s.src=src;s.onload=ok;s.onerror=()=>no(new Error(src));document.head.appendChild(s)})},
+  loadDocx(){return this.load("docx",["https://unpkg.com/docx@8.5.0/build/index.umd.js","https://cdn.jsdelivr.net/npm/docx@8.5.0/build/index.umd.js"],"docx")},
+  loadPdf(){return this.load("pdf",["https://unpkg.com/html2pdf.js@0.10.1/dist/html2pdf.bundle.min.js","https://cdn.jsdelivr.net/npm/html2pdf.js@0.10.1/dist/html2pdf.bundle.min.js"],"html2pdf")}
+};
+function showLib(m,s){document.getElementById("lib-msg").textContent=m;document.getElementById("lib-sub").textContent=s;document.getElementById("lib-loader").classList.add("show")}
+function hideLib(){document.getElementById("lib-loader").classList.remove("show")}
+
+// ── HELPERS ──────────────────────────────────────────────────────
+function fmtM(v){return"R$ "+Number(v||0).toLocaleString("pt-BR",{minimumFractionDigits:2,maximumFractionDigits:2})}
+function fmtM0(v){return"R$ "+Number(v||0).toLocaleString("pt-BR",{minimumFractionDigits:0,maximumFractionDigits:0})}
+function today(){return new Date().toISOString().split("T")[0]}
+function gid(){return Date.now()+Math.floor(Math.random()*9999)}
+function pct(a,b){return b>0?Math.round(a/b*100):0}
+function fd(d){if(!d)return"–";try{const p=d.split("-");return p[2]+"/"+p[1]+"/"+p[0]}catch(e){return d}}
+function addD(d,n){const dt=new Date(d+"T12:00:00");dt.setDate(dt.getDate()+n);return dt.toISOString().split("T")[0]}
+function diffD(d){return Math.ceil((new Date(d+"T00:00:00")-new Date(today()+"T00:00:00"))/86400000)}
+function ini(n){return(n||"?").split(" ").slice(0,2).map(x=>x[0]).join("").toUpperCase()}
+function cor(i){const cs=["#B8902A","#1A5F6A","#5B3A8E","#C0392B","#1E7E5A","#1D4ED8","#D97706"];return cs[i%cs.length]}
+var MESES=["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"];
+var AREAS=["Fraudes Bancárias","Bancário","Previdenciário","Trabalhista","Consumidor","Cível","Família","Outros"];
+var FASES_PROC=["Petição inicial","Contestação","Instrução","Audiência","Sentença","Recurso","Execução","Arquivado"];
+
+function gJ(k,d){try{return JSON.parse(AppLS.getItem(k)||"null")||d}catch(e){return d}}
+function sJ(k,v){AppLS.setItem(k,JSON.stringify(v))}
+var getData={
+  processos:()=>gJ("advjurix_processos",[]),
+  leads:()=>gJ("crm_leads_v2",[]),
+  followups:()=>gJ("crm_followups",[]),
+  prazos:()=>gJ("advjurix_prazos",[]),
+  confec:()=>gJ("advjurix_confec",[]),
+  acordos:()=>gJ("acordos_v2",[]),
+  agenda:()=>gJ("advjurix_agenda",[]),
+  campanhas:()=>gJ("mkt_campanhas",[]),
+  equipe:()=>gJ("equipe_v1",[]),
+  tarefas:()=>gJ("tarefas_v1",[]),
+  honorarios:()=>gJ("advjurix_honorarios",[]),
+  clientes_portal:()=>gJ("portal_clientes",[]),
+  fat:(m)=>gJ("cf_fat_"+m,[]),
+  desp:(m)=>gJ("cf_desp_"+m,[]),
+  metas:()=>gJ("cf_metas",{ideal:24000,equilibrio:14000,minima:12000}),
+  mesAtual:()=>new Date().toISOString().substring(0,7).replace("-","_"),
+  relObs:(k)=>AppLS.getItem("rel_obs_"+k)||""
+};
+
+// ── DEMO DATA ────────────────────────────────────────────────────
+function loadDemo(){
+  if(getData.processos().length>0)return;
+  const td=today();
+  sJ("advjurix_processos",[
+    {id:1,numero:"1005228-79.2025.8.26.0275",nome:"Juscelene Santana Brito",cpf:"123.456.789-00",banco:"Bradesco",area:"Fraudes Bancárias",fase:"Instrução",resp:"Tarcisio",valor:9200,data:addD(td,-120),obs:"Golpe do falso gerente. PIX de R$ 9.200.",timeline:[]},
+    {id:2,numero:"0004521-33.2025.8.26.0275",nome:"Carlos Eduardo Pinto",cpf:"987.654.321-00",banco:"BMG",area:"Bancário",fase:"Sentença",resp:"Renata",valor:52000,data:addD(td,-365),obs:"Contrato de empréstimo indevido.",timeline:[]},
+    {id:3,numero:"0001892-11.2025.8.26.0275",nome:"Ana Paula Rodrigues",cpf:"321.654.987-00",banco:"Itaú",area:"Fraudes Bancárias",fase:"Petição inicial",resp:"Tarcisio",valor:28000,data:addD(td,-30),obs:"Fraude via app bancário.",timeline:[]},
+    {id:4,numero:"0007741-22.2025.8.26.0275",nome:"Maria Silva Costa",cpf:"654.321.123-00",banco:"Nubank",area:"Fraudes Bancárias",fase:"Recurso",resp:"Renata",valor:15000,data:addD(td,-200),obs:"Golpe do falso advogado.",timeline:[]},
+    {id:5,numero:"0003312-55.2025.8.26.0275",nome:"João Carlos Mendes",cpf:"111.222.333-00",banco:"Caixa",area:"Previdenciário",fase:"Contestação",resp:"Geovana",valor:42000,data:addD(td,-80),obs:"Aposentadoria rural negada.",timeline:[]}
+  ]);
+  sJ("advjurix_prazos",[
+    {id:1,proc_id:3,proc_nome:"Ana Paula Rodrigues",tipo:"Contestação",prazo:addD(td,0),dias_uteis:0,responsavel:"Tarcisio",status:"pendente",critico:true},
+    {id:2,proc_id:1,proc_nome:"Juscelene Santana Brito",tipo:"Manifestação",prazo:addD(td,2),dias_uteis:2,responsavel:"Tarcisio",status:"pendente",critico:false},
+    {id:3,proc_id:4,proc_nome:"Maria Silva Costa",tipo:"Apelação",prazo:addD(td,5),dias_uteis:5,responsavel:"Renata",status:"pendente",critico:false},
+    {id:4,proc_id:2,proc_nome:"Carlos Eduardo Pinto",tipo:"Embargos",prazo:addD(td,-2),dias_uteis:-2,responsavel:"Renata",status:"cumprido",critico:false}
+  ]);
+  sJ("crm_leads_v2",[
+    {id:1,nome:"Ricardo Mendes",tel:"12991234567",area:"Fraudes Bancárias",funel:"quente",temp:"quente",origem:"Google Ads",data:addD(td,-2),obs:"Vítima de golpe Nubank R$ 12.000. Muito motivado.",score:90,followup:addD(td,0)},
+    {id:2,nome:"Maria Lúcia Ferreira",tel:"12988765432",area:"Previdenciário",funel:"morno",temp:"morno",origem:"Indicação",data:addD(td,-7),obs:"Aposentadoria INSS negada há 2 anos.",score:65,followup:addD(td,2)},
+    {id:3,nome:"Sandra Costa Silva",tel:"12966543210",area:"Bancário",funel:"convertido",temp:"quente",origem:"Orgânico",data:addD(td,-20),obs:"Contrato assinado. Honorário inicial pago.",score:100,followup:null},
+    {id:4,nome:"Paulo Henrique Lima",tel:"12977654321",area:"Fraudes Bancárias",funel:"frio",temp:"frio",origem:"Meta Ads",data:addD(td,-15),obs:"Interessado. Pedir documentos.",score:40,followup:addD(td,-3)}
+  ]);
+  sJ("advjurix_agenda",[
+    {id:1,titulo:"Audiência — BMG S/A",tipo:"audiencia",data:today(),hora:"09:00",local:"Vara Cível Central",proc_id:2,proc_nome:"Carlos Eduardo Pinto",obs:"Levar todas as provas"},
+    {id:2,titulo:"Reunião — Novo cliente",tipo:"reuniao",data:today(),hora:"11:30",local:"Escritório",proc_id:null,proc_nome:"Ricardo Mendes",obs:"Apresentar proposta"},
+    {id:3,titulo:"Revisão de peças",tipo:"interno",data:today(),hora:"15:00",local:"Escritório",proc_id:null,proc_nome:"Equipe",obs:"3 petições em fila"},
+    {id:4,titulo:"Prazo — Contestação Itaú",tipo:"prazo",data:addD(td,1),hora:"23:59",local:"PJe",proc_id:3,proc_nome:"Ana Paula Rodrigues",obs:"URGENTE"}
+  ]);
+  sJ("advjurix_confec",[
+    {id:1,tipo:"Petição inicial",proc_nome:"Ricardo Mendes",proc_numero:"Novo",resp:"Geovana",fase:"producao",prioridade:"alta",prazo:addD(td,2),obs:"Fraude PIX Nubank"},
+    {id:2,tipo:"Réplica",proc_nome:"Juscelene Santana Brito",proc_numero:"1005228-79",resp:"Tarcisio",fase:"revisao",prioridade:"normal",prazo:addD(td,5),obs:"Aguardando revisão final"},
+    {id:3,tipo:"Alegações finais",proc_nome:"Carlos Eduardo Pinto",proc_numero:"0004521-33",resp:"Renata",fase:"concluido",prioridade:"normal",prazo:addD(td,-5),obs:"Protocolado no PJe"}
+  ]);
+  sJ("acordos_v2",[
+    {id:1,cliente:"Juscelene Santana Brito",banco:"Bradesco",area:"Fraudes Bancárias",valor_atualizado:9200,meta_advogado:5000,fase:"em_negociacao",cenarios:{a_vista:3680,parc6:4140,parc12:4600},historico:[{data:addD(td,-10),obs:"Proposta enviada ao banco. Aguardando retorno."}]},
+    {id:2,cliente:"Carlos Eduardo Pinto",banco:"BMG",area:"Bancário",valor_atualizado:52000,meta_advogado:25000,fase:"aceito",cenarios:{a_vista:20800},historico:[]},
+    {id:3,cliente:"Sandra Costa",banco:"Nubank",area:"Fraudes Bancárias",valor_atualizado:12000,meta_advogado:6000,fase:"analise",cenarios:{a_vista:4800,parc6:5400,parc12:6000},historico:[]}
+  ]);
+  sJ("equipe_v1",[
+    {id:1,nome:"Tarcisio Braga Santana",cargo:"Sócio Advogado",oab:"OAB/SP 411.019",tipo:"socio",cor:"#B8902A",ativo:true,pecas_mes:18,atendimentos:28,meta_pecas:20,meta_atend:30,salario:0,email:"tarcisiobragasantana@gmail.com"},
+    {id:2,nome:"Renata Maria Enéas Rodrigues",cargo:"Sócia Advogada",oab:"OAB/SP 445.169",tipo:"socio",cor:"#5B3A8E",ativo:true,pecas_mes:15,atendimentos:22,meta_pecas:18,meta_atend:25,salario:0,email:"renata@tarcisiobraga.com.br"},
+    {id:3,nome:"Geovana Rodrigues",cargo:"Estagiária",oab:"",tipo:"estagiario",cor:"#1A5F6A",ativo:true,pecas_mes:8,atendimentos:12,meta_pecas:10,meta_atend:15,salario:1500,email:"geovana@tarcisiobraga.com.br"}
+  ]);
+  const k=getData.mesAtual();
+  sJ("cf_fat_"+k,[{id:1,tipo:"Honorário inicial",valor:3500,data:today(),cliente:"Ricardo Mendes"},{id:2,tipo:"Honorário de êxito",valor:8200,data:addD(today(),-5),cliente:"Carlos Eduardo"}]);
+  sJ("cf_desp_"+k,[{id:1,tipo:"Aluguel",valor:2200,data:today(),desc:"Sala 707"},{id:2,tipo:"Software",valor:350,data:today(),desc:"Linklei + Kommo"},{id:3,tipo:"Tráfego pago",valor:800,data:addD(today(),-3),desc:"Google Ads"}]);
+  sJ("mkt_campanhas",[
+    {id:1,nome:"Fraudes PIX — Google",plataforma:"Google Ads",orcamento:500,gasto:480,leads:12,convertidos:3,status:"ativa",inicio:addD(today(),-30)},
+    {id:2,nome:"Golpe Falso Gerente — Meta",plataforma:"Meta Ads",orcamento:300,gasto:290,leads:8,convertidos:2,status:"ativa",inicio:addD(today(),-20)}
+  ]);
+  sJ("advjurix_honorarios",[
+    {id:1,proc_id:1,cliente:"Juscelene Santana Brito",tipo:"inicial",valor:3500,status:"pago",data:addD(today(),-100),vencimento:addD(today(),-100)},
+    {id:2,proc_id:3,cliente:"Ana Paula Rodrigues",tipo:"inicial",valor:3000,status:"pendente",data:addD(today(),-25),vencimento:addD(today(),-5)},
+    {id:3,proc_id:2,cliente:"Carlos Eduardo Pinto",tipo:"exito",valor:15000,status:"pago",data:addD(today(),-10),vencimento:addD(today(),-10)}
+  ]);
+}
+
+// ── INIT ─────────────────────────────────────────────────────────
+function initApp(){
+  // BOOT SÍNCRONO — executa diretamente sem eventos ou timers
+  // Atualizar barra de progresso
+  setLd(50,"Inicializando...");
+  setLd(90,"Carregando dados...");
+
+  // Carregar dados demo e iniciar dashboard
+  loadDemo();
+  initDash();
+
+  // Data e saudação
+  var now=new Date();
+  var dd=document.getElementById("dash-date");
+  if(dd)dd.textContent=["Domingo","Segunda","Terça","Quarta","Quinta","Sexta","Sábado"][now.getDay()]+", "+now.getDate()+" de "+MESES[now.getMonth()]+" de "+now.getFullYear();
+  var hr=now.getHours();
+  var gr=document.getElementById("dash-greeting");
+  if(gr)gr.textContent=(hr<12?"Bom dia":hr<18?"Boa tarde":"Boa noite")+", Tarcisio";
+
+  // Esconder loading
+  setLd(100,"Pronto!");
+  var el=document.getElementById("app-loading");
+  if(el)el.classList.add("hidden");
+
+  // Sincronizar com servidor em background (não bloqueia o app)
+  if(typeof google!=="undefined"&&google.script&&google.script.run){
+    // Dados do usuário
+    try{
+      google.script.run
+        .withSuccessHandler(function(u){
+          if(!u||!u.ok)return;
+          var n=u.name||u.email||"Tarcisio Braga";
+          var av=ini(n);
+          ["sb-av","tb-av"].forEach(function(id){var e=document.getElementById(id);if(e)e.textContent=av});
+          var sn=document.getElementById("sb-name");if(sn)sn.textContent=n;
+          var tn=document.getElementById("tb-name");if(tn)tn.textContent=n;
+          var grEl=document.getElementById("dash-greeting");
+          var h=new Date().getHours();
+          if(grEl)grEl.textContent=(h<12?"Bom dia":h<18?"Boa tarde":"Boa noite")+", "+(n.split(" ")[0]||"Tarcisio");
+        })
+        .withFailureHandler(function(){})
+        .getUser();
+    }catch(e){}
+    // Dados do Google Sheets
+    try{
+      google.script.run
+        .withSuccessHandler(function(d){
+          if(!d||!Object.keys(d).length)return;
+          Object.keys(d).forEach(function(k){if(d[k]&&!_cache[k])_cache[k]=d[k];});
+          setSS("ok");
+          if(document.getElementById("view-dashboard")&&document.getElementById("view-dashboard").classList.contains("active"))initDash();
+        })
+        .withFailureHandler(function(){setSS("err");})
+        .getAllData();
+    }catch(e){setSS("err");}
+  }
+}
+function setLd(p,m){var b=document.getElementById("ld-bar"),x=document.getElementById("ld-msg"),dbg=document.getElementById("ld-debug");if(b)b.style.width=p+"%";if(x)x.textContent=m;if(dbg)dbg.textContent="v3.1 JS OK — "+m+" ("+p+"%)"}
+
+// ── NAVEGAÇÃO ─────────────────────────────────────────────────────
+var TITLES={dashboard:"Dashboard",processos:"Central de Processos",prazos:"Prazos & Publicações DJEN",confeccao:"Confecção & Distribuição",peticoes:"Gerador de Petições IA",contratos:"Contratos & Procurações",acordos:"Central de Acordos",agenda:"Agenda & Compromissos",crm:"CRM & Follow-up",propostas:"Propostas Comerciais",marketing:"Marketing & Captação",portal:"Portal do Cliente",financas:"Central Financeira",honorarios:"Financeiro & Honorários",calculadora:"Calculadora Jurídica",equipe:"Gestão de Equipe",relatorio:"Relatório Executivo"};
+// BUILDERS declarado no final — após todos os módulos
+function navTo(mod,el){
+  document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));
+  document.querySelectorAll(".nav").forEach(n=>n.classList.remove("active"));
+  const v=document.getElementById("view-"+mod);if(v)v.classList.add("active");
+  const n=document.getElementById("nav-"+mod);if(n)n.classList.add("active");
+  if(el&&el.classList)el.classList.add("active");
+  document.getElementById("tb-title").textContent=TITLES[mod]||mod;
+  if(BUILDERS&&BUILDERS[mod]){
+    try{BUILDERS[mod]();}
+    catch(e){
+      console.error("[ADVJURIX] Erro no módulo "+mod+":",e);
+      var wrap=document.getElementById("view-"+mod);
+      if(wrap)wrap.innerHTML='<div class="empty" style="padding:40px"><i class="fas fa-exclamation-triangle" style="color:var(--amber);font-size:28px;display:block;margin-bottom:12px"></i><p style="font-size:14px;font-weight:600">Erro ao carregar o módulo</p><p style="font-size:12px;margin-top:6px;color:rgba(13,17,23,.4)">'+e.message+'</p><button class="btn btn-gold btn-sm" style="margin-top:14px" onclick="navTo(\''+mod+'\')"><i class="fas fa-redo"></i> Tentar novamente</button></div>';
+    }
+  }
+}
+function buscaGlobal(wrapper){
+  var inp=document.getElementById("tb-search-input");
+  if(inp)inp.focus();
+}
+function buscaGlobalInput(q){
+  q=q.toLowerCase().trim();
+  if(!q)return;
+  // Navegar para processos e buscar
+  navTo("processos");
+  setTimeout(function(){
+    var el=document.getElementById("proc-q");
+    if(el){el.value=q;filtrarProc();}
+  },100);
+}
+
+function toggleSb(){document.getElementById("sidebar").classList.toggle("collapsed");document.getElementById("main").classList.toggle("expanded")}
+function closeMo(id){const e=document.getElementById(id);if(e)e.classList.remove("open")}
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeMo("mo-main");closeMo("mo-doc")}});
+function openMo(t,b){document.getElementById("mo-tit").textContent=t;document.getElementById("mo-body").innerHTML=b;document.getElementById("mo-main").classList.add("open")}
+function toast(m,t){t=t||"s";const o=document.getElementById("toast");document.getElementById("toast-msg").textContent=m;o.className="toast "+t+" show";setTimeout(()=>o.classList.remove("show"),3200)}
+function renderPrev(t){return t.split("\n").map(l=>{if(!l.trim())return'<p style="text-indent:0">&nbsp;</p>';if(/^[IVX]+\.\s/.test(l.trim()))return"<h2>"+l.trim()+"</h2>";if(/^(EXMO|MM|EGRÉGIO|AO|PREZADO|PROPOSTA|CONTRATO|PROCURAÇÃO|RELATÓRIO|TARCISIO)/i.test(l.trim()))return"<h1>"+l.trim()+"</h1>";return"<p>"+l.replace(/\*\*([^*]+)\*\*/g,"<strong>$1</strong>")+"</p>"}).join("")}
+</script>
+
+<script>
+// ════════════════════════════════════════════════════
+// DASHBOARD
+// ════════════════════════════════════════════════════
+function initDash(){
+  updateSidebarBadges();
+  const k=getData.mesAtual();
+  const fat=getData.fat(k).reduce((s,f)=>s+f.valor,0);
+  const desp=getData.desp(k).reduce((s,d)=>s+d.valor,0);
+  const leads=getData.leads();const procs=getData.processos();const acordos=getData.acordos();
+  const prazos=getData.prazos();const praz_crit=prazos.filter(p=>p.status!=="cumprido"&&diffD(p.prazo)<=0);
+  const fus=leads.filter(l=>l.followup&&diffD(l.followup)<=0&&["convertido","perdido"].indexOf(l.funel)<0);
+  
+  // KPIs
+  document.getElementById("dash-kpis").innerHTML=[
+    {cl:"gold",l:"Faturamento Mês",v:fmtM0(fat),s:"Meta: "+fmtM0(getData.metas().ideal),s2:pct(fat,getData.metas().ideal)+"%"},
+    {cl:"green",l:"Lucro Líquido",v:fmtM0(fat-desp),s:"Margem "+(fat>0?pct(fat-desp,fat):0)+"%"},
+    {cl:"red",l:"Processos Ativos",v:procs.filter(p=>p.fase!=="Arquivado").length,s:procs.length+" total"},
+    {cl:"teal",l:"Leads no Funil",v:leads.filter(l=>["convertido","perdido"].indexOf(l.funel)<0).length,s:leads.filter(l=>l.funel==="convertido").length+" convertidos"}
+  ].map(k=>`<div class="kpi ${k.cl}"><div class="kpi-l">${k.l}</div><div class="kpi-v">${k.v}</div><div class="kpi-s">${k.s}</div></div>`).join("");
+  
+  // Alertas
+  const al=[];
+  praz_crit.forEach(p=>al.push({icl:"alert-critico",i:"fas fa-gavel",t:"Prazo vencido — "+p.tipo,s:p.proc_nome+" · "+fd(p.prazo),b:"VENCIDO",bc:"badge-r",nav:"prazos"}));
+  prazos.filter(p=>p.status!=="cumprido"&&diffD(p.prazo)>=1&&diffD(p.prazo)<=3).forEach(p=>al.push({icl:"alert-atencao",i:"fas fa-clock",t:diffD(p.prazo)+"d — "+p.tipo,s:p.proc_nome,b:diffD(p.prazo)+"d",bc:"badge-a",nav:"prazos"}));
+  if(fus.length)al.push({icl:"alert-atencao",i:"fas fa-redo",t:fus.length+" follow-up(s) atrasado(s)",s:fus.map(l=>l.nome).join(", "),b:"ATRASADO",bc:"badge-a",nav:"crm"});
+  
+  const agenda=getData.agenda().filter(a=>a.data===today()).sort((a,b)=>a.hora.localeCompare(b.hora));
+  
+  if(!al.length)al.push({icl:"alert-ok",i:"fas fa-check-circle",t:"Tudo em ordem — sem alertas críticos",s:"Sistema operando normalmente",b:null,nav:""});
+  
+  const tiposCor={"audiencia":"#1D4ED8","reuniao":"#B8902A","prazo":"#C0392B","interno":"#1A5F6A","consult":"#5B3A8E"};
+  
+  document.getElementById("dash-alertas").innerHTML=`
+<div class="panel">
+<div class="ph"><div class="pt"><i class="fas fa-bell" style="color:var(--gold)"></i> Alertas & Prioridades</div><span class="btn btn-outline btn-xs" onclick="navTo('prazos')">Ver prazos →</span></div>
+${al.map(a=>`<div class="pi" onclick="${a.nav?"navTo('"+a.nav+"')":''}">
+<div class="p-av" style="background:${a.icl==="alert-critico"?"#FDECEA":a.icl==="alert-atencao"?"#FEF3C7":"#E8F5EE"};color:${a.icl==="alert-critico"?"#C0392B":a.icl==="alert-atencao"?"#D97706":"#1E7E5A"}"><i class="${a.i}"></i></div>
+<div style="flex:1"><div style="font-size:12px;font-weight:600;color:var(--ink)">${a.t}</div><div style="font-size:10px;color:rgba(13,17,23,.45);margin-top:1px">${a.s}</div></div>
+${a.b?`<div class="chip ${a.bc}" style="font-size:9px">${a.b}</div>`:""}
+</div>`).join("")}
+</div>`;
+
+  document.getElementById("dash-agenda").innerHTML=`
+<div class="panel" style="height:100%">
+<div class="ph"><div class="pt"><i class="fas fa-calendar-day" style="color:var(--teal)"></i> Agenda de Hoje</div><span class="btn btn-outline btn-xs" onclick="navTo('agenda')">Agenda →</span></div>
+${agenda.length?agenda.map(e=>`<div class="pi" onclick="navTo('agenda')">
+<div style="min-width:36px;font-size:10px;font-weight:700;color:rgba(13,17,23,.4)">${e.hora}</div>
+<div style="width:2.5px;border-radius:2px;background:${tiposCor[e.tipo]||"#888"};align-self:stretch;flex-shrink:0"></div>
+<div><div style="font-size:12px;font-weight:600;color:var(--ink)">${e.titulo}</div><div style="font-size:10px;color:rgba(13,17,23,.4)">${e.proc_nome||""}</div></div>
+</div>`).join(""):`<div class="empty" style="padding:20px"><i class="fas fa-calendar-check"></i><p>Nada agendado hoje</p></div>`}
+<div style="padding:10px 14px"><button class="btn btn-gold btn-sm" style="width:100%;justify-content:center" onclick="moNovoEvento()"><i class="fas fa-plus"></i> Novo evento</button></div>
+</div>`;
+
+  // Bottom row — Processos recentes + Pipeline CRM
+  const cols=[{k:"frio",c:"#1D4ED8"},{k:"morno",c:"#D97706"},{k:"quente",c:"#C0392B"},{k:"convertido",c:"#1E7E5A"}];
+  document.getElementById("dash-bottom").innerHTML=`
+<div class="panel">
+<div class="ph"><div class="pt"><i class="fas fa-folder-open" style="color:var(--teal)"></i> Processos Recentes</div><span class="btn btn-outline btn-xs" onclick="navTo('processos')">Ver todos →</span></div>
+${procs.slice(0,5).map(p=>`<div class="pi" onclick="abrirProc(${p.id})">
+<div class="p-av" style="background:${cor(p.id)}">${ini(p.nome)}</div>
+<div style="flex:1"><div style="font-size:12px;font-weight:600">${p.nome}</div><div style="font-size:10px;color:rgba(13,17,23,.4)">${p.numero||"–"} · ${p.banco||""}</div></div>
+<span class="chip chip-ink" style="font-size:9px">${p.fase||"–"}</span>
+</div>`).join("")}
+</div>
+<div class="panel">
+<div class="ph"><div class="pt"><i class="fas fa-funnel-dollar" style="color:var(--blue)"></i> Pipeline Comercial</div><span class="btn btn-outline btn-xs" onclick="navTo('crm')">CRM →</span></div>
+<div style="padding:10px 14px">
+${cols.map(col=>{const n=leads.filter(l=>l.funel===col.k).length;const max=leads.length||1;return`<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+<div style="font-size:11.5px;font-weight:500;min-width:80px;color:var(--ink)">${{frio:"Frio",morno:"Morno",quente:"Quente",convertido:"Convertido"}[col.k]}</div>
+<div style="flex:1;height:5px;background:rgba(13,17,23,.07);border-radius:3px;overflow:hidden"><div style="height:100%;width:${pct(n,max)}%;background:${col.c};border-radius:3px;transition:width .7s"></div></div>
+<div style="font-family:'DM Mono',monospace;font-size:12px;font-weight:700;min-width:20px;text-align:right">${n}</div></div>`}).join("")}
+<div style="display:flex;justify-content:space-between;font-size:11px;border-top:1px solid var(--border3);padding-top:10px;margin-top:6px">
+<span style="color:rgba(13,17,23,.5)">Ticket médio</span><strong>${fmtM0(getData.honorarios().filter(h=>h.tipo==="inicial"&&h.status==="pago").reduce((s,h)=>s+h.valor,0)/Math.max(1,getData.honorarios().filter(h=>h.tipo==="inicial"&&h.status==="pago").length))}</strong>
+</div>
+</div>
+</div>`;
+}
+
+function updateSidebarBadges(){
+  const prazos=getData.prazos();const crit=prazos.filter(p=>p.status!=="cumprido"&&diffD(p.prazo)<=0);
+  const nb_pz=document.getElementById("nb-prazos");if(nb_pz){nb_pz.style.display=crit.length?"":"none";nb_pz.textContent=crit.length}
+  const confec=getData.confec().filter(c=>c.fase==="producao").length;
+  const nb_cf=document.getElementById("nb-confec");if(nb_cf){nb_cf.style.display=confec?"":"none";nb_cf.textContent=confec}
+  const leads=getData.leads();const fus=leads.filter(l=>l.followup&&diffD(l.followup)<=0&&["convertido","perdido"].indexOf(l.funel)<0).length;
+  const nb_crm=document.getElementById("nb-crm");if(nb_crm){nb_crm.style.display=fus?"":"none";nb_crm.textContent=fus}
+  const nb_proc=document.getElementById("nb-processos");if(nb_proc)nb_proc.textContent=getData.processos().filter(p=>p.fase!=="Arquivado").length;
+  const hasAlert=crit.length>0||fus>0;
+  const nb_al=document.getElementById("nb-alertas");if(nb_al)nb_al.style.display=hasAlert?"":"none";
+  const notDot=document.getElementById("notif-dot");if(notDot)notDot.style.display=hasAlert?"":"none";
+}
+
+// ════════════════════════════════════════════════════
+// PROCESSOS
+// ════════════════════════════════════════════════════
+function bProc(){filtrarProc()}
+function filtrarProc(){
+  const q=(document.getElementById("proc-q")||{value:""}).value.toLowerCase();
+  const area=(document.getElementById("proc-area-filter")||{value:""}).value;
+  const fase=(document.getElementById("proc-fase-filter")||{value:""}).value;
+  
+  // Selects já populados no HTML estático
+  
+  let procs=getData.processos().filter(p=>{
+    const mq=!q||(p.numero||"").includes(q)||(p.nome||"").toLowerCase().includes(q)||(p.banco||"").toLowerCase().includes(q)||(p.cpf||"").includes(q);
+    const ma=!area||p.area===area;
+    const mf=!fase||p.fase===fase;
+    return mq&&ma&&mf;
+  });
+  
+  const cnt=document.getElementById("proc-count");if(cnt)cnt.textContent=procs.length+" processo(s) encontrado(s)";
+  const list=document.getElementById("proc-list");if(!list)return;
+  if(!procs.length){list.innerHTML='<div class="empty"><i class="fas fa-folder-open"></i><p>Nenhum processo encontrado</p></div>';return}
+  
+  const fCor={"Petição inicial":"var(--blue)","Instrução":"var(--amber)","Sentença":"var(--gold)","Recurso":"var(--purple)","Arquivado":"rgba(13,17,23,.3)"};
+  list.innerHTML=procs.map(p=>`<div class="pi" onclick="abrirProc(${p.id})">
+<div class="p-av" style="background:${cor(p.id)}">${ini(p.nome)}</div>
+<div style="flex:1;min-width:0">
+<div style="font-size:13px;font-weight:600">${p.nome}</div>
+<div style="font-size:10px;color:rgba(13,17,23,.4)">${p.numero||"–"} · ${p.banco||""} · ${p.area||""}</div>
+</div>
+<div style="display:flex;flex-direction:column;align-items:flex-end;gap:3px">
+<span class="chip" style="background:${fCor[p.fase]||"var(--teal)"}18;color:${fCor[p.fase]||"var(--teal)"};font-size:9px">${p.fase||"–"}</span>
+<span style="font-size:9px;color:rgba(13,17,23,.35)">${fd(p.data)}</span>
+</div>
+${p.valor?`<div style="font-family:'DM Mono',monospace;font-size:12px;font-weight:700;color:var(--gold);text-align:right;flex-shrink:0">${fmtM0(p.valor)}</div>`:""}
+</div>`).join("");
+}
+function moNovoProc(){
+  openMo("Novo Processo",`<div class="g2">
+<div class="fg"><label class="fl">Número do processo</label><input class="fi" id="np-num" placeholder="0000000-00.0000.0.00.0000"></div>
+<div class="fg"><label class="fl">Cliente <span class="req">*</span></label><input class="fi" id="np-nome"></div>
+<div class="fg"><label class="fl">CPF do cliente</label><input class="fi" id="np-cpf" placeholder="000.000.000-00"></div>
+<div class="fg"><label class="fl">Banco/Réu</label><input class="fi" id="np-banco"></div>
+<div class="fg"><label class="fl">Área jurídica</label><select class="fsl" id="np-area">${AREAS.map(a=>`<option>${a}</option>`).join("")}</select></div>
+<div class="fg"><label class="fl">Fase processual</label><select class="fsl" id="np-fase">${FASES_PROC.map(f=>`<option>${f}</option>`).join("")}</select></div>
+<div class="fg"><label class="fl">Responsável</label><select class="fsl" id="np-resp">${getData.equipe().map(e=>`<option>${e.nome.split(" ")[0]}</option>`).join("")}</select></div>
+<div class="fg"><label class="fl">Valor da causa (R$)</label><input class="fi fi-mono" id="np-valor" type="number"></div>
+</div>
+<div class="fg"><label class="fl">Observações</label><textarea class="fta" id="np-obs"></textarea></div>
+<div class="mo-act"><button class="btn btn-gold" onclick="salvarProc()"><i class="fas fa-save"></i> Salvar processo</button><button class="btn btn-outline" onclick="closeMo('mo-main')">Cancelar</button></div>`);
+}
+function salvarProc(){
+  const nome=document.getElementById("np-nome").value.trim();if(!nome){toast("Preencha o nome.","e");return}
+  const procs=getData.processos();
+  procs.unshift({id:gid(),numero:document.getElementById("np-num").value,nome,cpf:document.getElementById("np-cpf").value,banco:document.getElementById("np-banco").value,area:document.getElementById("np-area").value,fase:document.getElementById("np-fase").value,resp:document.getElementById("np-resp").value,valor:parseFloat(document.getElementById("np-valor").value)||0,data:today(),obs:document.getElementById("np-obs").value,timeline:[]});
+  sJ("advjurix_processos",procs);closeMo("mo-main");filtrarProc();updateSidebarBadges();toast("✓ Processo adicionado!","s");
+}
+function abrirProc(id){
+  const p=getData.processos().find(x=>x.id===id);if(!p)return;
+  openMo(p.nome,`<div class="g2" style="margin-bottom:14px">
+<div><div style="font-size:9px;text-transform:uppercase;letter-spacing:1px;color:rgba(13,17,23,.38)">Número</div><div style="font-size:13px;font-weight:600">${p.numero||"–"}</div></div>
+<div><div style="font-size:9px;text-transform:uppercase;letter-spacing:1px;color:rgba(13,17,23,.38)">Área</div><div style="font-size:13px;font-weight:600">${p.area||"–"}</div></div>
+<div><div style="font-size:9px;text-transform:uppercase;letter-spacing:1px;color:rgba(13,17,23,.38)">Fase</div><div style="font-size:13px;font-weight:600">${p.fase||"–"}</div></div>
+<div><div style="font-size:9px;text-transform:uppercase;letter-spacing:1px;color:rgba(13,17,23,.38)">Responsável</div><div style="font-size:13px;font-weight:600">${p.resp||"–"}</div></div>
+</div>
+${p.valor?`<div style="background:var(--gold-pale);border-radius:8px;padding:10px 14px;margin-bottom:12px"><div class="kpi-l">Valor da causa</div><div style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:700;color:var(--gold)">${fmtM(p.valor)}</div></div>`:""}
+${p.obs?`<div style="background:rgba(13,17,23,.03);border-radius:8px;padding:12px;font-size:12.5px;line-height:1.7;margin-bottom:12px">${p.obs}</div>`:""}
+<div class="fg"><label class="fl">Fase processual</label><select class="fsl" id="ep-fase">${FASES_PROC.map(f=>`<option ${p.fase===f?"selected":""}>${f}</option>`).join("")}</select></div>
+<div class="fg"><label class="fl">Observação adicional</label><textarea class="fta" id="ep-obs" style="min-height:60px"></textarea></div>
+<div class="mo-act">
+<button class="btn btn-gold btn-sm" onclick="atualizarFaseProc(${id})"><i class="fas fa-save"></i> Atualizar fase</button>
+<button class="btn btn-purple btn-sm" onclick="gerarPeticaoParaProc(${id})"><i class="fas fa-magic"></i> Gerar petição</button>
+<button class="btn btn-red btn-sm" onclick="excluirProc(${id})"><i class="fas fa-trash"></i> Excluir</button>
+</div>`);
+}
+function atualizarFaseProc(id){
+  const procs=getData.processos();const p=procs.find(x=>x.id===id);if(!p)return;
+  const novaFase=document.getElementById("ep-fase").value;const obs=document.getElementById("ep-obs").value;
+  if(obs)p.timeline.push({data:today(),texto:obs,fase:novaFase});
+  p.fase=novaFase;sJ("advjurix_processos",procs);closeMo("mo-main");filtrarProc();toast("✓ Fase atualizada!","s");
+}
+function excluirProc(id){if(!confirm("Excluir este processo?"))return;sJ("advjurix_processos",getData.processos().filter(x=>x.id!==id));closeMo("mo-main");filtrarProc();updateSidebarBadges();toast("Excluído.","w")}
+function gerarPeticaoParaProc(id){
+  const p=getData.processos().find(x=>x.id===id);if(!p)return;
+  closeMo("mo-main");navTo("peticoes");
+  setTimeout(()=>{const e=document.getElementById("pet-cli");if(e)e.value=p.nome;const r=document.getElementById("pet-reu");if(r)r.value=p.banco||"";const n=document.getElementById("pet-num");if(n)n.value=p.numero||"";const c=document.getElementById("pet-caso");if(c)c.value=p.obs||""},200);
+}
+
+// ════════════════════════════════════════════════════
+// PRAZOS & DJEN
+// ════════════════════════════════════════════════════
+var _prazosTab="criticos";
+function bPrazos(){prazosTab("criticos")}
+function prazosTab(tab,el){
+  _prazosTab=tab;
+  if(el){document.querySelectorAll("[id^='vt-pz-']").forEach(t=>t.classList.remove("active"));el.classList.add("active")}
+  const all=getData.prazos();
+  const td=today();
+  let list=[];
+  if(tab==="criticos")list=all.filter(p=>p.status!=="cumprido"&&diffD(p.prazo)<=0);
+  else if(tab==="proximos")list=all.filter(p=>p.status!=="cumprido"&&diffD(p.prazo)>0&&diffD(p.prazo)<=7);
+  else if(tab==="todos")list=all.filter(p=>p.status!=="cumprido");
+  else list=all.filter(p=>p.origem==="djen");
+  
+  // KPIs
+  const venc=all.filter(p=>p.status!=="cumprido"&&diffD(p.prazo)<=0).length;
+  const prox7=all.filter(p=>p.status!=="cumprido"&&diffD(p.prazo)>0&&diffD(p.prazo)<=7).length;
+  const ok=all.filter(p=>p.status==="cumprido").length;
+  document.getElementById("prazos-kpis").innerHTML=[
+    {cl:"red",l:"Vencidos",v:venc,s:"Ação imediata"},
+    {cl:"amber",l:"Próximos 7 dias",v:prox7,s:"Em atenção"},
+    {cl:"green",l:"Cumpridos",v:ok,s:"Concluídos"},
+    {cl:"blue",l:"Total de prazos",v:all.length,s:"Cadastrados"}
+  ].map(k=>`<div class="kpi ${k.cl}"><div class="kpi-l">${k.l}</div><div class="kpi-v">${k.v}</div><div class="kpi-s">${k.s}</div></div>`).join("");
+  
+  const cntEl=document.getElementById("pz-cnt-crit");if(cntEl)cntEl.textContent=venc||"";
+  
+  const wrap=document.getElementById("prazos-content");if(!wrap)return;
+  if(!list.length){wrap.innerHTML='<div class="empty"><i class="fas fa-clock"></i><p>Nenhum prazo nesta categoria</p></div>';return}
+  
+  wrap.innerHTML=`<div class="panel">${list.sort((a,b)=>a.prazo.localeCompare(b.prazo)).map(p=>{
+    const d=diffD(p.prazo);
+    const cl=d<=0?"var(--red)":d<=3?"var(--amber)":"var(--green)";
+    const lbl=d<0?Math.abs(d)+"d VENCIDO":d===0?"HOJE":d+"d restantes";
+    return`<div class="pi">
+<div class="p-av" style="background:${cl}18;color:${cl}"><i class="fas fa-gavel"></i></div>
+<div style="flex:1">
+<div style="font-size:12.5px;font-weight:600">${p.tipo} — ${p.proc_nome}</div>
+<div style="font-size:10px;color:rgba(13,17,23,.4)">Vencimento: ${fd(p.prazo)} · Resp: ${p.responsavel||"–"}</div>
+</div>
+<div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px">
+<span class="chip" style="background:${cl}18;color:${cl};font-size:9px">${lbl}</span>
+<div style="display:flex;gap:4px">
+<button class="btn btn-green btn-xs" onclick="cumprirPrazo(${p.id})"><i class="fas fa-check"></i> Cumprir</button>
+<button class="btn btn-red btn-xs" onclick="excluirPrazo(${p.id})"><i class="fas fa-trash"></i></button>
+</div>
+</div>
+</div>`;
+  }).join("")}</div>`;
+}
+function moNovoPrazo(){
+  const procs=getData.processos();
+  openMo("Novo Prazo",`<div class="g2">
+<div class="fg"><label class="fl">Tipo de prazo <span class="req">*</span></label><select class="fsl" id="pz-tipo"><option>Contestação</option><option>Manifestação</option><option>Réplica</option><option>Recurso</option><option>Apelação</option><option>Contrarrazões</option><option>Embargos</option><option>Alegações finais</option><option>Outro</option></select></div>
+<div class="fg"><label class="fl">Vencimento <span class="req">*</span></label><input class="fi" type="date" id="pz-data" value="${addD(today(),15)}"></div>
+<div class="fg"><label class="fl">Processo</label><select class="fsl" id="pz-proc"><option value="">Selecionar...</option>${procs.map(p=>`<option value="${p.id}">${p.nome} — ${p.numero||"s/n"}</option>`).join("")}</select></div>
+<div class="fg"><label class="fl">Responsável</label><select class="fsl" id="pz-resp">${getData.equipe().map(e=>`<option>${e.nome.split(" ")[0]}</option>`).join("")}</select></div>
+</div>
+<div class="mo-act"><button class="btn btn-gold" onclick="salvarPrazo()"><i class="fas fa-save"></i> Salvar</button></div>`);
+}
+function salvarPrazo(){
+  const tipo=document.getElementById("pz-tipo").value;const data=document.getElementById("pz-data").value;
+  if(!data){toast("Preencha o vencimento.","e");return}
+  const pid=parseInt(document.getElementById("pz-proc").value)||null;
+  const proc=pid?getData.processos().find(x=>x.id===pid):null;
+  const prazos=getData.prazos();
+  prazos.push({id:gid(),tipo,prazo:data,proc_id:pid,proc_nome:proc?proc.nome:"Avulso",responsavel:document.getElementById("pz-resp").value,status:"pendente",critico:diffD(data)<=3});
+  sJ("advjurix_prazos",prazos);closeMo("mo-main");bPrazos();updateSidebarBadges();toast("✓ Prazo cadastrado!","s");
+}
+function cumprirPrazo(id){
+  const prazos=getData.prazos();const p=prazos.find(x=>x.id===id);if(!p)return;
+  p.status="cumprido";sJ("advjurix_prazos",prazos);bPrazos();updateSidebarBadges();toast("✓ Prazo cumprido!","s");
+}
+function excluirPrazo(id){if(!confirm("Excluir?"))return;sJ("advjurix_prazos",getData.prazos().filter(x=>x.id!==id));bPrazos();updateSidebarBadges();toast("Excluído.","w")}
+function simDJEN(){
+  const procs=getData.processos();if(!procs.length){toast("Sem processos cadastrados.","w");return}
+  const p=procs[Math.floor(Math.random()*procs.length)];
+  const tipos=["Publicação de sentença","Publicação de despacho","Intimação","Decisão interlocutória"];
+  const tipo=tipos[Math.floor(Math.random()*tipos.length)];
+  const prazos=getData.prazos();
+  prazos.unshift({id:gid(),tipo:tipo+" (DJEN)",prazo:addD(today(),15),proc_id:p.id,proc_nome:p.nome,responsavel:p.resp||"Tarcisio",status:"pendente",origem:"djen",critico:false});
+  sJ("advjurix_prazos",prazos);bPrazos();updateSidebarBadges();toast("📰 Publicação DJEN simulada para "+p.nome.split(" ")[0]+"!","s");
+}
+
+// ════════════════════════════════════════════════════
+// CONFECÇÃO & DISTRIBUIÇÃO
+// ════════════════════════════════════════════════════
+var _confTab="fila";
+function bConfec(){confTab("fila")}
+function confTab(tab,el){
+  _confTab=tab;
+  if(el){document.querySelectorAll("[id^='vt-cf-']").forEach(t=>t.classList.remove("active"));el.classList.add("active")}
+  const all=getData.confec();
+  const fila=all.filter(c=>c.fase==="producao");
+  const rev=all.filter(c=>c.fase==="revisao");
+  const ok=all.filter(c=>c.fase==="concluido");
+  
+  document.getElementById("conf-kpis").innerHTML=[
+    {cl:"amber",l:"Em produção",v:fila.length,s:"Aguardando elaboração"},
+    {cl:"blue",l:"Em revisão",v:rev.length,s:"Aguardando aprovação"},
+    {cl:"green",l:"Concluídas",v:ok.length,s:"Protocoladas"},
+    {cl:"purple",l:"Total",v:all.length,s:"Todas as peças"}
+  ].map(k=>`<div class="kpi ${k.cl}"><div class="kpi-l">${k.l}</div><div class="kpi-v">${k.v}</div><div class="kpi-s">${k.s}</div></div>`).join("");
+  
+  let list=tab==="fila"?fila:tab==="revisao"?rev:ok;
+  const wrap=document.getElementById("conf-content");if(!wrap)return;
+  if(!list.length){wrap.innerHTML='<div class="empty"><i class="fas fa-tasks"></i><p>Nenhuma peça nesta fase</p></div>';return}
+  const prCor={"alta":"var(--red)","normal":"var(--amber)","baixa":"var(--green)"};
+  wrap.innerHTML=`<div class="panel">${list.map(c=>{
+    const d=diffD(c.prazo);const lbl=d<0?Math.abs(d)+"d atrasado":d===0?"Hoje":d+"d";
+    const cl=d<=0?"var(--red)":d<=3?"var(--amber)":"rgba(13,17,23,.4)";
+    return`<div class="pi">
+<div class="p-av" style="background:${prCor[c.prioridade]||"var(--amber)"}18;color:${prCor[c.prioridade]||"var(--amber)"}"><i class="fas fa-file-alt"></i></div>
+<div style="flex:1">
+<div style="font-size:12.5px;font-weight:600">${c.tipo}</div>
+<div style="font-size:10px;color:rgba(13,17,23,.4)">${c.proc_nome} · Resp: ${c.resp||"–"}</div>
+${c.obs?`<div style="font-size:10px;color:rgba(13,17,23,.5);margin-top:2px">${c.obs}</div>`:""}
+</div>
+<div style="display:flex;flex-direction:column;align-items:flex-end;gap:5px">
+<span style="font-size:9.5px;font-weight:700;color:${cl}">${lbl}</span>
+<div style="display:flex;gap:4px">
+${tab==="fila"?`<button class="btn btn-blue btn-xs" onclick="moverConfec(${c.id},'revisao')"><i class="fas fa-eye"></i> Revisar</button>`:""}
+${tab==="revisao"?`<button class="btn btn-green btn-xs" onclick="moverConfec(${c.id},'concluido')"><i class="fas fa-check"></i> Protocolar</button>`:""}
+<button class="btn btn-red btn-xs" onclick="excluirConfec(${c.id})"><i class="fas fa-trash"></i></button>
+</div>
+</div>
+</div>`;
+  }).join("")}</div>`;
+}
+function moNovaPeca(){
+  openMo("Nova Peça",`<div class="g2">
+<div class="fg"><label class="fl">Tipo de peça <span class="req">*</span></label><select class="fsl" id="cf-tipo"><option>Petição inicial</option><option>Contestação</option><option>Réplica</option><option>Recurso</option><option>Alegações finais</option><option>Manifestação</option><option>Embargos</option><option>Outro</option></select></div>
+<div class="fg"><label class="fl">Processo/Cliente</label><input class="fi" id="cf-proc" placeholder="Nome do cliente ou processo"></div>
+<div class="fg"><label class="fl">Responsável</label><select class="fsl" id="cf-resp">${getData.equipe().map(e=>`<option>${e.nome.split(" ")[0]}</option>`).join("")}</select></div>
+<div class="fg"><label class="fl">Prioridade</label><select class="fsl" id="cf-prior"><option value="alta">Alta</option><option value="normal" selected>Normal</option><option value="baixa">Baixa</option></select></div>
+<div class="fg"><label class="fl">Prazo de entrega</label><input class="fi" type="date" id="cf-prazo" value="${addD(today(),5)}"></div>
+</div>
+<div class="fg"><label class="fl">Observações / instruções</label><textarea class="fta" id="cf-obs"></textarea></div>
+<div class="mo-act"><button class="btn btn-gold" onclick="salvarConfec()"><i class="fas fa-save"></i> Salvar</button></div>`);
+}
+function salvarConfec(){
+  const tipo=document.getElementById("cf-tipo").value;if(!tipo){toast("Preencha o tipo.","e");return}
+  const arr=getData.confec();
+  arr.unshift({id:gid(),tipo,proc_nome:document.getElementById("cf-proc").value||"Avulso",resp:document.getElementById("cf-resp").value,prioridade:document.getElementById("cf-prior").value,prazo:document.getElementById("cf-prazo").value,obs:document.getElementById("cf-obs").value,fase:"producao"});
+  sJ("advjurix_confec",arr);closeMo("mo-main");bConfec();updateSidebarBadges();toast("✓ Peça adicionada à fila!","s");
+}
+function moverConfec(id,fase){
+  const arr=getData.confec();const c=arr.find(x=>x.id===id);if(!c)return;
+  c.fase=fase;sJ("advjurix_confec",arr);bConfec();updateSidebarBadges();
+  toast(fase==="revisao"?"📋 Enviado para revisão!":"✓ Peça protocolada!","s");
+}
+function excluirConfec(id){if(!confirm("Excluir?"))return;sJ("advjurix_confec",getData.confec().filter(x=>x.id!==id));bConfec();updateSidebarBadges();toast("Excluído.","w")}
+</script>
+
+<script>
+// ════════════════════════════════════════════════════
+// PETIÇÕES IA
+// ════════════════════════════════════════════════════
+var PET_TPLS=[
+{id:"inicial_fraude",nome:"Inicial — Fraude Bancária",desc:"PIX, golpe falso gerente, falsa central"},
+{id:"replica",nome:"Réplica",desc:"Contrariar contestação do banco"},
+{id:"inicial_consumidor",nome:"Inicial — Consumidor",desc:"CDC, danos morais e materiais"},
+{id:"inicial_previd",nome:"Inicial — Previdenciário",desc:"INSS, aposentadoria, benefícios"},
+{id:"alegacoes",nome:"Alegações Finais",desc:"Síntese e pedidos finais"},
+{id:"recurso",nome:"Recurso (Apelação)",desc:"Impugnar sentença desfavorável"},
+{id:"manifestacao",nome:"Manifestação",desc:"Resposta a despachos e intimações"},
+{id:"embargos",nome:"Embargos de Declaração",desc:"Omissão, contradição, obscuridade"},
+{id:"contrarrazoes",nome:"Contrarrazões",desc:"Responder à apelação adversa"}
+];
+var _petTpl=PET_TPLS[0];
+var _docTexto="",_docTitulo="";
+
+function bPeticoes(){
+  document.getElementById("pet-wrap").innerHTML=`
+<div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;margin-bottom:6px">Gerador de Petições com IA</div>
+<div style="font-size:12px;color:rgba(13,17,23,.45);margin-bottom:16px">Selecione o template, descreva o caso e a IA gera a peça no padrão do escritório.</div>
+<div class="g2">
+<div>
+<div class="panel"><div class="ph"><div class="pt"><i class="fas fa-layer-group"></i> Template da peça</div></div>
+<div style="padding:12px"><div class="tpl-grid">
+${PET_TPLS.map(t=>`<div class="tpl-card ${_petTpl.id===t.id?"active":""}" onclick="selPetTpl('${t.id}')"><div class="tpl-nome">${t.nome}</div><div class="tpl-desc">${t.desc}</div></div>`).join("")}
+</div></div></div>
+<div class="panel"><div class="ph"><div class="pt"><i class="fas fa-pen"></i> Dados do caso</div></div>
+<div style="padding:14px">
+<div class="fg"><label class="fl">Cliente <span class="req">*</span></label><input class="fi" id="pet-cli"></div>
+<div class="g2"><div class="fg"><label class="fl">Réu / Banco</label><input class="fi" id="pet-reu"></div><div class="fg"><label class="fl">Nº processo</label><input class="fi" id="pet-num"></div></div>
+<div class="fg"><label class="fl">Descrição detalhada do caso <span class="req">*</span></label><textarea class="fta" id="pet-caso" style="min-height:120px" placeholder="Descreva os fatos, datas, valores, tipo de fraude, documentos disponíveis..."></textarea></div>
+<div class="fg"><label class="fl">Pontos estratégicos / teses</label><textarea class="fta" id="pet-tese" style="min-height:60px" placeholder="Ex: Transação atípica R$ 9.200 às 02h17 — nunca havia feito PIX acima de R$ 500..."></textarea></div>
+<button class="btn btn-purple" style="width:100%;justify-content:center" onclick="gerarPeticaoIA()"><i class="fas fa-magic"></i> Gerar com IA Claude</button>
+</div></div>
+</div>
+<div class="panel" style="margin-top:12px"><div class="ph"><div class="pt"><i class="fas fa-file-alt" style="color:var(--blue)"></i> Resultado</div><div id="pet-act-top" style="display:none"><button class="btn btn-gold btn-sm" onclick="abrirDocMo(_docTitulo)"><i class="fas fa-download"></i> Baixar .docx / PDF</button></div></div>
+<div style="padding:14px"><div id="pet-result" class="doc-preview"><div class="empty"><i class="fas fa-file-alt"></i><p>A peça aparecerá aqui após geração</p></div></div></div>
+</div>
+</div>`;
+}
+function selPetTpl(id){_petTpl=PET_TPLS.find(t=>t.id===id)||PET_TPLS[0];bPeticoes()}
+async function gerarPeticaoIA(){
+  const cli=document.getElementById("pet-cli").value.trim();
+  const caso=document.getElementById("pet-caso").value.trim();
+  if(!cli||!caso){toast("Preencha cliente e caso.","e");return}
+  const reu=document.getElementById("pet-reu").value.trim()||"[Réu]";
+  const num=document.getElementById("pet-num").value.trim();
+  const tese=document.getElementById("pet-tese").value.trim();
+  const r=document.getElementById("pet-result");
+  r.innerHTML='<div class="empty"><div class="lib-spin" style="margin:0 auto 12px;width:32px;height:32px;border-width:2px"></div><p>Gerando com IA Claude... aguarde 10-20 segundos.</p></div>';
+  const sys=`Você é Tarcisio Braga Santana, OAB/SP 411.019, advogado especialista em fraudes bancárias e golpes financeiros no Brasil.
+Elabore petições formais, técnicas, fundamentadas e persuasivas, estruturadas em tópicos romanos (I, II, III...).
+Quando pertinente, use: CDC art. 14, Súmula 479 do STJ, fortuito interno, falha do sistema antifraude, atipicidade das transações, dever de segurança da instituição financeira.
+Nunca invente jurisprudência ou números de processos. Termine com data, local, nome completo e OAB.
+Linguagem jurídica brasileira, estilo persuasivo e fundamentado.`;
+  const usr=`Tipo de peça: ${_petTpl.nome}
+Cliente: ${cli}
+Réu/Instituição: ${reu}${num?"\nNº processo: "+num:""}
+\nDescrição dos fatos:\n${caso}${tese?"\n\nTeses e pontos estratégicos:\n"+tese:""}`;
+  try{
+    const resp=await new Promise((res,rej)=>{google.script.run.withSuccessHandler(res).withFailureHandler(rej).callClaudeAPI(JSON.stringify({max_tokens:4000,messages:[{role:"user",content:sys+"\n\n"+usr}]}))});
+    if(!resp.ok){r.innerHTML=`<div style="padding:14px;background:var(--red-pale);border-radius:8px;color:var(--red);font-size:12px">Erro: ${resp.error}</div>`;toast("Erro na IA: "+resp.error,"e");return}
+    _docTexto=resp.text;_docTitulo=_petTpl.nome+" — "+cli;
+    r.innerHTML=renderPrev(resp.text);
+    const ta=document.getElementById("pet-act-top");if(ta)ta.style.display="block";
+    toast("✓ Petição gerada com sucesso!","s");
+  }catch(e){r.innerHTML=`<div style="padding:14px;background:var(--red-pale);border-radius:8px;color:var(--red);font-size:12px">Erro: ${e.message}</div>`;toast("Erro: "+e.message,"e")}
+}
+
+// ════════════════════════════════════════════════════
+// CONTRATOS & PROCURAÇÕES
+// ════════════════════════════════════════════════════
+function bContratos(){
+  document.getElementById("contr-wrap").innerHTML=`
+<div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;margin-bottom:6px">Contratos & Procurações</div>
+<div style="font-size:12px;color:rgba(13,17,23,.45);margin-bottom:16px">Geração de contrato de honorários, procuração ad judicia e declaração de hipossuficiência.</div>
+<div class="g2">
+<div>
+<div class="panel"><div class="ph"><div class="pt"><i class="fas fa-user"></i> Dados do contratante</div></div>
+<div style="padding:14px">
+<div class="fg"><label class="fl">Nome completo <span class="req">*</span></label><input class="fi" id="c-nome"></div>
+<div class="g2"><div class="fg"><label class="fl">CPF</label><input class="fi" id="c-cpf" placeholder="000.000.000-00"></div><div class="fg"><label class="fl">RG</label><input class="fi" id="c-rg"></div></div>
+<div class="fg"><label class="fl">Endereço completo</label><textarea class="fta" id="c-end" style="min-height:54px"></textarea></div>
+<div class="g2"><div class="fg"><label class="fl">Telefone / WhatsApp</label><input class="fi" id="c-tel"></div><div class="fg"><label class="fl">E-mail</label><input class="fi" id="c-email"></div></div>
+<div class="fg"><label class="fl">Profissão</label><input class="fi" id="c-prof" placeholder="Ex: Comerciante, Aposentado, Doméstica"></div>
+</div></div>
+<div class="panel"><div class="ph"><div class="pt"><i class="fas fa-gavel"></i> Objeto e honorários</div></div>
+<div style="padding:14px">
+<div class="fg"><label class="fl">Objeto do contrato / caso</label><textarea class="fta" id="c-obj" placeholder="Ex: Ação de indenização contra Banco Bradesco por golpe do falso gerente no valor de R$ 9.200,00 via PIX"></textarea></div>
+<div class="g2"><div class="fg"><label class="fl">Modalidade</label><select class="fsl" id="c-modal"><option value="exito">Só êxito</option><option value="inicial">Inicial + êxito</option><option value="fixo">Honorário fixo</option></select></div><div class="fg"><label class="fl">% Êxito</label><input class="fi" id="c-pct" type="number" value="20"></div></div>
+<div class="g2"><div class="fg"><label class="fl">Honorário inicial (R$)</label><input class="fi fi-mono" id="c-ini" type="number"></div><div class="fg"><label class="fl">Forma de pagamento</label><select class="fsl" id="c-pgto"><option>À vista</option><option>2x sem juros</option><option>3x sem juros</option><option>Parcelado</option></select></div></div>
+</div></div>
+</div>
+<div>
+<div class="panel"><div class="ph"><div class="pt"><i class="fas fa-file-signature"></i> Documentos a gerar</div></div>
+<div style="padding:14px;display:flex;flex-direction:column;gap:8px">
+<label style="display:flex;align-items:center;gap:8px;cursor:pointer"><input type="checkbox" id="c-gera-cont" checked> <span style="font-size:12.5px;font-weight:500">Contrato de honorários</span></label>
+<label style="display:flex;align-items:center;gap:8px;cursor:pointer"><input type="checkbox" id="c-gera-proc" checked> <span style="font-size:12.5px;font-weight:500">Procuração ad judicia et extra</span></label>
+<label style="display:flex;align-items:center;gap:8px;cursor:pointer"><input type="checkbox" id="c-gera-hipo"> <span style="font-size:12.5px;font-weight:500">Declaração de hipossuficiência</span></label>
+</div></div>
+<button class="btn btn-gold" style="width:100%;justify-content:center;margin-bottom:10px" onclick="gerarContrato()"><i class="fas fa-file-signature"></i> Gerar documentos</button>
+<div id="contr-preview-wrap" style="display:none">
+<div class="panel"><div class="ph"><div class="pt"><i class="fas fa-eye" style="color:var(--blue)"></i> Prévia</div></div>
+<div style="padding:12px"><div id="contr-preview" class="doc-preview"></div>
+<div class="mo-act" style="margin-top:12px">
+<button class="btn btn-gold" onclick="gerarDocx()"><i class="fas fa-file-word"></i> .docx</button>
+<button class="btn btn-blue" onclick="gerarPdf()"><i class="fas fa-file-pdf"></i> PDF</button>
+<button class="btn btn-wpp" onclick="sendWpp()"><i class="fab fa-whatsapp"></i></button>
+<button class="btn btn-outline" onclick="copiarDoc()"><i class="fas fa-copy"></i></button>
+</div></div></div>
+</div>
+</div>
+</div>`;
+}
+function gerarContrato(){
+  const nome=document.getElementById("c-nome").value.trim();if(!nome){toast("Preencha o nome.","e");return}
+  const cpf=document.getElementById("c-cpf").value.trim()||"___.___.___-__";
+  const rg=document.getElementById("c-rg").value.trim()||"_______";
+  const end=document.getElementById("c-end").value.trim()||"[endereço]";
+  const tel=document.getElementById("c-tel").value.trim();
+  const email=document.getElementById("c-email").value.trim();
+  const prof=document.getElementById("c-prof").value.trim()||"[profissão]";
+  const obj=document.getElementById("c-obj").value.trim()||"[objeto]";
+  const modal=document.getElementById("c-modal").value;
+  const pct_ex=document.getElementById("c-pct").value;
+  const honIni=parseFloat(document.getElementById("c-ini").value)||0;
+  const pgto=document.getElementById("c-pgto").value;
+  const gCont=document.getElementById("c-gera-cont").checked;
+  const gProc=document.getElementById("c-gera-proc").checked;
+  const gHipo=document.getElementById("c-gera-hipo").checked;
+  const dt=new Date().toLocaleDateString("pt-BR",{day:"2-digit",month:"long",year:"numeric"});
+  const honT=modal==="exito"?`Honorários de êxito: **${pct_ex}% sobre o valor da condenação ou acordo**, devidos somente em caso de êxito da demanda, sem cobrança antecipada.`:modal==="inicial"?`Honorários iniciais: **${honIni>0?fmtM(honIni):"a combinar"}** (${pgto})\nHonorários de êxito: **${pct_ex}% sobre o valor da condenação ou acordo**`:`Honorário fixo: **${honIni>0?fmtM(honIni):"a combinar"}** (${pgto})`;
+  const partes=[];
+  if(gCont)partes.push(`CONTRATO DE PRESTAÇÃO DE SERVIÇOS ADVOCATÍCIOS\n\nPelo presente instrumento particular de contrato de prestação de serviços advocatícios, de um lado:\n\n**CONTRATANTE:** ${nome}, ${prof}, portador(a) do CPF nº ${cpf} e RG nº ${rg}, residente e domiciliado(a) em ${end}${tel?", telefone "+tel:""}${email?", e-mail "+email:""};\n\n**CONTRATADO:** Tarcisio Braga Sociedade Individual de Advocacia, CNPJ 55.433.682/0001-01, com sede na Rua Tiradentes, nº 299, Sala 707, Centro, Jacareí/SP, CEP 12308-510, neste ato representado pelo advogado **Tarcisio Braga Santana**, OAB/SP 411.019;\n\nResolvem celebrar o presente contrato mediante as seguintes cláusulas e condições:\n\nI. DO OBJETO\n\nO CONTRATADO prestará serviços de advocacia ao CONTRATANTE consistentes em: ${obj}.\n\nII. DOS HONORÁRIOS ADVOCATÍCIOS\n\n${honT}\n\nIII. DAS OBRIGAÇÕES DO CONTRATADO\n\nO CONTRATADO obriga-se a empregar o máximo de zelo, diligência e técnica profissional na defesa dos interesses do CONTRATANTE, mantendo-o informado sobre o andamento da demanda.\n\nIV. DAS OBRIGAÇÕES DO CONTRATANTE\n\nO CONTRATANTE compromete-se a fornecer todos os documentos necessários, manter atualizado seu contato e comunicar ao CONTRATADO qualquer alteração relevante.\n\nV. DA RESCISÃO\n\nQualquer das partes poderá rescindir o presente instrumento mediante notificação por escrito, com antecedência mínima de 15 (quinze) dias.\n\nVI. DO FORO\n\nFica eleito o foro da Comarca de Jacareí/SP para dirimir quaisquer questões oriundas do presente contrato.\n\nPor estarem justos e contratados, firmam o presente instrumento em 2 (duas) vias de igual teor.\n\nJacareí/SP, ${dt}.\n\n_____________________________\n**${nome}**\nCPF: ${cpf}\nCONTRATANTE\n\n_____________________________\n**Tarcisio Braga Santana**\nOAB/SP 411.019\nCONTRATADO`);
+  if(gProc)partes.push(`PROCURAÇÃO AD JUDICIA ET EXTRA\n\n**OUTORGANTE:** ${nome}, ${prof}, CPF nº ${cpf}, RG nº ${rg}, residente em ${end}.\n\n**OUTORGADO:** **Tarcisio Braga Santana**, brasileiro, advogado, inscrito na OAB/SP sob o nº 411.019, com escritório profissional na Rua Tiradentes, nº 299, Sala 707, Centro, Jacareí/SP, CEP 12308-510, onde recebe intimações.\n\n**PODERES:** Pelo presente instrumento particular de mandato, o(a) OUTORGANTE nomeia e constitui o OUTORGADO seu bastante procurador, conferindo-lhe os poderes da cláusula ad judicia et extra, em qualquer Juízo, Instância ou Tribunal, podendo propor contra quem de direito as ações competentes e defendê-lo(a) nas contrárias, seguindo umas e outras até final decisão, usando dos recursos legais e acompanhando-os; conferindo-lhe ainda poderes especiais para confessar, reconhecer a procedência do pedido, transigir, desistir, renunciar ao direito sobre que se funda a ação, receber, dar quitação, firmar compromissos e acordos, **realizar levantamento e saque de alvarás judiciais e/ou extrajudiciais**, substabelecer com ou sem reservas e praticar todos os demais atos necessários ao bom e fiel cumprimento do presente mandato.\n\n**OBJETO:** ${obj}.\n\nJacareí/SP, ${dt}.\n\n_____________________________\n**${nome}**\nOutorgante`);
+  if(gHipo)partes.push(`DECLARAÇÃO DE HIPOSSUFICIÊNCIA ECONÔMICA\n\nEu, ${nome}, ${prof}, portador(a) do CPF nº ${cpf}, residente em ${end}, telefone ${tel||"não informado"}, sob as penas da lei, DECLARO que não possuo condições financeiras de arcar com as custas processuais e honorários advocatícios sem prejuízo do próprio sustento e de minha família, motivo pelo qual requeiro os benefícios da JUSTIÇA GRATUITA, nos termos do art. 98 do Código de Processo Civil.\n\nJacareí/SP, ${dt}.\n\n_____________________________\n**${nome}**\nCPF: ${cpf}\nDeclarante`);
+  _docTexto=partes.join("\n\n\n\n");
+  _docTitulo=(gCont&&gProc?"Contrato e Procuração":gCont?"Contrato":gProc?"Procuração":"Documentos")+" — "+nome;
+  const pw=document.getElementById("contr-preview-wrap");if(pw)pw.style.display="block";
+  const pp=document.getElementById("contr-preview");if(pp)pp.innerHTML=renderPrev(_docTexto);
+  toast("✓ Documentos gerados!","s");
+}
+
+// ════════════════════════════════════════════════════
+// ACORDOS
+// ════════════════════════════════════════════════════
+var FASES_AC=[{k:"analise",l:"Em análise",c:"#4A5568",bg:"rgba(74,85,104,.08)"},{k:"proposta_enviada",l:"Proposta enviada",c:"var(--teal)",bg:"rgba(26,95,106,.08)"},{k:"em_negociacao",l:"Em negociação",c:"var(--blue)",bg:"rgba(29,78,216,.08)"},{k:"aceito",l:"Aceito ✓",c:"var(--green)",bg:"rgba(30,126,90,.08)"},{k:"rejeitado",l:"Rejeitado ✗",c:"var(--red)",bg:"rgba(192,57,43,.08)"}];
+var _kAc=null;
+function bAcordos(){
+  const acordos=getData.acordos();
+  const ativos=acordos.filter(a=>["aceito","rejeitado"].indexOf(a.fase)<0);
+  const aceitos=acordos.filter(a=>a.fase==="aceito");
+  const carteira=acordos.reduce((s,a)=>s+a.valor_atualizado,0);
+  document.getElementById("ac-kpis").innerHTML=[
+    {cl:"gold",l:"Carteira total",v:fmtM0(carteira),s:acordos.length+" acordos"},
+    {cl:"blue",l:"Em negociação",v:ativos.length,s:"ativos"},
+    {cl:"green",l:"Aceitos",v:aceitos.length,s:acordos.length?(((aceitos.length/acordos.length)*100).toFixed(0)+"%"):"0%"},
+    {cl:"purple",l:"Economia cliente",v:fmtM0(aceitos.reduce((s,a)=>s+(a.valor_atualizado-(a.cenarios&&a.cenarios.a_vista||0)),0)),s:"descontos"}
+  ].map(k=>`<div class="kpi ${k.cl}"><div class="kpi-l">${k.l}</div><div class="kpi-v" style="font-size:20px">${k.v}</div><div class="kpi-s">${k.s}</div></div>`).join("");
+  document.getElementById("ac-kanban").innerHTML=FASES_AC.map(f=>{
+    const cards=acordos.filter(a=>a.fase===f.k);
+    return`<div class="kan-col"><div class="kan-hdr" style="background:${f.bg};border-color:${f.c}40"><span style="color:${f.c}">${f.l}</span><span style="background:${f.c}20;color:${f.c};padding:1px 6px;border-radius:10px;font-size:9px">${cards.length}</span></div>
+<div class="kan-cards" ondragover="event.preventDefault();this.classList.add('dv')" ondragleave="this.classList.remove('dv')" ondrop="acDrop(event,'${f.k}')">
+${cards.map(a=>`<div class="kan-card" style="border-left-color:${f.c}" draggable="true" ondragstart="acStart(event,${a.id})" onclick="verAcordo(${a.id})">
+<div style="font-size:12px;font-weight:700">${a.cliente}</div>
+<div style="font-size:10px;color:rgba(13,17,23,.45)">${a.banco||a.area||"–"}</div>
+<div style="font-family:'DM Mono',monospace;font-size:11.5px;font-weight:700;color:var(--gold);margin-top:4px">${fmtM(a.valor_atualizado)}</div>
+</div>`).join("")}
+<button class="btn btn-outline btn-xs" style="width:100%;justify-content:center;margin-top:4px" onclick="abrirNovoAcordo('${f.k}')"><i class="fas fa-plus"></i></button>
+</div></div>`;
+  }).join("");
+}
+function acStart(e,id){_kAc=id;e.currentTarget.classList.add("dragging")}
+function acDrop(e,fase){e.preventDefault();document.querySelectorAll(".kan-cards").forEach(c=>c.classList.remove("dv"));const acordos=getData.acordos();const a=acordos.find(x=>x.id===_kAc);if(!a)return;a.fase=fase;sJ("acordos_v2",acordos);bAcordos();if(fase==="aceito")toast("🎉 Acordo aceito!","s")}
+function verAcordo(id){
+  const a=getData.acordos().find(x=>x.id===id);if(!a)return;
+  openMo(a.cliente,`<div class="g2" style="margin-bottom:12px">
+<div style="background:rgba(13,17,23,.03);border-radius:8px;padding:10px"><div class="kpi-l">Passivo</div><div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--red)">${fmtM(a.valor_atualizado)}</div></div>
+<div style="background:rgba(13,17,23,.03);border-radius:8px;padding:10px"><div class="kpi-l">Meta</div><div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--gold)">${fmtM(a.meta_advogado)}</div></div>
+</div>
+${a.cenarios?`<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px">
+${[{l:"À vista",v:a.cenarios.a_vista,c:"var(--green)"},{l:"6×",v:a.cenarios.parc6,c:"var(--teal)"},{l:"12×",v:a.cenarios.parc12,c:"var(--gold)"}].map(x=>`<div style="background:rgba(13,17,23,.03);border-radius:8px;padding:8px;text-align:center"><div style="font-size:9px;text-transform:uppercase;color:rgba(13,17,23,.38)">${x.l}</div><div style="font-family:'DM Mono',monospace;font-size:12.5px;font-weight:700;color:${x.c}">${fmtM(x.v||0)}</div></div>`).join("")}
+</div>`:""}
+${a.historico&&a.historico.length?`<div style="font-size:10px;color:rgba(13,17,23,.5);margin-bottom:10px">${a.historico.map(h=>`<div style="padding:6px 0;border-bottom:1px solid var(--border3)">${fd(h.data)}: ${h.obs}</div>`).join("")}</div>`:""}
+<div class="fg"><label class="fl">Fase</label><select class="fsl" id="ac-fase">${FASES_AC.map(f=>`<option value="${f.k}" ${a.fase===f.k?"selected":""}>${f.l}</option>`).join("")}</select></div>
+<div class="fg"><label class="fl">Registrar movimentação</label><input class="fi" id="ac-hist" placeholder="Ex: Banco fez contraproposta de R$ 2.500"></div>
+<div class="mo-act">
+<button class="btn btn-gold btn-sm" onclick="atualizarAcordo(${id})"><i class="fas fa-save"></i> Atualizar</button>
+<button class="btn btn-blue btn-sm" onclick="gerarPropostaAcordo(${id})"><i class="fas fa-file-invoice"></i> Proposta</button>
+<button class="btn btn-red btn-sm" onclick="excluirAcordo(${id})"><i class="fas fa-trash"></i></button>
+</div>`);
+}
+function atualizarAcordo(id){const acordos=getData.acordos();const a=acordos.find(x=>x.id===id);if(!a)return;a.fase=document.getElementById("ac-fase").value;const h=document.getElementById("ac-hist").value.trim();if(h)a.historico.push({data:today(),obs:h});sJ("acordos_v2",acordos);closeMo("mo-main");bAcordos();toast("✓ Atualizado!","s")}
+function excluirAcordo(id){if(!confirm("Excluir?"))return;sJ("acordos_v2",getData.acordos().filter(x=>x.id!==id));closeMo("mo-main");bAcordos();toast("Excluído.","w")}
+function abrirNovoAcordo(fase){
+  openMo("Novo Acordo",`<div class="g2">
+<div class="fg" style="grid-column:1/-1"><label class="fl">Cliente <span class="req">*</span></label><input class="fi" id="na-cli"></div>
+<div class="fg"><label class="fl">Banco/Réu</label><input class="fi" id="na-banco"></div>
+<div class="fg"><label class="fl">Área</label><select class="fsl" id="na-area">${AREAS.map(a=>`<option>${a}</option>`).join("")}</select></div>
+<div class="fg"><label class="fl">Passivo atualizado (R$)</label><input class="fi fi-mono" id="na-val" type="number"></div>
+<div class="fg"><label class="fl">Meta do advogado (R$)</label><input class="fi fi-mono" id="na-meta" type="number"></div>
+</div>
+<div class="mo-act"><button class="btn btn-gold" onclick="salvarAcordo('${fase}')"><i class="fas fa-save"></i> Salvar</button></div>`);
+}
+function salvarAcordo(fase){
+  const cli=document.getElementById("na-cli").value.trim();const val=parseFloat(document.getElementById("na-val").value)||0;
+  if(!cli||!val){toast("Preencha cliente e valor.","e");return}
+  const acordos=getData.acordos();
+  acordos.unshift({id:gid(),cliente:cli,banco:document.getElementById("na-banco").value,area:document.getElementById("na-area").value,valor_atualizado:val,meta_advogado:parseFloat(document.getElementById("na-meta").value)||Math.round(val*.55),fase,cenarios:{a_vista:Math.round(val*.4),parc6:Math.round(val*.55),parc12:Math.round(val*.65)},historico:[]});
+  sJ("acordos_v2",acordos);closeMo("mo-main");bAcordos();toast("✓ Adicionado!","s");
+}
+function gerarPropostaAcordo(id){
+  const a=getData.acordos().find(x=>x.id===id);if(!a)return;
+  const dt=new Date().toLocaleDateString("pt-BR",{day:"2-digit",month:"long",year:"numeric"});
+  _docTexto=`AO ${(a.banco||"[CREDOR]").toUpperCase()}\n\nPROPOSTA DE ACORDO EXTRAJUDICIAL\n\nTarcisio Braga Santana, OAB/SP 411.019, na qualidade de advogado de **${a.cliente}**, vem respeitosamente apresentar proposta de acordo extrajudicial.\n\nI. DO OBJETO\n\nComposição amigável da demanda relativa à área de **${a.area||"–"}**, cujo passivo atualizado totaliza **${fmtM(a.valor_atualizado)}**.\n\nII. DAS PROPOSTAS\n\n**Opção 1 — À vista:** ${fmtM(a.cenarios&&a.cenarios.a_vista||0)} (pagamento em até 30 dias)\n**Opção 2 — 6 parcelas:** ${fmtM(a.cenarios&&a.cenarios.parc6||0)} mensais\n**Opção 3 — 12 parcelas:** ${fmtM(a.cenarios&&a.cenarios.parc12||0)} mensais\n\nIII. DA VALIDADE\n\nEsta proposta é válida por **15 (quinze) dias corridos** a contar do recebimento.\n\nJacareí/SP, ${dt}.\n\n**Tarcisio Braga Santana**\nOAB/SP 411.019`;
+  _docTitulo="Proposta Acordo — "+a.cliente;
+  closeMo("mo-main");abrirDocMo(_docTitulo);
+}
+
+// ════════════════════════════════════════════════════
+// AGENDA
+// ════════════════════════════════════════════════════
+var TIPOS_EVENTO=[{v:"audiencia",l:"Audiência"},{v:"reuniao",l:"Reunião"},{v:"prazo",l:"Prazo/Protocolamento"},{v:"consulta",l:"Consulta"},{v:"interno",l:"Reunião interna"},{v:"diligencia",l:"Diligência"}];
+var _agTab="hoje";
+function bAgenda(){agendaTab("hoje")}
+function agendaTab(tab,el){
+  _agTab=tab;
+  if(el){document.querySelectorAll("[id^='vt-ag-']").forEach(t=>t.classList.remove("active"));el.classList.add("active")}
+  let events=getData.agenda();
+  if(tab==="hoje")events=events.filter(e=>e.data===today());
+  else if(tab==="semana"){const fim=addD(today(),7);events=events.filter(e=>e.data>=today()&&e.data<=fim)}
+  events.sort((a,b)=>a.data.localeCompare(b.data)||a.hora.localeCompare(b.hora));
+  const wrap=document.getElementById("agenda-content");if(!wrap)return;
+  if(!events.length){wrap.innerHTML='<div class="empty"><i class="fas fa-calendar-check"></i><p>Nenhum evento neste período</p></div>';return}
+  const tcor={"audiencia":"#1D4ED8","reuniao":"#B8902A","prazo":"#C0392B","consulta":"#5B3A8E","interno":"#1A5F6A","diligencia":"#D97706"};
+  wrap.innerHTML=`<div class="panel">${events.map(e=>`<div class="pi" onclick="verEvento(${e.id})">
+<div style="min-width:44px;text-align:center"><div style="font-size:13px;font-weight:700">${e.hora}</div><div style="font-size:9px;color:rgba(13,17,23,.4)">${fd(e.data)}</div></div>
+<div style="width:3px;height:40px;border-radius:2px;background:${tcor[e.tipo]||"#888"};flex-shrink:0"></div>
+<div style="flex:1">
+<div style="font-size:12.5px;font-weight:600">${e.titulo}</div>
+<div style="font-size:10px;color:rgba(13,17,23,.45)">${TIPOS_EVENTO.find(t=>t.v===e.tipo)?.l||e.tipo} · ${e.local||"Local não informado"}</div>
+${e.proc_nome?`<div style="font-size:10px;color:rgba(13,17,23,.35);margin-top:1px">${e.proc_nome}</div>`:""}
+</div>
+<button class="btn btn-red btn-xs" onclick="event.stopPropagation();excluirEvento(${e.id})"><i class="fas fa-trash"></i></button>
+</div>`).join("")}</div>`;
+}
+function moNovoEvento(){
+  const procs=getData.processos();
+  openMo("Novo Evento",`<div class="g2">
+<div class="fg" style="grid-column:1/-1"><label class="fl">Título <span class="req">*</span></label><input class="fi" id="ag-tit"></div>
+<div class="fg"><label class="fl">Tipo</label><select class="fsl" id="ag-tipo">${TIPOS_EVENTO.map(t=>`<option value="${t.v}">${t.l}</option>`).join("")}</select></div>
+<div class="fg"><label class="fl">Data <span class="req">*</span></label><input class="fi" type="date" id="ag-data" value="${today()}"></div>
+<div class="fg"><label class="fl">Horário</label><input class="fi" type="time" id="ag-hora" value="09:00"></div>
+<div class="fg"><label class="fl">Local</label><input class="fi" id="ag-local" placeholder="Ex: Vara Cível, Escritório, Online"></div>
+<div class="fg"><label class="fl">Processo vinculado</label><select class="fsl" id="ag-proc"><option value="">Nenhum</option>${procs.map(p=>`<option value="${p.id}">${p.nome.split(" ").slice(0,2).join(" ")}</option>`).join("")}</select></div>
+</div>
+<div class="fg"><label class="fl">Observações</label><textarea class="fta" id="ag-obs" style="min-height:60px"></textarea></div>
+<div class="mo-act"><button class="btn btn-gold" onclick="salvarEvento()"><i class="fas fa-save"></i> Salvar</button></div>`);
+}
+function salvarEvento(){
+  const tit=document.getElementById("ag-tit").value.trim();if(!tit){toast("Preencha o título.","e");return}
+  const pid=parseInt(document.getElementById("ag-proc").value)||null;
+  const proc=pid?getData.processos().find(x=>x.id===pid):null;
+  const ag=getData.agenda();
+  ag.push({id:gid(),titulo:tit,tipo:document.getElementById("ag-tipo").value,data:document.getElementById("ag-data").value,hora:document.getElementById("ag-hora").value,local:document.getElementById("ag-local").value,proc_id:pid,proc_nome:proc?proc.nome.split(" ").slice(0,2).join(" "):document.getElementById("ag-tit").value,obs:document.getElementById("ag-obs").value});
+  sJ("advjurix_agenda",ag);closeMo("mo-main");agendaTab(_agTab);toast("✓ Evento adicionado!","s");
+}
+function verEvento(id){const e=getData.agenda().find(x=>x.id===id);if(!e)return;toast(`${e.titulo} — ${e.hora} em ${e.local||"local n/d"}`,"s")}
+function excluirEvento(id){if(!confirm("Excluir?"))return;sJ("advjurix_agenda",getData.agenda().filter(x=>x.id!==id));agendaTab(_agTab);toast("Excluído.","w")}
+</script>
+
+<script>
+// ════════════════════════════════════════════════════
+// CRM & FOLLOW-UP
+// ════════════════════════════════════════════════════
+var FUNEL=[{k:"frio",l:"Frio",c:"var(--blue)",bg:"rgba(29,78,216,.08)"},{k:"morno",l:"Morno",c:"var(--amber)",bg:"rgba(217,119,6,.08)"},{k:"quente",l:"Quente",c:"var(--red)",bg:"rgba(192,57,43,.08)"},{k:"convertido",l:"Convertido ✓",c:"var(--green)",bg:"rgba(30,126,90,.08)"},{k:"perdido",l:"Perdido ✗",c:"rgba(13,17,23,.4)",bg:"rgba(13,17,23,.04)"}];
+var _kCRM=null,_crmMode="kanban";
+function bCRM(){crmTab("kanban")}
+function crmTab(mode){
+  _crmMode=mode;
+  const leads=getData.leads();
+  const ativos=leads.filter(l=>["convertido","perdido"].indexOf(l.funel)<0);
+  const fus=leads.filter(l=>l.followup&&diffD(l.followup)<=0&&["convertido","perdido"].indexOf(l.funel)<0);
+  document.getElementById("crm-sub").textContent=ativos.length+" ativos · "+leads.filter(l=>l.funel==="convertido").length+" convertidos · "+fus.length+" follow-ups atrasados";
+  
+  if(mode==="followup"){
+    const wrap=document.getElementById("crm-wrap");
+    const lista=leads.filter(l=>l.followup&&["convertido","perdido"].indexOf(l.funel)<0).sort((a,b)=>a.followup.localeCompare(b.followup));
+    if(!lista.length){wrap.innerHTML='<div class="empty"><i class="fas fa-clock"></i><p>Nenhum follow-up agendado</p></div>';return}
+    wrap.innerHTML=`<div class="panel">${lista.map(l=>{
+      const d=diffD(l.followup);const cl=d<0?"var(--red)":d===0?"var(--amber)":"var(--green)";const lbl=d<0?Math.abs(d)+"d atrasado":d===0?"Hoje":d+"d";
+      return`<div class="pi" onclick="abrirLead(${l.id})">
+<div class="p-av" style="background:${cl}18;color:${cl}"><i class="fas fa-redo"></i></div>
+<div style="flex:1"><div style="font-size:12.5px;font-weight:600">${l.nome}</div><div style="font-size:10px;color:rgba(13,17,23,.4)">${l.area} · ${l.origem||"orgânico"}</div></div>
+<div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px">
+<span style="font-size:9.5px;font-weight:700;color:${cl}">${lbl}</span>
+${l.tel?`<a href="https://wa.me/55${l.tel.replace(/\D/g,"")}" target="_blank" class="btn btn-wpp btn-xs" onclick="event.stopPropagation()"><i class="fab fa-whatsapp"></i> Contatar</a>`:""}
+</div>
+</div>`;
+    }).join("")}</div>`;
+    return;
+  }
+  
+  // Kanban
+  document.getElementById("crm-wrap").innerHTML=`<div class="kan-board" style="grid-template-columns:repeat(5,1fr)">${FUNEL.map(f=>{
+    const cards=leads.filter(l=>l.funel===f.k);
+    return`<div class="kan-col">
+<div class="kan-hdr" style="background:${f.bg};border-color:${f.c}40"><span style="color:${f.c}">${f.l}</span><span style="background:${f.c}20;color:${f.c};padding:1px 6px;border-radius:10px;font-size:9px">${cards.length}</span></div>
+<div class="kan-cards" ondragover="event.preventDefault();this.classList.add('dv')" ondragleave="this.classList.remove('dv')" ondrop="crmDrop(event,'${f.k}')">
+${cards.map(l=>`<div class="kan-card" style="border-left-color:${f.c}" draggable="true" ondragstart="crmStart(event,${l.id})" onclick="abrirLead(${l.id})">
+<div style="font-size:12px;font-weight:700">${l.nome}</div>
+<div style="font-size:10px;color:rgba(13,17,23,.45);margin-top:2px">${l.area||"–"}</div>
+<div style="display:flex;align-items:center;justify-content:space-between;margin-top:5px">
+<span class="chip chip-ink" style="font-size:8.5px">${l.temp||f.k}</span>
+${l.tel?`<a href="https://wa.me/55${l.tel.replace(/\D/g,"")}" target="_blank" onclick="event.stopPropagation()" style="font-size:10px;color:#25D366"><i class="fab fa-whatsapp"></i></a>`:""}
+</div>
+</div>`).join("")}
+</div></div>`;
+  }).join("")}</div>`;
+}
+function crmStart(e,id){_kCRM=id;e.currentTarget.classList.add("dragging")}
+function crmDrop(e,col){e.preventDefault();document.querySelectorAll(".kan-cards").forEach(c=>c.classList.remove("dv"));const leads=getData.leads();const l=leads.find(x=>x.id===_kCRM);if(!l)return;l.funel=col;sJ("crm_leads_v2",leads);bCRM();updateSidebarBadges();if(col==="convertido")toast("🎉 Lead convertido!","s")}
+function moNovoLead(){
+  openMo("Novo Lead",`<div class="g2">
+<div class="fg" style="grid-column:1/-1"><label class="fl">Nome <span class="req">*</span></label><input class="fi" id="nl-nome"></div>
+<div class="fg"><label class="fl">Telefone / WhatsApp</label><input class="fi" id="nl-tel" placeholder="(12) 99999-9999"></div>
+<div class="fg"><label class="fl">Área</label><select class="fsl" id="nl-area">${AREAS.map(a=>`<option>${a}</option>`).join("")}</select></div>
+<div class="fg"><label class="fl">Temperatura</label><select class="fsl" id="nl-temp"><option value="frio">Frio</option><option value="morno">Morno</option><option value="quente">Quente</option></select></div>
+<div class="fg"><label class="fl">Origem</label><select class="fsl" id="nl-orig"><option>Orgânico</option><option>Indicação</option><option>Google Ads</option><option>Meta Ads</option><option>Instagram</option><option>Outro</option></select></div>
+<div class="fg"><label class="fl">Follow-up (data)</label><input class="fi" type="date" id="nl-fu" value="${addD(today(),1)}"></div>
+</div>
+<div class="fg"><label class="fl">Observações do caso</label><textarea class="fta" id="nl-obs" placeholder="Resumo do caso, tipo de fraude, valores..."></textarea></div>
+<div class="mo-act"><button class="btn btn-gold" onclick="salvarLead()"><i class="fas fa-save"></i> Salvar</button></div>`);
+}
+function salvarLead(){
+  const nome=document.getElementById("nl-nome").value.trim();if(!nome){toast("Preencha o nome.","e");return}
+  const temp=document.getElementById("nl-temp").value;
+  const leads=getData.leads();
+  leads.unshift({id:gid(),nome,tel:document.getElementById("nl-tel").value,area:document.getElementById("nl-area").value,temp,funel:temp,origem:document.getElementById("nl-orig").value,followup:document.getElementById("nl-fu").value,obs:document.getElementById("nl-obs").value,data:today(),score:{quente:90,morno:60,frio:30}[temp]||50});
+  sJ("crm_leads_v2",leads);closeMo("mo-main");bCRM();updateSidebarBadges();toast("✓ Lead adicionado!","s");
+}
+function abrirLead(id){
+  const l=getData.leads().find(x=>x.id===id);if(!l)return;
+  openMo(l.nome,`
+<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px">
+<span class="chip chip-teal">${l.area||"–"}</span>
+<span class="chip chip-amber">${l.temp||"–"}</span>
+<span class="chip chip-ink">${l.origem||"–"}</span>
+<span class="chip chip-purple">Score: ${l.score||"–"}</span>
+</div>
+${l.tel?`<a href="https://wa.me/55${l.tel.replace(/\D/g,"")}" target="_blank" class="btn btn-wpp" style="margin-bottom:12px"><i class="fab fa-whatsapp"></i> ${l.tel}</a>`:""}
+${l.obs?`<div style="background:rgba(13,17,23,.03);border-radius:8px;padding:12px;font-size:12.5px;line-height:1.7;margin-bottom:12px">${l.obs}</div>`:""}
+<div class="fg"><label class="fl">Mover no funil</label><select class="fsl" id="ld-funel">${FUNEL.map(f=>`<option value="${f.k}" ${l.funel===f.k?"selected":""}>${f.l}</option>`).join("")}</select></div>
+<div class="fg"><label class="fl">Próximo follow-up</label><input class="fi" type="date" id="ld-fu" value="${l.followup||today()}"></div>
+<div class="mo-act">
+<button class="btn btn-gold btn-sm" onclick="atualizarLead(${id})"><i class="fas fa-save"></i> Salvar</button>
+<button class="btn btn-blue btn-sm" onclick="leadToProp(${id})"><i class="fas fa-file-invoice"></i> Gerar proposta</button>
+<button class="btn btn-red btn-sm" onclick="excluirLead(${id})"><i class="fas fa-trash"></i></button>
+</div>`);
+}
+function atualizarLead(id){const leads=getData.leads();const l=leads.find(x=>x.id===id);if(!l)return;l.funel=document.getElementById("ld-funel").value;l.followup=document.getElementById("ld-fu").value;sJ("crm_leads_v2",leads);closeMo("mo-main");bCRM();updateSidebarBadges();toast("✓ Atualizado!","s")}
+function excluirLead(id){if(!confirm("Excluir?"))return;sJ("crm_leads_v2",getData.leads().filter(x=>x.id!==id));closeMo("mo-main");bCRM();updateSidebarBadges();toast("Excluído.","w")}
+function leadToProp(id){const l=getData.leads().find(x=>x.id===id);if(!l)return;closeMo("mo-main");navTo("propostas");setTimeout(()=>{const e=document.getElementById("p-nome");if(e)e.value=l.nome;const w=document.getElementById("p-wpp");if(w)w.value=l.tel||"";const c=document.getElementById("p-caso");if(c)c.value=l.obs||"";const a=document.getElementById("p-area");if(a)a.value=l.area||a.value},200)}
+
+// ════════════════════════════════════════════════════
+// PORTAL DO CLIENTE
+// ════════════════════════════════════════════════════
+function bPortal(){
+  const clientes=getData.clientes_portal();
+  document.getElementById("portal-wrap").innerHTML=`
+<div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;margin-bottom:6px">Portal do Cliente</div>
+<div style="font-size:12px;color:rgba(13,17,23,.45);margin-bottom:16px">Gerencie os acessos dos clientes ao portal de acompanhamento processual.</div>
+<div class="g2">
+<div>
+<div class="panel"><div class="ph"><div class="pt"><i class="fas fa-users"></i> Clientes com acesso</div><button class="btn btn-gold btn-sm" onclick="moNovoCliente()"><i class="fas fa-user-plus"></i> Adicionar</button></div>
+${clientes.length?clientes.map(c=>`<div class="pi">
+<div class="p-av" style="background:${cor(c.id)}">${ini(c.nome)}</div>
+<div style="flex:1"><div style="font-size:12.5px;font-weight:600">${c.nome}</div><div style="font-size:10px;color:rgba(13,17,23,.4)">CPF: ${c.cpf||"–"} · ${c.processo_nome||"–"}</div></div>
+<div style="display:flex;gap:4px">
+<span class="chip ${c.ativo?"chip-green":"chip-red"}">${c.ativo?"Ativo":"Inativo"}</span>
+<button class="btn btn-red btn-xs" onclick="excluirCliente(${c.id})"><i class="fas fa-trash"></i></button>
+</div>
+</div>`).join(""):`<div class="empty" style="padding:20px"><i class="fas fa-users"></i><p>Nenhum cliente com acesso</p></div>`}
+</div>
+</div>
+<div>
+<div class="panel"><div class="ph"><div class="pt"><i class="fas fa-eye" style="color:var(--teal)"></i> Visão do cliente</div></div>
+<div style="padding:14px">
+<div style="background:var(--ink);border-radius:10px;padding:16px;color:#fff;margin-bottom:12px">
+<div style="font-size:11px;color:var(--gold2);font-weight:600;margin-bottom:8px">PORTAL DO CLIENTE — TARCISIO BRAGA</div>
+<div style="font-size:13px;font-weight:600;margin-bottom:4px">Olá, Maria Silva</div>
+<div style="font-size:10px;color:rgba(255,255,255,.5)">Processo 1005228-79.2025.8.26.0275</div>
+<div style="margin-top:12px;background:rgba(255,255,255,.07);border-radius:8px;padding:10px">
+<div style="font-size:10px;color:rgba(255,255,255,.5)">FASE ATUAL</div>
+<div style="font-size:13px;font-weight:600;color:var(--gold2)">Instrução processual</div>
+</div>
+<div style="margin-top:8px;font-size:10.5px;color:rgba(255,255,255,.6)">Última atualização: ${fd(today())}</div>
+</div>
+<div style="font-size:11px;color:rgba(13,17,23,.45)">O cliente acessa via link seguro com login por CPF, visualizando a fase do processo, últimas movimentações e pode enviar mensagens para o escritório.</div>
+</div></div>
+</div>
+</div>`;
+}
+function moNovoCliente(){
+  const procs=getData.processos();
+  openMo("Adicionar ao Portal",`<div class="g2">
+<div class="fg" style="grid-column:1/-1"><label class="fl">Nome do cliente</label><input class="fi" id="pc-nome"></div>
+<div class="fg"><label class="fl">CPF (login)</label><input class="fi" id="pc-cpf" placeholder="000.000.000-00"></div>
+<div class="fg"><label class="fl">WhatsApp</label><input class="fi" id="pc-tel"></div>
+<div class="fg" style="grid-column:1/-1"><label class="fl">Processo vinculado</label><select class="fsl" id="pc-proc">${procs.map(p=>`<option value="${p.id}">${p.nome} — ${p.numero||"s/n"}</option>`).join("")}</select></div>
+</div>
+<div class="mo-act"><button class="btn btn-gold" onclick="salvarCliente()"><i class="fas fa-save"></i> Criar acesso</button></div>`);
+}
+function salvarCliente(){
+  const nome=document.getElementById("pc-nome").value.trim();if(!nome){toast("Preencha o nome.","e");return}
+  const pid=parseInt(document.getElementById("pc-proc").value)||null;const proc=pid?getData.processos().find(x=>x.id===pid):null;
+  const arr=getData.clientes_portal();arr.unshift({id:gid(),nome,cpf:document.getElementById("pc-cpf").value,tel:document.getElementById("pc-tel").value,proc_id:pid,processo_nome:proc?proc.nome:"–",ativo:true});
+  sJ("portal_clientes",arr);closeMo("mo-main");bPortal();toast("✓ Acesso criado!","s");
+}
+function excluirCliente(id){if(!confirm("Remover acesso?"))return;sJ("portal_clientes",getData.clientes_portal().filter(x=>x.id!==id));bPortal();toast("Removido.","w")}
+</script>
+
+<script>
+// ════════════════════════════════════════════════════
+// FINANÇAS
+// ════════════════════════════════════════════════════
+function finTab(tab,el){
+  if(el){document.querySelectorAll("[id^='vt-fin-']").forEach(t=>t.classList.remove("active"));el.classList.add("active")}
+  else{const e=document.getElementById("vt-fin-"+tab);if(e)e.classList.add("active")}
+  if(tab==="dash")bFinDash();else if(tab==="fat"||tab==="desp")bFinLanc(tab);else bFinMetas();
+}
+function bFinDash(){
+  const k=getData.mesAtual();const fat=getData.fat(k);const desp=getData.desp(k);
+  const tF=fat.reduce((s,f)=>s+f.valor,0);const tD=desp.reduce((s,d)=>s+d.valor,0);const metas=getData.metas();
+  document.getElementById("fin-content").innerHTML=`
+<div class="g4" style="margin-bottom:14px">
+${[{cl:"gold",l:"Faturamento",v:fmtM0(tF),s:pct(tF,metas.ideal)+"% da meta"},{cl:"red",l:"Despesas",v:fmtM0(tD),s:desp.length+" lançamentos"},{cl:"green",l:"Lucro",v:fmtM0(tF-tD),s:"Margem "+(tF>0?pct(tF-tD,tF):0)+"%"},{cl:"purple",l:"Meta ideal",v:pct(tF,metas.ideal)+"%",s:fmtM0(metas.ideal)}].map(k=>`<div class="kpi ${k.cl}"><div class="kpi-l">${k.l}</div><div class="kpi-v" style="font-size:20px">${k.v}</div><div class="kpi-s">${k.s}</div></div>`).join("")}
+</div>
+<div class="g2">
+<div class="panel"><div class="ph"><div class="pt"><i class="fas fa-bullseye" style="color:var(--gold)"></i> Metas do mês</div></div>
+<div style="padding:14px">
+${[{l:"Mínima",v:metas.minima,c:"var(--red)"},{l:"Equilíbrio",v:metas.equilibrio,c:"var(--amber)"},{l:"Ideal",v:metas.ideal,c:"var(--green)"}].map(x=>`<div style="margin-bottom:14px">
+<div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-size:12px;font-weight:600;color:${x.c}">${x.l}</span><span style="font-size:11px;font-weight:700">${pct(tF,x.v)}%</span></div>
+<div class="prog"><div class="prog-f" style="width:${Math.min(100,pct(tF,x.v))}%;background:${x.c}"></div></div>
+<div style="display:flex;justify-content:space-between;margin-top:3px"><span style="font-size:9px;color:rgba(13,17,23,.35)">${fmtM0(tF)}</span><span style="font-size:9px;color:rgba(13,17,23,.35)">${fmtM0(x.v)}</span></div>
+</div>`).join("")}
+</div></div>
+<div class="panel"><div class="ph"><div class="pt"><i class="fas fa-receipt" style="color:var(--teal)"></i> Lançamentos recentes</div>
+<div style="display:flex;gap:6px"><button class="btn btn-green btn-xs" onclick="finTab('fat')"><i class="fas fa-plus"></i> Receita</button><button class="btn btn-red btn-xs" onclick="finTab('desp')"><i class="fas fa-minus"></i> Despesa</button></div></div>
+${[...fat.slice(0,3).map(f=>({...f,_tp:"fat"})),...desp.slice(0,3).map(d=>({...d,_tp:"desp"}))].sort((a,b)=>b.data.localeCompare(a.data)).slice(0,6).map(l=>`<div class="pi">
+<div class="p-av" style="background:${l._tp==="fat"?"var(--green-pale)":"var(--red-pale)"};color:${l._tp==="fat"?"var(--green)":"var(--red)"}"><i class="fas fa-${l._tp==="fat"?"arrow-up":"arrow-down"}"></i></div>
+<div style="flex:1"><div style="font-size:12px;font-weight:600">${l.cliente||l.desc||l.tipo||"–"}</div><div style="font-size:10px;color:rgba(13,17,23,.4)">${l.tipo} · ${fd(l.data)}</div></div>
+<div style="font-family:'DM Mono',monospace;font-size:12px;font-weight:700;color:${l._tp==="fat"?"var(--green)":"var(--red)"}">${fmtM0(l.valor)}</div>
+</div>`).join("")}</div>
+</div>`;
+}
+function bFinLanc(tipo){
+  const k=getData.mesAtual();const data=tipo==="fat"?getData.fat(k):getData.desp(k);
+  const cor=tipo==="fat"?"var(--green)":"var(--red)";
+  const opts=tipo==="fat"?["Honorário inicial","Honorário de êxito","Consulta","Outros"]:["Aluguel","Salário","Estagiário","Software","Tráfego pago","Custas","Outros"];
+  document.getElementById("fin-content").innerHTML=`
+<div class="panel"><div class="ph"><div class="pt">Nova ${tipo==="fat"?"Receita":"Despesa"}</div></div><div style="padding:14px">
+<div class="g2"><div class="fg"><label class="fl">Tipo</label><select class="fsl" id="fl-tipo">${opts.map(o=>`<option>${o}</option>`).join("")}</select></div><div class="fg"><label class="fl">Valor (R$)</label><input class="fi fi-mono" id="fl-val" type="number"></div><div class="fg"><label class="fl">${tipo==="fat"?"Cliente":"Descrição"}</label><input class="fi" id="fl-desc"></div><div class="fg"><label class="fl">Data</label><input class="fi" type="date" id="fl-data" value="${today()}"></div></div>
+<button class="btn btn-gold" onclick="salvarLanc('${tipo}')"><i class="fas fa-plus"></i> Adicionar</button>
+</div></div>
+<div class="panel">${data.map(f=>`<div class="pi">
+<div style="flex:1"><div style="font-size:12.5px;font-weight:600">${f.cliente||f.desc||f.tipo||"–"}</div><div style="font-size:10px;color:rgba(13,17,23,.4)">${f.tipo} · ${fd(f.data)}</div></div>
+<div style="font-family:'DM Mono',monospace;font-size:13px;font-weight:700;color:${cor}">${fmtM(f.valor)}</div>
+<button onclick="excluirLanc('${tipo}',${f.id})" style="background:var(--red-pale);border:none;border-radius:5px;padding:3px 7px;cursor:pointer;color:var(--red);margin-left:8px;font-size:11px"><i class="fas fa-trash"></i></button>
+</div>`).join()||'<div class="empty" style="padding:20px"><p>Sem lançamentos</p></div>'}</div>`;
+}
+function salvarLanc(tipo){const v=parseFloat(document.getElementById("fl-val").value)||0;if(!v){toast("Valor?","e");return}const k=getData.mesAtual();const arr=tipo==="fat"?getData.fat(k):getData.desp(k);arr.unshift({id:gid(),tipo:document.getElementById("fl-tipo").value,valor:v,cliente:tipo==="fat"?document.getElementById("fl-desc").value:"",desc:tipo==="desp"?document.getElementById("fl-desc").value:"",data:document.getElementById("fl-data").value});sJ((tipo==="fat"?"cf_fat_":"cf_desp_")+k,arr);bFinLanc(tipo);toast("✓","s")}
+function excluirLanc(tipo,id){const k=getData.mesAtual();if(tipo==="fat")sJ("cf_fat_"+k,getData.fat(k).filter(x=>x.id!==id));else sJ("cf_desp_"+k,getData.desp(k).filter(x=>x.id!==id));bFinLanc(tipo);toast("Excluído.","w")}
+function bFinMetas(){const m=getData.metas();document.getElementById("fin-content").innerHTML=`<div class="panel"><div class="ph"><div class="pt"><i class="fas fa-bullseye"></i> Metas mensais</div></div><div style="padding:16px">${[{l:"Meta mínima",id:"fm-min",v:m.minima},{l:"Meta equilíbrio",id:"fm-eq",v:m.equilibrio},{l:"Meta ideal",id:"fm-id",v:m.ideal}].map(x=>`<div class="fg"><label class="fl">${x.l} (R$)</label><input class="fi fi-mono" id="${x.id}" type="number" value="${x.v}"></div>`).join("")}<button class="btn btn-gold" onclick="salvarMetas()"><i class="fas fa-save"></i> Salvar metas</button></div></div>`}
+function salvarMetas(){sJ("cf_metas",{minima:parseFloat(document.getElementById("fm-min").value)||12000,equilibrio:parseFloat(document.getElementById("fm-eq").value)||14000,ideal:parseFloat(document.getElementById("fm-id").value)||24000});toast("Metas salvas.","s")}
+
+// ════════════════════════════════════════════════════
+// HONORÁRIOS
+// ════════════════════════════════════════════════════
+function bHonorarios(){honTab("inadimplencia")}
+function honTab(tab,el){
+  if(el){document.querySelectorAll("[id^='vt-hon-']").forEach(t=>t.classList.remove("active"));el.classList.add("active")}
+  else{const e=document.getElementById("vt-hon-"+tab);if(e)e.classList.add("active")}
+  const hons=getData.honorarios();
+  const pago=hons.filter(h=>h.status==="pago").reduce((s,h)=>s+h.valor,0);
+  const pend=hons.filter(h=>h.status==="pendente").reduce((s,h)=>s+h.valor,0);
+  const exito=hons.filter(h=>h.tipo==="exito").reduce((s,h)=>s+h.valor,0);
+  document.getElementById("hon-kpis").innerHTML=[
+    {cl:"gold",l:"Total recebido",v:fmtM0(pago),s:hons.filter(h=>h.status==="pago").length+" pagos"},
+    {cl:"red",l:"Inadimplência",v:fmtM0(pend),s:hons.filter(h=>h.status==="pendente").length+" pendentes"},
+    {cl:"green",l:"Êxito realizado",v:fmtM0(exito),s:"Honorários de êxito"},
+    {cl:"purple",l:"Carteira de êxito",v:fmtM0(getData.acordos().filter(a=>a.fase!=="rejeitado").reduce((s,a)=>s+a.meta_advogado,0)),s:"Potencial futuro"}
+  ].map(k=>`<div class="kpi ${k.cl}"><div class="kpi-l">${k.l}</div><div class="kpi-v" style="font-size:20px">${k.v}</div><div class="kpi-s">${k.s}</div></div>`).join("");
+  let list=tab==="inadimplencia"?hons.filter(h=>h.status==="pendente"):tab==="exito"?hons.filter(h=>h.tipo==="exito"):hons;
+  const wrap=document.getElementById("hon-content");if(!wrap)return;
+  if(!list.length){wrap.innerHTML='<div class="empty"><i class="fas fa-dollar-sign"></i><p>Nenhum lançamento aqui</p></div>';return}
+  wrap.innerHTML=`<div class="panel">${list.map(h=>`<div class="pi">
+<div class="p-av" style="background:${h.status==="pago"?"var(--green-pale)":"var(--red-pale)"};color:${h.status==="pago"?"var(--green)":"var(--red)"}"><i class="fas fa-${h.status==="pago"?"check":"clock"}"></i></div>
+<div style="flex:1"><div style="font-size:12.5px;font-weight:600">${h.cliente}</div><div style="font-size:10px;color:rgba(13,17,23,.4)">${h.tipo==="inicial"?"Honorário inicial":"Honorário de êxito"} · Vcto: ${fd(h.vencimento)}</div></div>
+<div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px">
+<div style="font-family:'DM Mono',monospace;font-size:13px;font-weight:700;color:var(--gold)">${fmtM(h.valor)}</div>
+${h.status==="pendente"?`<button class="btn btn-green btn-xs" onclick="marcarPago(${h.id})"><i class="fas fa-check"></i> Recebido</button>`:'<span class="chip chip-green" style="font-size:9px">Pago</span>'}
+</div>
+</div>`).join("")}</div>`;
+}
+function moNovoHon(){
+  const procs=getData.processos();
+  openMo("Lançar Honorário",`<div class="g2">
+<div class="fg" style="grid-column:1/-1"><label class="fl">Cliente <span class="req">*</span></label><select class="fsl" id="nh-cli"><option value="">Selecionar...</option>${procs.map(p=>`<option value="${p.id}">${p.nome}</option>`).join("")}</select></div>
+<div class="fg"><label class="fl">Tipo</label><select class="fsl" id="nh-tipo"><option value="inicial">Honorário inicial</option><option value="exito">Honorário de êxito</option></select></div>
+<div class="fg"><label class="fl">Valor (R$)</label><input class="fi fi-mono" id="nh-val" type="number"></div>
+<div class="fg"><label class="fl">Vencimento</label><input class="fi" type="date" id="nh-vcto" value="${today()}"></div>
+<div class="fg"><label class="fl">Status</label><select class="fsl" id="nh-status"><option value="pendente">Pendente</option><option value="pago">Pago</option></select></div>
+</div>
+<div class="mo-act"><button class="btn btn-gold" onclick="salvarHon()"><i class="fas fa-save"></i> Salvar</button></div>`);
+}
+function salvarHon(){
+  const pid=parseInt(document.getElementById("nh-cli").value)||null;const val=parseFloat(document.getElementById("nh-val").value)||0;if(!pid||!val){toast("Preencha cliente e valor.","e");return}
+  const proc=getData.processos().find(x=>x.id===pid);const arr=getData.honorarios();
+  arr.unshift({id:gid(),proc_id:pid,cliente:proc?proc.nome:"–",tipo:document.getElementById("nh-tipo").value,valor:val,status:document.getElementById("nh-status").value,data:today(),vencimento:document.getElementById("nh-vcto").value});
+  sJ("advjurix_honorarios",arr);closeMo("mo-main");bHonorarios();toast("✓ Lançado!","s");
+}
+function marcarPago(id){const arr=getData.honorarios();const h=arr.find(x=>x.id===id);if(!h)return;h.status="pago";sJ("advjurix_honorarios",arr);bHonorarios();toast("✓ Marcado como pago!","s")}
+
+// ════════════════════════════════════════════════════
+// CALCULADORA JURÍDICA
+// ════════════════════════════════════════════════════
+function bCalculadora(){
+  document.getElementById("calc-wrap").innerHTML=`
+<div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;margin-bottom:16px">Calculadora Jurídica</div>
+<div class="g2">
+<div>
+<div class="panel"><div class="ph"><div class="pt"><i class="fas fa-calculator"></i> Atualização monetária</div></div>
+<div style="padding:14px">
+<div class="fg"><label class="fl">Valor principal (R$)</label><input class="fi fi-mono" id="ca-val" type="number" placeholder="0,00" oninput="calcAtualizar()"></div>
+<div class="g2"><div class="fg"><label class="fl">Data inicial</label><input class="fi" type="date" id="ca-ini" value="${addD(today(),-365)}" oninput="calcAtualizar()"></div>
+<div class="fg"><label class="fl">Data final</label><input class="fi" type="date" id="ca-fim" value="${today()}" oninput="calcAtualizar()"></div></div>
+<div class="fg"><label class="fl">Índice de correção</label><select class="fsl" id="ca-idx" onchange="calcAtualizar()"><option value="selic">SELIC (~13.75% a.a.)</option><option value="inpc">INPC (~5.8% a.a.)</option><option value="igpm">IGP-M (~3.2% a.a.)</option><option value="ipca">IPCA (~4.8% a.a.)</option></select></div>
+<div id="ca-result" style="background:var(--gold-pale);border-radius:8px;padding:14px;margin-top:4px"><div class="kpi-l">Valor atualizado</div><div id="ca-total" style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;color:var(--gold)">–</div></div>
+</div></div>
+<div class="panel" style="margin-top:10px"><div class="ph"><div class="pt"><i class="fas fa-briefcase"></i> Verbas trabalhistas</div></div>
+<div style="padding:14px">
+<div class="g2">
+<div class="fg"><label class="fl">Salário bruto (R$)</label><input class="fi fi-mono" id="ct-sal" type="number" oninput="calcTrab()"></div>
+<div class="fg"><label class="fl">Meses trabalhados</label><input class="fi fi-mono" id="ct-meses" type="number" value="12" oninput="calcTrab()"></div>
+<div class="fg"><label class="fl">Aviso prévio (dias)</label><input class="fi fi-mono" id="ct-aviso" type="number" value="30" oninput="calcTrab()"></div>
+<div class="fg"><label class="fl">FGTS depositado (R$)</label><input class="fi fi-mono" id="ct-fgts" type="number" value="0" oninput="calcTrab()"></div>
+</div>
+<div id="ct-result"></div>
+</div></div>
+</div>
+<div>
+<div class="panel"><div class="ph"><div class="pt"><i class="fas fa-university"></i> Fraude bancária — estimativa</div></div>
+<div style="padding:14px">
+<div class="fg"><label class="fl">Valor da fraude (R$)</label><input class="fi fi-mono" id="cf-val" type="number" oninput="calcFraude()"></div>
+<div class="fg"><label class="fl">Data da fraude</label><input class="fi" type="date" id="cf-data" value="${addD(today(),-180)}" oninput="calcFraude()"></div>
+<div id="cf-result"></div>
+</div></div>
+<div class="panel" style="margin-top:10px"><div class="ph"><div class="pt"><i class="fas fa-trophy"></i> Honorários de êxito</div></div>
+<div style="padding:14px">
+<div class="fg"><label class="fl">Valor da condenação (R$)</label><input class="fi fi-mono" id="ce-cond" type="number" oninput="calcExito()"></div>
+<div class="fg"><label class="fl">% Honorários contratados</label><input class="fi fi-mono" id="ce-pct" type="number" value="20" oninput="calcExito()"></div>
+<div style="background:var(--green-pale);border-radius:8px;padding:12px;margin-top:4px"><div class="kpi-l">Honorários brutos</div><div id="ce-total" style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:700;color:var(--green)">–</div></div>
+</div></div>
+</div>
+</div>`;
+}
+function calcAtualizar(){const v=parseFloat(document.getElementById("ca-val")||{value:0}).value||0;if(!v)return;const ini=new Date((document.getElementById("ca-ini")||{value:addD(today(),-365)}).value+"T12:00:00");const fim=new Date((document.getElementById("ca-fim")||{value:today()}).value+"T12:00:00");const anos=(fim-ini)/(365.25*86400000);const taxas={selic:0.1375,inpc:0.058,igpm:0.032,ipca:0.048};const taxa=taxas[(document.getElementById("ca-idx")||{value:"selic"}).value]||0.1375;const juros=v*0.01*(anos*12);const total=v*Math.pow(1+taxa,anos)+juros;const el=document.getElementById("ca-total");if(el)el.textContent=fmtM(total)}
+function calcExito(){const c=parseFloat((document.getElementById("ce-cond")||{value:0}).value)||0;const p=parseFloat((document.getElementById("ce-pct")||{value:20}).value)||20;const el=document.getElementById("ce-total");if(el)el.textContent=c>0?fmtM(c*p/100):"–"}
+function calcFraude(){const v=parseFloat((document.getElementById("cf-val")||{value:0}).value)||0;const el=document.getElementById("cf-result");if(!el)return;if(!v){el.innerHTML="";return}const d=new Date((document.getElementById("cf-data")||{value:addD(today(),-180)}).value+"T12:00:00");const anos=(new Date()-d)/(365.25*86400000);const corr=v*Math.pow(1.05,anos);const moral=Math.max(v*2,5000);const total=corr+moral;el.innerHTML=`<div style="margin-top:12px">${[["Dano material atualizado",corr,"var(--red)"],["Dano moral estimado",moral,"var(--amber)"],["Total estimado causa",total,"var(--gold)"]].map(([l,vv,c])=>`<div style="background:${c}15;border-radius:8px;padding:10px 12px;margin-bottom:8px"><div class="kpi-l">${l}</div><div style="font-family:'DM Mono',monospace;font-size:15px;font-weight:700;color:${c}">${fmtM(vv)}</div></div>`).join("")}</div>`}
+function calcTrab(){const sal=parseFloat((document.getElementById("ct-sal")||{value:0}).value)||0;const meses=parseFloat((document.getElementById("ct-meses")||{value:12}).value)||0;const aviso=parseFloat((document.getElementById("ct-aviso")||{value:30}).value)||30;const fgts=parseFloat((document.getElementById("ct-fgts")||{value:0}).value)||0;const el=document.getElementById("ct-result");if(!el)return;if(!sal){el.innerHTML="";return}const dec=sal*(meses%12||12)/12;const fer=sal*(meses%12||12)/12*1.33;const mul=(sal*meses*0.08+fgts)*0.4;const av=sal*aviso/30;const total=dec+fer+mul+av;el.innerHTML=`<div style="margin-top:12px;font-size:12px">${[["13º proporcional",dec],["Férias + 1/3",fer],["Multa FGTS 40%",mul],["Aviso prévio",av]].map(([l,vv])=>`<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border3)"><span>${l}</span><strong style="font-family:'DM Mono',monospace">${fmtM(vv)}</strong></div>`).join("")}<div style="display:flex;justify-content:space-between;padding:8px 0;font-size:13px;font-weight:700"><span>Total estimado</span><strong style="color:var(--green);font-family:'DM Mono',monospace">${fmtM(total)}</strong></div></div>`}
+
+// ════════════════════════════════════════════════════
+// EQUIPE
+// ════════════════════════════════════════════════════
+function eqTab(tab,el){
+  if(el){document.querySelectorAll("[id^='vt-eq-']").forEach(t=>t.classList.remove("active"));el.classList.add("active")}
+  else{const e=document.getElementById("vt-eq-"+tab);if(e)e.classList.add("active")}
+  if(tab==="visao")bEqVisao();else if(tab==="colaboradores")bEqCol();else if(tab==="tarefas")bEqTarefas();else bEqProd();
+}
+function bEqVisao(){
+  const eq=getData.equipe();const trf=getData.tarefas();
+  document.getElementById("eq-content").innerHTML=`<div class="g4" style="margin-bottom:14px">
+${[{cl:"gold",l:"Colaboradores",v:eq.filter(e=>e.ativo).length},{cl:"green",l:"Peças do mês",v:eq.reduce((s,e)=>s+e.pecas_mes,0)},{cl:"teal",l:"Atendimentos",v:eq.reduce((s,e)=>s+e.atendimentos,0)},{cl:"amber",l:"Tarefas abertas",v:trf.filter(t=>t.status!=="concluida").length}].map(k=>`<div class="kpi ${k.cl}"><div class="kpi-l">${k.l}</div><div class="kpi-v">${k.v}</div></div>`).join("")}
+</div>
+${eq.map(c=>`<div style="background:var(--card);border:1px solid var(--border2);border-radius:12px;padding:14px 16px;margin-bottom:10px;display:flex;align-items:center;gap:12px">
+<div style="width:44px;height:44px;border-radius:11px;background:${c.cor};display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#fff;flex-shrink:0">${ini(c.nome)}</div>
+<div style="flex:1"><div style="font-size:14px;font-weight:600">${c.nome}</div><div style="font-size:11px;color:rgba(13,17,23,.4)">${c.cargo}${c.oab?" · "+c.oab:""}</div></div>
+<div class="g2" style="flex:2">${[{l:"Peças/mês",v:c.pecas_mes,m:c.meta_pecas},{l:"Atendimentos",v:c.atendimentos,m:c.meta_atend}].map(x=>`<div><div style="display:flex;justify-content:space-between;font-size:10px;margin-bottom:3px"><span>${x.l}</span><strong>${x.v}/${x.m}</strong></div><div class="prog"><div class="prog-f" style="width:${pct(x.v,x.m)}%;background:${c.cor}"></div></div></div>`).join("")}</div>
+<span class="chip ${c.ativo?"chip-green":"chip-red"}">${c.ativo?"Ativo":"Inativo"}</span>
+</div>`).join("")}`;
+}
+function bEqCol(){
+  const eq=getData.equipe();
+  document.getElementById("eq-content").innerHTML=`<div style="display:flex;justify-content:flex-end;margin-bottom:14px"><button class="btn btn-gold btn-sm" onclick="moNovoColab()"><i class="fas fa-user-plus"></i> Novo colaborador</button></div>
+<div class="g3">${eq.map(c=>`<div style="background:var(--card);border:1px solid var(--border2);border-radius:12px;padding:16px">
+<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
+<div style="width:42px;height:42px;border-radius:10px;background:${c.cor};display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#fff">${ini(c.nome)}</div>
+<span class="chip ${c.ativo?"chip-green":"chip-red"}">${c.ativo?"Ativo":"Inativo"}</span></div>
+<div style="font-size:13px;font-weight:600">${c.nome}</div>
+<div style="font-size:11px;color:rgba(13,17,23,.4);margin:3px 0 6px">${c.cargo}${c.oab?" · "+c.oab:""}</div>
+${c.email?`<div style="font-size:10.5px;color:var(--blue)">${c.email}</div>`:""}
+</div>`).join("")}</div>`;
+}
+function bEqTarefas(){
+  const trf=getData.tarefas().sort((a,b)=>a.prazo.localeCompare(b.prazo));const eq=getData.equipe();
+  document.getElementById("eq-content").innerHTML=`<div style="display:flex;justify-content:flex-end;margin-bottom:14px"><button class="btn btn-gold btn-sm" onclick="moNovaTarefa()"><i class="fas fa-plus"></i> Nova tarefa</button></div>
+<div class="panel">${trf.map(t=>{const d=diffD(t.prazo);const cl=t.status==="concluida"?"var(--green)":d<0?"var(--red)":d===0?"var(--amber)":"rgba(13,17,23,.5)";const lbl=t.status==="concluida"?"Concluída":d<0?Math.abs(d)+"d atraso":d===0?"Hoje":d+"d";const col=eq.find(e=>e.id===t.col_id);return`<div style="display:flex;align-items:center;gap:10px;padding:10px 16px;border-bottom:1px solid var(--border3)">
+<div onclick="toggleTarefa(${t.id})" style="width:18px;height:18px;border-radius:4px;border:2px solid ${t.status==="concluida"?"var(--green)":"var(--border2)"};background:${t.status==="concluida"?"var(--green)":"transparent"};cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0">${t.status==="concluida"?'<i class="fas fa-check" style="font-size:8px;color:#fff"></i>':""}</div>
+<div style="flex:1"><div style="font-size:12.5px;font-weight:600;${t.status==="concluida"?"text-decoration:line-through;color:rgba(13,17,23,.35)":""}">${t.titulo}</div>
+<div style="font-size:10px;color:rgba(13,17,23,.4);margin-top:2px;display:flex;gap:8px">${col?`<span style="color:${col.cor};font-weight:600">${col.nome.split(" ")[0]}</span>`:""}<span class="chip chip-${t.prioridade==="alta"?"red":t.prioridade==="media"?"amber":"teal"}" style="font-size:8.5px">${t.prioridade}</span></div></div>
+<div style="font-size:10.5px;font-weight:700;color:${cl}">${lbl}</div>
+<button onclick="excluirTarefa(${t.id})" style="background:transparent;border:none;color:rgba(13,17,23,.25);cursor:pointer;padding:2px 5px;font-size:11px"><i class="fas fa-trash"></i></button>
+</div>`;}).join("")||'<div class="empty" style="padding:20px"><p>Sem tarefas cadastradas</p></div>'}</div>`;
+}
+function bEqProd(){
+  const eq=getData.equipe();
+  document.getElementById("eq-content").innerHTML=`<div class="panel"><div class="ph"><div class="pt"><i class="fas fa-chart-bar"></i> Produção da equipe</div></div>
+<div style="padding:16px">
+${eq.map(c=>`<div style="margin-bottom:18px"><div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+<div style="width:32px;height:32px;border-radius:8px;background:${c.cor};display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff">${ini(c.nome)}</div>
+<div><div style="font-size:12.5px;font-weight:600">${c.nome.split(" ").slice(0,2).join(" ")}</div><div style="font-size:10px;color:rgba(13,17,23,.4)">${c.cargo}</div></div>
+</div>
+${[{l:"Peças elaboradas",v:c.pecas_mes,m:c.meta_pecas},{l:"Atendimentos",v:c.atendimentos,m:c.meta_atend}].map(x=>`<div style="margin-bottom:8px"><div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:3px"><span style="color:rgba(13,17,23,.5)">${x.l}</span><span style="font-weight:700">${x.v} / ${x.m} (${pct(x.v,x.m)}%)</span></div><div class="prog"><div class="prog-f" style="width:${Math.min(100,pct(x.v,x.m))}%;background:${c.cor}"></div></div></div>`).join("")}
+</div>`).join("")}
+</div></div>`;
+}
+function moNovoColab(){
+  openMo("Novo Colaborador",`<div class="g2">
+<div class="fg" style="grid-column:1/-1"><label class="fl">Nome completo <span class="req">*</span></label><input class="fi" id="ec-nome"></div>
+<div class="fg"><label class="fl">Cargo</label><input class="fi" id="ec-cargo"></div>
+<div class="fg"><label class="fl">OAB (se aplicável)</label><input class="fi" id="ec-oab"></div>
+<div class="fg"><label class="fl">Tipo</label><select class="fsl" id="ec-tipo"><option value="socio">Sócio</option><option value="advogado">Advogado</option><option value="estagiario">Estagiário</option><option value="admin">Administrativo</option></select></div>
+<div class="fg"><label class="fl">E-mail</label><input class="fi" id="ec-email" type="email"></div>
+<div class="fg"><label class="fl">Meta de peças/mês</label><input class="fi fi-mono" id="ec-mp" type="number" value="10"></div>
+</div>
+<div class="mo-act"><button class="btn btn-gold" onclick="salvarColab()"><i class="fas fa-save"></i> Salvar</button></div>`);
+}
+function salvarColab(){
+  const n=document.getElementById("ec-nome").value.trim();if(!n){toast("Nome?","e");return}
+  const eq=getData.equipe();const cores=["#B8902A","#1A5F6A","#5B3A8E","#C0392B","#1E7E5A","#1D4ED8","#D97706"];
+  eq.unshift({id:gid(),nome:n,cargo:document.getElementById("ec-cargo").value,oab:document.getElementById("ec-oab").value,tipo:document.getElementById("ec-tipo").value,email:document.getElementById("ec-email").value,cor:cores[eq.length%cores.length],ativo:true,pecas_mes:0,atendimentos:0,meta_pecas:parseInt(document.getElementById("ec-mp").value)||10,meta_atend:15});
+  sJ("equipe_v1",eq);closeMo("mo-main");bEqCol();toast("✓ Colaborador adicionado!","s");
+}
+function moNovaTarefa(){
+  openMo("Nova Tarefa",`<div class="fg"><label class="fl">Título <span class="req">*</span></label><input class="fi" id="nt-titulo"></div>
+<div class="g2">
+<div class="fg"><label class="fl">Responsável</label><select class="fsl" id="nt-col"><option value="">–</option>${getData.equipe().map(e=>`<option value="${e.id}">${e.nome.split(" ")[0]}</option>`).join("")}</select></div>
+<div class="fg"><label class="fl">Prazo</label><input class="fi" type="date" id="nt-prazo" value="${addD(today(),3)}"></div>
+<div class="fg"><label class="fl">Prioridade</label><select class="fsl" id="nt-prior"><option value="alta">Alta</option><option value="media" selected>Média</option><option value="baixa">Baixa</option></select></div>
+<div class="fg"><label class="fl">Área</label><select class="fsl" id="nt-area">${AREAS.map(a=>`<option>${a}</option>`).join("")}</select></div>
+</div>
+<div class="mo-act"><button class="btn btn-gold" onclick="salvarTarefa()"><i class="fas fa-save"></i> Salvar</button></div>`);
+}
+function salvarTarefa(){
+  const t=document.getElementById("nt-titulo").value.trim();if(!t){toast("Título?","e");return}
+  const arr=getData.tarefas();
+  arr.unshift({id:gid(),titulo:t,col_id:parseInt(document.getElementById("nt-col").value)||null,prazo:document.getElementById("nt-prazo").value,prioridade:document.getElementById("nt-prior").value,area:document.getElementById("nt-area").value,status:"pendente"});
+  sJ("tarefas_v1",arr);closeMo("mo-main");bEqTarefas();toast("✓ Tarefa adicionada!","s");
+}
+function toggleTarefa(id){const arr=getData.tarefas();const t=arr.find(x=>x.id===id);if(!t)return;t.status=t.status==="concluida"?"pendente":"concluida";sJ("tarefas_v1",arr);bEqTarefas();if(t.status==="concluida")toast("✓ Concluída!","s")}
+function excluirTarefa(id){if(!confirm("Excluir?"))return;sJ("tarefas_v1",getData.tarefas().filter(x=>x.id!==id));bEqTarefas();toast("Excluída.","w")}
+
+// ════════════════════════════════════════════════════
+// RELATÓRIO EXECUTIVO
+// ════════════════════════════════════════════════════
+function initRel(){
+  const sel=document.getElementById("rel-mes");if(!sel||sel.options.length>0)return;
+  const opts=[];for(let i=0;i<12;i++){const d=new Date();d.setMonth(d.getMonth()-i);const m=String(d.getMonth()+1).padStart(2,"0");const y=d.getFullYear();opts.push(`<option value="${y}-${m}" ${i===0?"selected":""}>${MESES[d.getMonth()]} ${y}</option>`)}
+  sel.innerHTML=opts.join("");
+}
+var _relIA="";
+function bRelatorio(){
+  const v=document.getElementById("rel-mes").value||new Date().toISOString().substring(0,7);
+  const pts=v.split("-");const label=MESES[parseInt(pts[1])-1]+" "+pts[0];const k=v.replace("-","_");
+  document.getElementById("rel-titulo").textContent="Relatório Executivo — "+label;
+  const fat=getData.fat(k).reduce((s,f)=>s+f.valor,0);const desp=getData.desp(k).reduce((s,d)=>s+d.valor,0);
+  const lucro=fat-desp;const metas=getData.metas();const leads=getData.leads();const equipe=getData.equipe();const acordos=getData.acordos();const procs=getData.processos();
+  document.getElementById("rel-content").innerHTML=`
+<div class="g4" style="margin-bottom:14px">
+${[{cl:"gold",l:"Faturamento",v:fmtM0(fat),s:pct(fat,metas.ideal)+"% da meta"},{cl:"green",l:"Lucro",v:fmtM0(lucro),s:"Margem "+(fat>0?pct(lucro,fat):0)+"%"},{cl:"red",l:"Despesas",v:fmtM0(desp),s:"Total do mês"},{cl:"teal",l:"Leads ativos",v:leads.filter(l=>["convertido","perdido"].indexOf(l.funel)<0).length,s:"No funil"}].map(k=>`<div class="kpi ${k.cl}"><div class="kpi-l">${k.l}</div><div class="kpi-v" style="font-size:20px">${k.v}</div><div class="kpi-s">${k.s}</div></div>`).join("")}
+</div>
+<div class="g2">
+<div class="panel"><div class="ph"><div class="pt"><i class="fas fa-bullseye" style="color:var(--gold)"></i> Metas do período</div></div>
+<div style="padding:14px">${[{l:"Mínima",v:metas.minima,c:"var(--red)"},{l:"Equilíbrio",v:metas.equilibrio,c:"var(--amber)"},{l:"Ideal",v:metas.ideal,c:"var(--green)"}].map(x=>`<div style="margin-bottom:12px"><div style="display:flex;justify-content:space-between;margin-bottom:3px"><span style="font-size:12px;font-weight:600;color:${x.c}">${x.l}</span><span style="font-size:11px;font-weight:700">${pct(fat,x.v)}%</span></div><div class="prog"><div class="prog-f" style="width:${Math.min(100,pct(fat,x.v))}%;background:${x.c}"></div></div></div>`).join("")}
+</div></div>
+<div class="panel"><div class="ph"><div class="pt"><i class="fas fa-chart-bar" style="color:var(--teal)"></i> Resumo operacional</div></div>
+<div style="padding:14px">${[{l:"Processos ativos",v:procs.filter(p=>p.fase!=="Arquivado").length},{l:"Peças elaboradas",v:equipe.reduce((s,e)=>s+e.pecas_mes,0)},{l:"Atendimentos",v:equipe.reduce((s,e)=>s+e.atendimentos,0)},{l:"Leads convertidos",v:leads.filter(l=>l.funel==="convertido").length},{l:"Acordos fechados",v:acordos.filter(a=>a.fase==="aceito").length},{l:"Prazos cumpridos",v:getData.prazos().filter(p=>p.status==="cumprido").length}].map(r=>`<div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--border3)"><span style="font-size:12.5px;color:rgba(13,17,23,.6)">${r.l}</span><span style="font-family:'DM Mono',monospace;font-size:13px;font-weight:700">${r.v}</span></div>`).join("")}
+</div></div>
+</div>
+${_relIA?`<div class="panel" style="margin-top:10px"><div class="ph"><div class="pt"><i class="fas fa-robot" style="color:var(--purple)"></i> Análise Estratégica (IA)</div></div><div style="padding:14px;font-size:12.5px;line-height:1.8">${_relIA.replace(/\n/g,"<br>")}</div></div>`:""}
+<div class="panel" style="margin-top:10px"><div class="ph"><div class="pt"><i class="fas fa-pen" style="color:var(--gold)"></i> Observações da reunião mensal</div><button class="btn btn-gold btn-sm" onclick="salvarObsRel()"><i class="fas fa-save"></i> Salvar</button></div>
+<div style="padding:14px"><textarea class="fta" id="rel-obs" style="min-height:100px" placeholder="Decisões, metas para o próximo mês, pontos de atenção...">${getData.relObs(k)}</textarea></div></div>`;
+}
+function salvarObsRel(){const v=document.getElementById("rel-mes").value;AppLS.setItem("rel_obs_"+v.replace("-","_"),document.getElementById("rel-obs").value);toast("Observações salvas.","s")}
+async function relIA(){
+  const v=document.getElementById("rel-mes").value;const pts=v.split("-");const label=MESES[parseInt(pts[1])-1]+" "+pts[0];const k=v.replace("-","_");
+  const fat=getData.fat(k).reduce((s,f)=>s+f.valor,0);const desp=getData.desp(k).reduce((s,d)=>s+d.valor,0);
+  const leads=getData.leads();const equipe=getData.equipe();const acordos=getData.acordos();const metas=getData.metas();
+  const prompt=`Você é Tarcisio Braga, advogado sócio gestor do escritório. Analise os dados de ${label} e escreva um relatório executivo em 4 seções curtas e estratégicas: 1) Resultado financeiro; 2) Performance comercial e captação; 3) Produção da equipe; 4) Prioridades e ações para o próximo mês.
+
+DADOS DO PERÍODO:
+- Faturamento: ${fmtM(fat)}
+- Despesas: ${fmtM(desp)}
+- Lucro: ${fmtM(fat-desp)}
+- Margem: ${fat>0?pct(fat-desp,fat):0}%
+- Meta ideal: ${fmtM(metas.ideal)} — Atingimento: ${pct(fat,metas.ideal)}%
+- Leads ativos: ${leads.filter(l=>["convertido","perdido"].indexOf(l.funel)<0).length}
+- Leads convertidos: ${leads.filter(l=>l.funel==="convertido").length}
+- Colaboradores: ${equipe.length}
+- Peças elaboradas: ${equipe.reduce((s,e)=>s+e.pecas_mes,0)}
+- Acordos fechados: ${acordos.filter(a=>a.fase==="aceito").length}
+
+Seja direto, estratégico e prático. Sem floreios.`;
+  toast("Gerando análise executiva com IA...","w");
+  try{
+    const resp=await new Promise((res,rej)=>{google.script.run.withSuccessHandler(res).withFailureHandler(rej).callClaudeAPI(JSON.stringify({max_tokens:1500,messages:[{role:"user",content:prompt}]}))});
+    if(!resp.ok){toast("Erro IA: "+resp.error,"e");return}
+    _relIA=resp.text;bRelatorio();toast("✓ Análise gerada!","s");
+  }catch(e){toast("Erro: "+e.message,"e")}
+}
+function relDoc(formato){
+  const v=document.getElementById("rel-mes").value;const pts=v.split("-");const label=MESES[parseInt(pts[1])-1]+" "+pts[0];const k=v.replace("-","_");
+  const fat=getData.fat(k).reduce((s,f)=>s+f.valor,0);const desp=getData.desp(k).reduce((s,d)=>s+d.valor,0);
+  const lucro=fat-desp;const metas=getData.metas();const leads=getData.leads();const equipe=getData.equipe();const acordos=getData.acordos();const procs=getData.processos();
+  const obs=document.getElementById("rel-obs")?document.getElementById("rel-obs").value:"";
+  const dt=new Date().toLocaleDateString("pt-BR",{day:"2-digit",month:"long",year:"numeric"});
+  const nl="\n";
+  _docTexto=[
+    "RELATÓRIO EXECUTIVO MENSAL",
+    "Tarcisio Braga Sociedade Individual de Advocacia",
+    "OAB/SP 411.019 · CNPJ 55.433.682/0001-01",
+    "Rua Tiradentes, nº 299, Sala 707, Centro, Jacareí/SP",
+    "",
+    "Competência: "+label,
+    "Emitido em: "+dt,
+    "",
+    "I. RESULTADO FINANCEIRO",
+    "",
+    "Faturamento: "+fmtM(fat),
+    "Despesas: "+fmtM(desp),
+    "Lucro líquido: "+fmtM(lucro),
+    "Margem: "+(fat>0?pct(lucro,fat):0)+"%",
+    "",
+    "Meta ideal: "+fmtM(metas.ideal)+" — Atingimento: "+pct(fat,metas.ideal)+"%",
+    "Meta equilíbrio: "+fmtM(metas.equilibrio)+" — Atingimento: "+pct(fat,metas.equilibrio)+"%",
+    "",
+    "II. COMERCIAL & CAPTAÇÃO",
+    "",
+    "Leads ativos no funil: "+leads.filter(l=>["convertido","perdido"].indexOf(l.funel)<0).length,
+    "Leads convertidos: "+leads.filter(l=>l.funel==="convertido").length,
+    "Leads quentes: "+leads.filter(l=>l.temp==="quente"&&["convertido","perdido"].indexOf(l.funel)<0).length,
+    "",
+    "III. ACORDOS",
+    "",
+    "Acordos ativos: "+acordos.filter(a=>["aceito","rejeitado"].indexOf(a.fase)<0).length,
+    "Acordos fechados: "+acordos.filter(a=>a.fase==="aceito").length,
+    "Carteira de êxito: "+fmtM(acordos.reduce((s,a)=>s+a.meta_advogado,0)),
+    "",
+    "IV. PROCESSOS & PRODUÇÃO",
+    "",
+    "Processos ativos: "+procs.filter(p=>p.fase!=="Arquivado").length,
+    "Total de processos: "+procs.length,
+    "Peças elaboradas: "+equipe.reduce((s,e)=>s+e.pecas_mes,0),
+    "Atendimentos: "+equipe.reduce((s,e)=>s+e.atendimentos,0),
+    ""
+  ].join(nl)
+  +(_relIA?("V. ANÁLISE ESTRATÉGICA (IA)"+nl+nl+_relIA+nl+nl):"")
+  +(obs?("VI. OBSERVAÇÕES E DECISÕES DA REUNIÃO"+nl+nl+obs+nl+nl):"")
+  +"Jacareí/SP, "+dt+"."+nl+nl
+  +"**Tarcisio Braga Santana**"+nl
+  +"OAB/SP 411.019 — Sócio Gestor";
+  _docTitulo="Relatório Executivo — "+label;
+  if(formato==="pdf")gerarPdf();
+  else if(formato==="docx")gerarDocx();
+  else abrirDocMo(_docTitulo);
+}
+</script>
+
+<script>
+// ════════════════════════════════════════════════════
+// MARKETING tab (referenciada no bMarketing anterior)
+// ════════════════════════════════════════════════════
+var _mktTab="dash";
+function bMarketing(){mktTab("dash")}
+function mktTab(tab,el){
+  _mktTab=tab;
+  if(el){document.querySelectorAll("[id^='vt-mkt-']").forEach(t=>t.classList.remove("active"));el.classList.add("active")}
+  else{const e=document.getElementById("vt-mkt-"+tab);if(e)e.classList.add("active")}
+  const camp=getData.campanhas();
+  const totalGasto=camp.reduce((s,c)=>s+c.gasto,0);
+  const totalLeads=camp.reduce((s,c)=>s+c.leads,0);
+  const totalConv=camp.reduce((s,c)=>s+c.convertidos,0);
+  const cpl=totalLeads>0?totalGasto/totalLeads:0;
+  const roi=totalGasto>0?((totalConv*3500-totalGasto)/totalGasto*100):0;
+  const wrap=document.getElementById("mkt-content");if(!wrap)return;
+  if(tab==="dash"){
+    wrap.innerHTML=`<div class="g4" style="margin-bottom:14px">
+${[{cl:"gold",l:"Investido",v:fmtM0(totalGasto),s:camp.filter(c=>c.status==="ativa").length+" ativas"},{cl:"blue",l:"Leads gerados",v:totalLeads,s:"Total"},{cl:"teal",l:"Custo por lead",v:fmtM0(cpl),s:"CPL médio"},{cl:"green",l:"ROI estimado",v:roi.toFixed(0)+"%",s:"Ticket médio R$ 3.500"}].map(k=>`<div class="kpi ${k.cl}"><div class="kpi-l">${k.l}</div><div class="kpi-v" style="font-size:20px">${k.v}</div><div class="kpi-s">${k.s}</div></div>`).join("")}
+</div>
+<div class="g2">
+<div class="panel"><div class="ph"><div class="pt"><i class="fas fa-ad"></i> Campanhas</div><button class="btn btn-gold btn-sm" onclick="moNovaCamp()"><i class="fas fa-plus"></i> Nova</button></div>
+${camp.length?camp.map(c=>`<div class="pi">
+<div class="p-av" style="background:${c.plataforma.includes("Google")?"#4285F418":"#1877F218"};color:${c.plataforma.includes("Google")?"#4285F4":"#1877F2"}">${c.plataforma.includes("Google")?"G":"f"}</div>
+<div style="flex:1"><div style="font-size:12.5px;font-weight:600">${c.nome}</div><div style="font-size:10px;color:rgba(13,17,23,.4)">${c.plataforma} · ${c.leads} leads · ${c.convertidos} conv.</div></div>
+<div style="text-align:right"><span class="chip ${c.status==="ativa"?"chip-green":"chip-red"}" style="font-size:9px">${c.status}</span><div style="font-size:10px;color:rgba(13,17,23,.4);margin-top:3px">${fmtM0(c.gasto)} gasto</div></div>
+</div>`).join(""):'<div class="empty" style="padding:20px"><p>Sem campanhas</p></div>'}
+</div>
+<div class="panel"><div class="ph"><div class="pt"><i class="fas fa-chart-pie"></i> Origem dos leads</div></div>
+<div style="padding:14px">
+${[["Google Ads","#4285F4"],["Meta Ads","#1877F2"],["Indicação","#B8902A"],["Orgânico","#1E7E5A"],["Instagram","#C13584"]].map(([orig,cor])=>{const n=getData.leads().filter(l=>l.origem===orig).length;return`<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px"><div style="min-width:90px;font-size:11.5px;font-weight:500">${orig}</div><div style="flex:1;height:5px;background:rgba(13,17,23,.07);border-radius:3px;overflow:hidden"><div style="height:100%;width:${pct(n,Math.max(1,getData.leads().length))}%;background:${cor};border-radius:3px"></div></div><div style="font-family:'DM Mono',monospace;font-size:12px;font-weight:700;min-width:20px;text-align:right">${n}</div></div>`}).join("")}
+</div></div>
+</div>`;
+  } else if(tab==="campanhas"){
+    wrap.innerHTML=`<div style="display:flex;justify-content:flex-end;margin-bottom:14px"><button class="btn btn-gold btn-sm" onclick="moNovaCamp()"><i class="fas fa-plus"></i> Nova campanha</button></div>
+<div class="panel">${camp.map(c=>`<div class="pi">
+<div class="p-av" style="background:var(--blue-pale);color:var(--blue)"><i class="fas fa-ad"></i></div>
+<div style="flex:1"><div style="font-size:12.5px;font-weight:600">${c.nome}</div><div style="font-size:10px;color:rgba(13,17,23,.4)">${c.plataforma} · Orç: ${fmtM0(c.orcamento)} · Gasto: ${fmtM0(c.gasto)}</div></div>
+<div style="text-align:right"><div class="chip ${c.status==="ativa"?"chip-green":"chip-red"}">${c.status}</div><div style="font-size:10px;margin-top:3px">${c.leads} leads · ${c.convertidos} conv.</div></div>
+</div>`).join("")||'<div class="empty" style="padding:20px"><p>Sem campanhas</p></div>'}</div>`;
+  } else {
+    wrap.innerHTML=`<div class="panel"><div class="ph"><div class="pt"><i class="fas fa-magic" style="color:var(--purple)"></i> Gerador de Conteúdo IA</div></div>
+<div style="padding:14px">
+<div class="g2">
+<div class="fg"><label class="fl">Formato</label><select class="fsl" id="mkt-fmt"><option>Post Instagram (legenda)</option><option>Roteiro Reels 60s</option><option>Post Facebook</option><option>Artigo LinkedIn</option><option>Thread para X/Twitter</option><option>Resposta para FAQ</option></select></div>
+<div class="fg"><label class="fl">Tom</label><select class="fsl" id="mkt-tom"><option>Educativo e direto</option><option>Empático — falar com a vítima</option><option>Autoridade técnica</option><option>Urgência — você pode ser indenizado</option></select></div>
+</div>
+<div class="fg"><label class="fl">Tema</label><select class="fsl" id="mkt-tema"><option>Golpe do falso gerente bancário</option><option>Fraude via PIX</option><option>Empréstimo consignado indevido</option><option>Golpe do falso advogado</option><option>Aposentadoria negada pelo INSS</option><option>Danos morais contra banco</option><option>Conta laranja — vítima inocente</option></select></div>
+<button class="btn btn-purple" style="width:100%;justify-content:center;margin-top:4px" onclick="gerarConteudoMkt()"><i class="fas fa-magic"></i> Gerar com IA Claude</button>
+<div id="mkt-result" style="margin-top:14px"></div>
+</div></div>`;
+  }
+}
+function moNovaCamp(){
+  openMo("Nova Campanha",`<div class="g2">
+<div class="fg" style="grid-column:1/-1"><label class="fl">Nome da campanha</label><input class="fi" id="nc-nome"></div>
+<div class="fg"><label class="fl">Plataforma</label><select class="fsl" id="nc-plat"><option>Google Ads</option><option>Meta Ads</option><option>TikTok Ads</option></select></div>
+<div class="fg"><label class="fl">Orçamento mensal (R$)</label><input class="fi fi-mono" id="nc-orc" type="number"></div>
+</div>
+<div class="mo-act"><button class="btn btn-gold" onclick="salvarCamp()"><i class="fas fa-save"></i> Salvar</button></div>`);
+}
+function salvarCamp(){
+  const nome=document.getElementById("nc-nome").value.trim();if(!nome){toast("Preencha o nome.","e");return}
+  const camp=getData.campanhas();camp.unshift({id:gid(),nome,plataforma:document.getElementById("nc-plat").value,orcamento:parseFloat(document.getElementById("nc-orc").value)||0,gasto:0,leads:0,convertidos:0,status:"ativa",inicio:today()});
+  sJ("mkt_campanhas",camp);closeMo("mo-main");mktTab("campanhas");toast("✓ Campanha criada!","s");
+}
+async function gerarConteudoMkt(){
+  const fmt=(document.getElementById("mkt-fmt")||{value:""}).value;
+  const tema=(document.getElementById("mkt-tema")||{value:""}).value;
+  const tom=(document.getElementById("mkt-tom")||{value:""}).value;
+  const r=document.getElementById("mkt-result");if(!r)return;
+  r.innerHTML='<div class="empty"><div class="lib-spin" style="margin:0 auto 10px;width:26px;height:26px;border-width:2px"></div><p>Gerando com IA...</p></div>';
+  const prompt=`Crie conteúdo de marketing jurídico para o escritório Tarcisio Braga Advogados, especializado em golpes e fraudes bancárias (Jacareí/SP).
+Formato: ${fmt}
+Tema: ${tema}
+Tom: ${tom}
+
+Regras éticas OAB: não prometa resultados, não mencione honorários, linguagem clara. Termine com CTA: WhatsApp (12) 98106-4236.`;
+  try{
+    const resp=await new Promise((res,rej)=>{google.script.run.withSuccessHandler(res).withFailureHandler(rej).callClaudeAPI(JSON.stringify({max_tokens:800,messages:[{role:"user",content:prompt}]}))});
+    if(!resp.ok){r.innerHTML=`<div style="color:var(--red);font-size:12px">Erro: ${resp.error}</div>`;return}
+    r.innerHTML=`<div style="background:rgba(13,17,23,.03);border-radius:8px;padding:14px;font-size:12.5px;line-height:1.8;white-space:pre-wrap">${resp.text}</div><div style="display:flex;gap:8px;margin-top:10px"><button class="btn btn-outline btn-sm" onclick="navigator.clipboard&&navigator.clipboard.writeText(document.getElementById('mkt-result').querySelector('div').textContent).then(()=>toast('Copiado!','s'))"><i class="fas fa-copy"></i> Copiar</button></div>`;
+    toast("✓ Conteúdo gerado!","s");
+  }catch(e){r.innerHTML=`<div style="color:var(--red);font-size:12px">Erro: ${e.message}</div>`}
+}
+
+// ════════════════════════════════════════════════════
+// PROPOSTAS (declaração de função necessária)
+// ════════════════════════════════════════════════════
+var PROP_TPLS=[{id:"fraude",n:"Fraude Bancária / PIX",tese:"Com base no **CDC art. 14** e na **Súmula 479 do STJ**, a instituição financeira responde objetivamente pelos danos causados por fraudes — fortuito interno da atividade bancária."},{id:"previd",n:"Previdenciário / INSS",tese:"Com fundamento na **Lei 8.213/91** e na **CF art. 201**, o segurado tem direito ao benefício quando preenchidos os requisitos legais."},{id:"trabalhista",n:"Trabalhista",tese:"As verbas trabalhistas reclamadas decorrem de direitos garantidos pela **CLT e pela CF art. 7º**."},{id:"consumidor",n:"Consumidor",tese:"Com base no **CDC arts. 12 e 14**, o fornecedor responde objetivamente pelos danos causados."},{id:"bancario",n:"Bancário — Revisão",tese:"Fundamentada na **Lei 14.181/21 (Superendividamento)** e no **CDC**."},{id:"familia",n:"Família e Sucessões",tese:"Baseada no **Código Civil** e no **CPC/2015**."}];
+var _propTpl=PROP_TPLS[0];
+function bPropostas(){
+  document.getElementById("prop-wrap").innerHTML=`
+<div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;margin-bottom:6px">Propostas Comerciais</div>
+<div style="font-size:12px;color:rgba(13,17,23,.45);margin-bottom:16px">Propostas profissionais em .docx ou PDF no padrão visual do escritório.</div>
+<div class="g2">
+<div>
+<div class="panel"><div class="ph"><div class="pt"><i class="fas fa-layer-group"></i> Tipo de proposta</div></div>
+<div style="padding:12px"><div class="tpl-grid">${PROP_TPLS.map(t=>`<div class="tpl-card ${_propTpl.id===t.id?"active":""}" onclick="selPropTpl('${t.id}')"><div class="tpl-nome">${t.n}</div></div>`).join("")}</div></div></div>
+<div class="panel"><div class="ph"><div class="pt"><i class="fas fa-user"></i> Cliente</div></div><div style="padding:14px">
+<div class="fg"><label class="fl">Nome <span class="req">*</span></label><input class="fi" id="p-nome"></div>
+<div class="g2"><div class="fg"><label class="fl">CPF/CNPJ</label><input class="fi" id="p-cpf"></div><div class="fg"><label class="fl">WhatsApp</label><input class="fi" id="p-wpp"></div></div>
+<div class="fg"><label class="fl">E-mail</label><input class="fi" id="p-email"></div>
+</div></div>
+<div class="panel"><div class="ph"><div class="pt"><i class="fas fa-gavel"></i> Caso & Honorários</div></div><div style="padding:14px">
+<div class="fg"><label class="fl">Área</label><select class="fsl" id="p-area">${AREAS.map(a=>`<option>${a}</option>`).join("")}</select></div>
+<div class="fg"><label class="fl">Descrição do caso <span class="req">*</span></label><textarea class="fta" id="p-caso" style="min-height:80px"></textarea></div>
+<div class="g2"><div class="fg"><label class="fl">Modalidade</label><select class="fsl" id="p-modal"><option value="exito">Só êxito</option><option value="ini_exito">Inicial + êxito</option><option value="fixo">Fixo</option></select></div><div class="fg"><label class="fl">% Êxito</label><input class="fi" id="p-pct" type="number" value="20"></div></div>
+<div class="g2"><div class="fg"><label class="fl">Inicial (R$)</label><input class="fi fi-mono" id="p-ini" type="number"></div><div class="fg"><label class="fl">Validade</label><select class="fsl" id="p-val"><option value="10" selected>10 dias</option><option value="15">15 dias</option><option value="30">30 dias</option></select></div></div>
+</div></div>
+<button class="btn btn-gold" style="width:100%;justify-content:center" onclick="gerarProposta()"><i class="fas fa-file-invoice"></i> Gerar Proposta</button>
+</div>
+<div><div class="panel"><div class="ph"><div class="pt"><i class="fas fa-eye" style="color:var(--blue)"></i> Prévia</div><div id="prop-act" style="display:none"><button class="btn btn-gold btn-sm" onclick="abrirDocMo(_docTitulo)"><i class="fas fa-download"></i> Baixar</button></div></div>
+<div style="padding:12px"><div id="prop-result" class="doc-preview"><div class="empty"><i class="fas fa-file-invoice"></i><p>Preencha e clique em Gerar</p></div></div></div>
+</div></div>
+</div>`;
+}
+function selPropTpl(id){_propTpl=PROP_TPLS.find(t=>t.id===id)||PROP_TPLS[0];bPropostas()}
+function gerarProposta(){
+  const nome=(document.getElementById("p-nome")||{value:""}).value.trim();
+  const caso=(document.getElementById("p-caso")||{value:""}).value.trim();
+  if(!nome||!caso){toast("Preencha nome e caso.","e");return}
+  const cpf=(document.getElementById("p-cpf")||{value:""}).value.trim();
+  const wpp=(document.getElementById("p-wpp")||{value:""}).value.trim();
+  const email=(document.getElementById("p-email")||{value:""}).value.trim();
+  const area=(document.getElementById("p-area")||{value:"Fraudes Bancárias"}).value;
+  const modal=(document.getElementById("p-modal")||{value:"exito"}).value;
+  const pct_ex=(document.getElementById("p-pct")||{value:20}).value;
+  const honIni=parseFloat((document.getElementById("p-ini")||{value:0}).value)||0;
+  const validade=(document.getElementById("p-val")||{value:"10"}).value;
+  const dt=new Date().toLocaleDateString("pt-BR",{day:"2-digit",month:"long",year:"numeric"});
+  const dtV=new Date(Date.now()+parseInt(validade)*86400000).toLocaleDateString("pt-BR",{day:"2-digit",month:"long",year:"numeric"});
+  const honT=modal==="exito"?`Honorários de êxito: **${pct_ex}%** sobre a condenação. Sem cobrança antecipada.`:modal==="ini_exito"?`Honorários iniciais: **${honIni>0?fmtM(honIni):"a combinar"}**
+Honorários de êxito: **${pct_ex}%** sobre a condenação`:`Honorário fixo: **${honIni>0?fmtM(honIni):"a combinar"}**`;
+  _docTexto=(function(){var nl="\n";var linhas=["PROPOSTA DE SERVIÇOS ADVOCATÍCIOS","","Tarcisio Braga Sociedade Individual de Advocacia","OAB/SP 411.019 · CNPJ 55.433.682/0001-01","","Jacareí/SP, "+dt,"","I. IDENTIFICAÇÃO DO CLIENTE","","**Nome:** "+nome];if(cpf)linhas.push("**CPF/CNPJ:** "+cpf);if(email)linhas.push("**E-mail:** "+email);if(wpp)linhas.push("**WhatsApp:** "+wpp);linhas=linhas.concat(["","II. DO ESCRITÓRIO","","Tarcisio Braga Advogados é escritório especializado em golpes e fraudes financeiras, com atuação destacada na defesa de vítimas de bancos, fintechs e plataformas de pagamento no Vale do Paraíba/SP.","","III. DA ÁREA JURÍDICA E TESE","","**Área:** "+area+" — **Tipo:** "+_propTpl.n,"","**Resumo do caso:** "+caso,"",_propTpl.tese,"","IV. DOS SERVIÇOS INCLUÍDOS","","• Análise jurídica completa do caso e documentos","• Elaboração da peça processual estratégica","• Ajuizamento da ação e acompanhamento integral","• Atualização periódica sobre o andamento do processo","• Acesso ao Portal do Cliente","• Negociação e análise de acordos extrajudiciais","","V. DOS HONORÁRIOS ADVOCATÍCIOS","",honT,"","VI. DA VALIDADE","","Esta proposta é válida até **"+dtV+"**. A formalização ocorre mediante assinatura digital via Zapsign.","","Dúvidas: (12) 98106-4236 · tarcisiobragasantana@gmail.com","","**Tarcisio Braga Santana**","OAB/SP 411.019 — Advogado"]);return linhas.join(nl)})()
+  _docTitulo="Proposta — "+nome;
+  const pr=document.getElementById("prop-result");if(pr)pr.innerHTML=renderPrev(_docTexto);
+  const pa=document.getElementById("prop-act");if(pa)pa.style.display="block";
+  toast("✓ Proposta gerada!","s");
+}
+
+// ════════════════════════════════════════════════════
+// MODAL DOCUMENTO + GERAÇÃO .docx e PDF
+// ════════════════════════════════════════════════════
+function abrirDocMo(titulo){
+  document.getElementById("mo-doc-tit").textContent=titulo||_docTitulo;
+  document.getElementById("mo-doc-prev").innerHTML=`<div class="doc-preview">${renderPrev(_docTexto)}</div>`;
+  document.getElementById("mo-doc").classList.add("open");
+}
+function copiarDoc(){
+  if(!_docTexto)return;
+  if(navigator.clipboard)navigator.clipboard.writeText(_docTexto).then(()=>toast("Copiado!","s"));
+  else{const ta=document.createElement("textarea");ta.value=_docTexto;document.body.appendChild(ta);ta.select();document.execCommand("copy");ta.remove();toast("Copiado!","s")}
+}
+function sendWpp(){
+  if(!_docTexto)return;
+  const tel=prompt("Número do destinatário (com DDD):");
+  if(!tel)return;
+  const t=tel.replace(/\D/g,"");
+  window.open("https://wa.me/55"+t+"?text="+encodeURIComponent(_docTexto.substring(0,1500)+"\n\n— Tarcisio Braga Advogados · (12) 98106-4236"),"_blank");
+}
+
+// ── GERAÇÃO .DOCX (lazy-load) ──────────────────────
+async function gerarDocx(){
+  if(!_docTexto){toast("Nenhum documento.","w");return}
+  try{
+    await LibLoader.loadDocx();
+    if(!window.docx)throw new Error("docx não carregou");
+    // Carregar header B64 se ainda não carregado
+    if(!window.HEADER_B64||window.HEADER_B64.length<100){
+      if(typeof google!=="undefined"&&google.script&&google.script.run){
+        toast("Carregando logo do escritório...","w");
+        await new Promise(function(res){
+          google.script.run
+            .withSuccessHandler(function(r){if(r&&r.ok&&r.data)window.HEADER_B64=r.data.replace(/<[^>]+>/g,"").replace(/window\.HEADER_B64\s*=\s*['"]/,"").replace(/['"]\s*;?\s*$/,"");res()})
+            .withFailureHandler(function(){res()})
+            .getHeaderB64();
+        });
+      }
+    }
+    const D=window.docx;
+    function b64(b){if(!b||b.length<10)return new Uint8Array(0);const bin=atob(b);const a=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)a[i]=bin.charCodeAt(i);return a}
+    const hImg=b64(window.HEADER_B64);
+    const CM=567; // 1cm em twips
+
+    const children=_docTexto.split("\n").map(l=>{
+      if(!l.trim())return new D.Paragraph({children:[new D.TextRun({text:"",font:"Verdana",size:22})],spacing:{line:360,lineRule:"auto"}});
+      if(/^[IVX]+\.\s/.test(l.trim()))return new D.Paragraph({children:[new D.TextRun({text:l.trim().toUpperCase(),font:"Verdana",size:22,bold:true,shading:{type:D.ShadingType.SOLID,color:"FFFF00",fill:"FFFF00"}})],spacing:{before:280,after:140,line:360,lineRule:"auto"}});
+      if(/^(EXMO|MM\.|EGRÉGIO|AO |PREZADO|PROPOSTA|CONTRATO|PROCURAÇÃO|RELATÓRIO|TARCISIO|DECLARAÇÃO)/i.test(l.trim()))return new D.Paragraph({children:[new D.TextRun({text:l.trim(),font:"Verdana",size:22,bold:true})],alignment:D.AlignmentType.CENTER,spacing:{before:0,after:240,line:360,lineRule:"auto"}});
+      if(/Jacareí[\s,]|de 20\d{2}\./i.test(l)&&l.length<80)return new D.Paragraph({children:[new D.TextRun({text:l.trim(),font:"Verdana",size:22})],alignment:D.AlignmentType.RIGHT,spacing:{before:360,after:0,line:360,lineRule:"auto"}});
+      if(/^_{3,}$/.test(l.trim()))return new D.Paragraph({children:[new D.TextRun({text:l.trim(),font:"Verdana",size:22})],alignment:D.AlignmentType.CENTER,spacing:{before:120,after:40,line:360,lineRule:"auto"}});
+      if(/^(OAB\/SP|CONTRATANTE|CONTRATADO|Outorgante|Declarante)/i.test(l.trim())&&l.length<60)return new D.Paragraph({children:[new D.TextRun({text:l.trim().replace(/\*\*/g,""),font:"Verdana",size:22,bold:true})],alignment:D.AlignmentType.CENTER,spacing:{before:40,after:40,line:360,lineRule:"auto"}});
+      const parts=l.split(/(\*\*[^*]+\*\*)/g);
+      return new D.Paragraph({
+        children:parts.filter(p=>p).map(p=>{const b=p.startsWith("**")&&p.endsWith("**");return new D.TextRun({text:b?p.slice(2,-2):p,font:"Verdana",size:22,bold:b,color:"000000"})}),
+        indent:{firstLine:Math.round(1.25*CM)},
+        spacing:{line:360,lineRule:"auto"},
+        alignment:D.AlignmentType.JUSTIFIED
+      });
+    });
+
+    const doc=new D.Document({sections:[{
+      properties:{page:{size:{width:11906,height:16838},margin:{top:Math.round(1.5*CM),bottom:Math.round(2*CM),left:Math.round(2*CM),right:Math.round(1*CM),header:Math.round(.5*CM),footer:Math.round(1.1*CM)}}},
+      headers:{default:new D.Header({children:[new D.Paragraph({children:[new D.ImageRun({data:hImg,transformation:{width:650,height:180},type:"jpg"})],spacing:{before:0,after:0}})]})},
+      footers:{default:new D.Footer({children:[
+        new D.Paragraph({border:{top:{style:D.BorderStyle.SINGLE,size:6,color:"000000",space:3}},children:[new D.TextRun({text:"TARCISIO BRAGA — ADVOGADO  ·  OAB/SP 411.019",font:"Century Gothic",size:20,bold:true,color:"000000"})],alignment:D.AlignmentType.CENTER,spacing:{before:0,after:40}}),
+        new D.Paragraph({children:[new D.TextRun({text:"(12) 98106-4236   •   www.tarcisiobraga.com.br   •   tarcisiobragasantana@gmail.com",font:"Century Gothic",size:20,bold:true,color:"000000"})],alignment:D.AlignmentType.CENTER})
+      ]})},
+      children:children
+    }]});
+
+    toast("Gerando .docx...","w");
+    const blob=await D.Packer.toBlob(doc);
+    const url=URL.createObjectURL(blob);
+    const a=document.createElement("a");
+    a.href=url;a.download=(_docTitulo||"documento").toLowerCase().replace(/[^a-z0-9]+/g,"_")+".docx";
+    a.click();
+    setTimeout(()=>URL.revokeObjectURL(url),8000);
+    toast("✓ .docx baixado!","s");
+  }catch(e){toast("Erro .docx: "+e.message,"e");console.error(e)}
+}
+
+// ── GERAÇÃO PDF (lazy-load) ────────────────────────
+async function gerarPdf(){
+  if(!_docTexto){toast("Nenhum documento.","w");return}
+  try{
+    await LibLoader.loadPdf();
+    if(!window.html2pdf)throw new Error("html2pdf não carregou");
+    toast("Gerando PDF...","w");
+    const linhas=_docTexto.split("\n").map(l=>{
+      if(!l.trim())return'<div style="height:10px"></div>';
+      if(/^[IVX]+\.\s/.test(l.trim()))return`<div style="background:#FFFF00;font-weight:bold;padding:3px 5px;display:inline-block;margin:12px 0 6px;text-transform:uppercase;font-size:11pt">${l.trim()}</div>`;
+      if(/^(EXMO|MM\.|EGRÉGIO|AO |PREZADO|PROPOSTA|CONTRATO|PROCURAÇÃO|RELATÓRIO|TARCISIO|DECLARAÇÃO)/i.test(l.trim()))return`<div style="font-weight:bold;text-align:center;margin:8px 0;font-size:12pt">${l.trim()}</div>`;
+      if(/Jacareí[\s,]|de 20\d{2}\./i.test(l)&&l.length<80)return`<div style="text-align:right;margin-top:20px">${l.trim()}</div>`;
+      if(/^_{3,}$/.test(l.trim()))return`<div style="text-align:center;margin:10px 0">${l.trim()}</div>`;
+      if(/^(OAB\/SP|CONTRATANTE|CONTRATADO|Outorgante|Declarante)/i.test(l.trim())&&l.length<60)return`<div style="text-align:center;font-weight:bold;margin:3px 0">${l.trim().replace(/\*\*/g,"")}</div>`;
+      return`<p style="text-align:justify;text-indent:1.25cm;margin:0 0 3px 0">${l.replace(/\*\*([^*]+)\*\*/g,"<strong>$1</strong>")}</p>`;
+    }).join("");
+
+    const html=`<div style="font-family:Verdana,sans-serif;font-size:11pt;color:#000;line-height:1.8">
+<img src="data:image/jpeg;base64,${window.HEADER_B64}" style="width:100%;display:block;margin-bottom:14px" />
+${linhas}
+<div style="border-top:1.5px solid #000;margin-top:28px;padding-top:6px;text-align:center;font-family:'Century Gothic',sans-serif;font-weight:bold;font-size:10pt">
+TARCISIO BRAGA — ADVOGADO · OAB/SP 411.019<br>
+(12) 98106-4236 · www.tarcisiobraga.com.br · tarcisiobragasantana@gmail.com
+</div></div>`;
+
+    const div=document.createElement("div");
+    div.innerHTML=html;
+    div.style.cssText="padding:1.5cm 1cm 2cm 2cm;background:#fff;width:21cm";
+
+    await window.html2pdf().set({
+      margin:0,
+      filename:(_docTitulo||"documento").toLowerCase().replace(/[^a-z0-9]+/g,"_")+".pdf",
+      image:{type:"jpeg",quality:.95},
+      html2canvas:{scale:2,useCORS:true,letterRendering:true},
+      jsPDF:{unit:"cm",format:"a4",orientation:"portrait"}
+    }).from(div).save();
+
+    toast("✓ PDF baixado!","s");
+  }catch(e){toast("Erro PDF: "+e.message,"e");console.error(e)}
+}
+
+// ════════════════════════════════════════════════════
+// AUTOSAVE + INIT
+// ════════════════════════════════════════════════════
+// ── BUILDERS — declarado aqui pois referencia funções de todos os scripts ──
+var BUILDERS={
+  dashboard:function(){initDash()},
+  processos:function(){bProc()},
+  prazos:function(){bPrazos()},
+  confeccao:function(){bConfec()},
+  peticoes:function(){bPeticoes()},
+  contratos:function(){bContratos()},
+  acordos:function(){bAcordos()},
+  agenda:function(){bAgenda()},
+  crm:function(){bCRM()},
+  propostas:function(){bPropostas()},
+  marketing:function(){bMarketing()},
+  portal:function(){bPortal()},
+  financas:function(){finTab("dash")},
+  honorarios:function(){bHonorarios()},
+  calculadora:function(){bCalculadora()},
+  equipe:function(){eqTab("visao")},
+  relatorio:function(){initRel();bRelatorio()}
+};
+
+// ── INICIALIZAÇÃO DIRETA — sem eventos, sem timeouts ─────────────
+// Scripts no final do <body> executam após o DOM estar completamente pronto
+// Autosave em background
+setInterval(function(){if(Object.keys(_pend).length>0)flush()},60000);
+window.addEventListener("beforeunload",function(){if(Object.keys(_pend).length>0)flush()});
+document.addEventListener("visibilitychange",function(){if(document.hidden&&Object.keys(_pend).length>0)flush()});
+// INICIAR APP AGORA — síncrono, direto, sem depender de eventos
+initApp();
+</script>
+</body>
+</html>
